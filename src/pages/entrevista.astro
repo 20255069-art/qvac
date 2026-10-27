@@ -1,0 +1,17 @@
+---
+import Entrevista from "../components/islas/Entrevista.tsx";
+import Base from "../layouts/Base.astro";
+import { competencias, mapeo, ocupaciones } from "../lib/datos.ts";
+
+const ocupacionesMinimas = ocupaciones.map(({ id, nombreCorto }) => ({ id, nombreCorto }));
+---
+
+<Base titulo="Cuéntanos tu experiencia" descripcion="Cuenta con tus palabras qué haces en tu trabajo y descubre qué competencias tienes.">
+  <h1>Cuéntanos tu experiencia</h1>
+  <p class="mt-4">
+    Responde con tus palabras, como se lo contarías a un amigo. No necesitas responder todo.
+  </p>
+  <div class="mt-6">
+    <Entrevista client:load ocupaciones={ocupacionesMinimas} competencias={competencias} mapeo={mapeo} />
+  </div>
+</Base>

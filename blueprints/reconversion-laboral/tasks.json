@@ -390,7 +390,7 @@
       "src/pages/entrevista.astro",
       "e2e/entrevista.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E6-T1",
