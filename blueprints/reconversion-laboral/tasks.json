@@ -361,7 +361,7 @@
       "src/lib/sugerencias.ts",
       "tests/traductor.test.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E5-T2",
