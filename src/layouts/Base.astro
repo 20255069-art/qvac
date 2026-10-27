@@ -1,0 +1,42 @@
+---
+import AvisoPrototipo from "../components/AvisoPrototipo.astro";
+import PiePagina from "../components/PiePagina.astro";
+import "../styles/global.css";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+}
+
+const { titulo, descripcion } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo} | Reconversión Laboral</title>
+    <meta name="description" content={descripcion} />
+  </head>
+  <body class="bg-fondo text-texto">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-base focus:bg-fondo focus:px-4 focus:py-3">Saltar al contenido</a>
+    <header class="bg-primario text-fondo">
+      <div class="mx-auto flex max-w-contenido flex-wrap items-center justify-between gap-2 px-4 py-3">
+        <a href="/" class="text-xl font-bold text-fondo no-underline focus-visible:outline-fondo">Reconversión Laboral</a>
+        <nav aria-label="Principal">
+          <ul class="flex flex-wrap gap-x-4 gap-y-1">
+            <li><a href="/ocupaciones/" class="text-fondo focus-visible:outline-fondo">Ocupaciones</a></li>
+            <li><a href="/entrevista/" class="text-fondo focus-visible:outline-fondo">Entrevista</a></li>
+            <li><a href="/acerca/" class="text-fondo focus-visible:outline-fondo">Cómo funciona</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <AvisoPrototipo />
+    <main id="contenido" tabindex="-1" class="mx-auto max-w-contenido px-4 py-8">
+      <slot />
+    </main>
+    <PiePagina />
+  </body>
+</html>

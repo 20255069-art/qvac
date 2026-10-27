@@ -57,7 +57,7 @@
       "src/pages/index.astro",
       "e2e/layout.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E2-T1",
