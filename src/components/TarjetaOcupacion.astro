@@ -1,5 +1,6 @@
 ---
 import type { Ocupacion } from "../lib/esquemas.ts";
+import IconoOcupacion from "./IconoOcupacion.astro";
 
 interface Props {
   ocupacion: Ocupacion;
@@ -8,8 +9,11 @@ interface Props {
 const { ocupacion } = Astro.props;
 ---
 
-<li class="rounded-base border border-borde bg-fondo p-4">
-  <h2 class="text-xl"><a href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>
-  <p class="mt-2 text-base text-texto-suave">También: {ocupacion.puestos.join(", ")}</p>
-  <p class="mt-2 text-sm text-texto-suave">CNPO {ocupacion.codigo}</p>
+<li class="con-icono flex gap-4 rounded-base border border-borde bg-fondo p-4">
+  <IconoOcupacion id={ocupacion.id} tamano={72} />
+  <div class="min-w-0">
+    <h2 class="text-xl"><a href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>
+    <p class="mt-2 text-base text-texto-suave">También: {ocupacion.puestos.join(", ")}</p>
+    <p class="mt-2 text-sm text-texto-suave">CNPO {ocupacion.codigo}</p>
+  </div>
 </li>

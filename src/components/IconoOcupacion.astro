@@ -1,0 +1,102 @@
+---
+// Íconos propios de cada ocupación (SVG en línea, sin JavaScript).
+// Estilo: trazo morado, relleno rosado y acentos en el rojo del sitio, con destellos ✦.
+// Las animaciones viven en src/styles/global.css (.icono) y respetan prefers-reduced-motion.
+import type { Ocupacion } from "../lib/esquemas.ts";
+
+interface Props {
+  id: Ocupacion["id"];
+  tamano?: number;
+}
+
+const { id, tamano = 64 } = Astro.props;
+
+// Cada trazo lleva pathLength="1" para la animación de "dibujarse" al cargar.
+const T = 'class="ico-trazo" pathLength="1"';
+
+const DIBUJOS: Record<Ocupacion["id"], string> = {
+  almacen: `
+    <rect class="ico-relleno" x="22" y="13" width="20" height="17" rx="2"/>
+    <rect class="ico-relleno" x="10" y="31" width="20" height="17" rx="2"/>
+    <rect class="ico-relleno" x="34" y="31" width="20" height="17" rx="2"/>
+    <rect ${T} x="22" y="13" width="20" height="17" rx="2"/>
+    <rect ${T} x="10" y="31" width="20" height="17" rx="2"/>
+    <rect ${T} x="34" y="31" width="20" height="17" rx="2"/>
+    <path class="ico-acento-trazo" d="M32 13v7M20 31v7M44 31v7"/>
+    <path ${T} d="M6 52h52M12 52v4M32 52v4M52 52v4"/>`,
+  atencion_telefonica: `
+    <rect class="ico-relleno" x="10" y="31" width="10" height="15" rx="4"/>
+    <rect class="ico-relleno" x="44" y="31" width="10" height="15" rx="4"/>
+    <path ${T} d="M15 31v-3a17 17 0 0 1 34 0v3"/>
+    <rect ${T} x="10" y="31" width="10" height="15" rx="4"/>
+    <rect ${T} x="44" y="31" width="10" height="15" rx="4"/>
+    <path ${T} d="M49 46c0 6-4 9-10 9h-3"/>
+    <circle class="ico-acento" cx="33" cy="55" r="3.5"/>`,
+  caja_comercial: `
+    <rect class="ico-relleno" x="9" y="31" width="46" height="21" rx="3"/>
+    <rect ${T} x="9" y="31" width="46" height="21" rx="3"/>
+    <rect ${T} x="31" y="13" width="21" height="12" rx="2"/>
+    <path ${T} d="M41 25v6M9 44h46"/>
+    <path class="ico-acento-trazo" d="M35 19h13"/>
+    <circle class="ico-acento" cx="17" cy="37.5" r="2"/>
+    <circle class="ico-acento" cx="24" cy="37.5" r="2"/>
+    <rect ${T} x="13" y="15" width="11" height="14" rx="1.5"/>`,
+  caja_financiera: `
+    <path class="ico-relleno" d="M8 25 32 11l24 14z"/>
+    <path ${T} d="M8 25 32 11l24 14z"/>
+    <path ${T} d="M15 29v15M25 29v15M39 29v15M49 29v15"/>
+    <rect ${T} x="8" y="45" width="48" height="7" rx="1.5"/>
+    <circle class="ico-acento" cx="32" cy="20" r="3.5"/>`,
+  housekeeping: `
+    <rect class="ico-relleno" x="8" y="34" width="48" height="11" rx="2"/>
+    <path ${T} d="M8 20v32M56 34v18"/>
+    <rect ${T} x="8" y="34" width="48" height="11" rx="2"/>
+    <rect ${T} x="14" y="27" width="14" height="7" rx="3.5"/>
+    <circle class="ico-acento-trazo" cx="47" cy="17" r="4"/>
+    <path class="ico-acento-trazo" d="M51 17h8m-3 0v4"/>`,
+  lavanderia: `
+    <rect class="ico-relleno" x="14" y="8" width="36" height="48" rx="4"/>
+    <rect ${T} x="14" y="8" width="36" height="48" rx="4"/>
+    <path ${T} d="M14 18h36"/>
+    <circle ${T} cx="32" cy="37" r="12"/>
+    <circle class="ico-acento" cx="21" cy="13" r="1.8"/>
+    <circle class="ico-acento" cx="27" cy="13" r="1.8"/>
+    <path class="ico-acento-trazo" d="M24 39q4-4 8 0t8 0"/>`,
+  limpieza: `
+    <path class="ico-relleno" d="M9 31h28l-3 23H12z"/>
+    <path ${T} d="M9 31h28l-3 23H12z"/>
+    <path ${T} d="M12 31q11-14 22 0"/>
+    <rect class="ico-relleno" x="42" y="27" width="14" height="27" rx="3"/>
+    <rect ${T} x="42" y="27" width="14" height="27" rx="3"/>
+    <path ${T} d="M45 27v-9h9l3 3"/>
+    <circle class="ico-acento" cx="40" cy="15" r="1.8"/>
+    <circle class="ico-acento" cx="36" cy="20" r="1.5"/>`,
+  salon_comidas: `
+    <path class="ico-relleno" d="M12 44a20 20 0 0 1 40 0z"/>
+    <path ${T} d="M12 44a20 20 0 0 1 40 0z"/>
+    <path ${T} d="M6 47h52"/>
+    <path ${T} d="M20 40a13 13 0 0 1 7-10"/>
+    <circle class="ico-acento" cx="32" cy="21" r="3.5"/>`,
+  trabajador_hogar: `
+    <path class="ico-relleno" d="M10 30 32 12l22 18v24H10z"/>
+    <path ${T} d="M10 30 32 12l22 18v24H10z"/>
+    <rect ${T} x="27" y="40" width="10" height="14" rx="1"/>
+    <path class="ico-acento" d="M32 36c-5-3.5-8-6-8-9a3.8 3.8 0 0 1 8-1.6 3.8 3.8 0 0 1 8 1.6c0 3-3 5.5-8 9z"/>`,
+};
+
+// Destellos ✦ como en la referencia; parpadean al pasar el cursor por la tarjeta.
+const DESTELLOS = `
+  <path class="ico-destello" d="M7 4l1.2 3.3L11.5 8.5 8.2 9.7 7 13 5.8 9.7 2.5 8.5 5.8 7.3z"/>
+  <path class="ico-destello ico-destello-2" d="M57 5l.9 2.5 2.6.9-2.6.9L57 11.8l-.9-2.5-2.6-.9 2.6-.9z"/>`;
+---
+
+<svg
+  class="icono shrink-0"
+  data-icono={id}
+  width={tamano}
+  height={tamano}
+  viewBox="0 0 64 64"
+  aria-hidden="true"
+  focusable="false"
+  set:html={DESTELLOS + DIBUJOS[id]}
+/>

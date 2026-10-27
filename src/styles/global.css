@@ -20,6 +20,8 @@
   --color-aviso-fondo: #fff8db;
   --color-referencial-texto: #3e4c59;
   --color-referencial-fondo: #e4e7eb;
+  --color-icono-trazo: #4a3b78;
+  --color-icono-relleno: #fde8ec;
   --font-sans: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
   --radius-base: 8px;
   --container-contenido: 72rem;
@@ -60,5 +62,94 @@
   :focus-visible {
     outline: 3px solid var(--color-foco);
     outline-offset: 2px;
+  }
+}
+
+/* Íconos de ocupación (IconoOcupacion.astro): micro-animaciones solo con CSS. */
+@layer components {
+  .icono .ico-trazo,
+  .icono .ico-acento-trazo {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icono .ico-trazo {
+    stroke: var(--color-icono-trazo);
+  }
+
+  .icono .ico-acento-trazo {
+    stroke: var(--color-primario);
+  }
+
+  .icono .ico-relleno {
+    fill: var(--color-icono-relleno);
+  }
+
+  .icono .ico-acento,
+  .icono .ico-destello {
+    fill: var(--color-primario);
+  }
+
+  .icono .ico-destello {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* Al cargar: los trazos se dibujan una sola vez. */
+    .icono .ico-trazo {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+      animation: icono-dibujar 0.9s ease-out 0.1s backwards;
+    }
+
+    /* Al pasar el cursor o enfocar la tarjeta: pequeño salto y destellos. */
+    .con-icono:hover .icono,
+    .con-icono:focus-within .icono {
+      animation: icono-salto 0.5s ease-out;
+    }
+
+    .con-icono:hover .ico-destello,
+    .con-icono:focus-within .ico-destello {
+      animation: icono-destello 0.9s ease-in-out infinite;
+    }
+
+    .con-icono:hover .ico-destello-2,
+    .con-icono:focus-within .ico-destello-2 {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes icono-dibujar {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes icono-salto {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes icono-destello {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.6);
   }
 }

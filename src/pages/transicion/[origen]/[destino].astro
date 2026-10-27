@@ -1,5 +1,6 @@
 ---
 import ChipCompetencia from "../../../components/ChipCompetencia.astro";
+import IconoOcupacion from "../../../components/IconoOcupacion.astro";
 import ItemPorFortalecer from "../../../components/ItemPorFortalecer.astro";
 import Base from "../../../layouts/Base.astro";
 import { calcularTransicion } from "../../../lib/afinidad.ts";
@@ -24,7 +25,12 @@ const porcentaje = Math.round(t.cobertura * 100);
   titulo={`${origen.nombreCorto} → ${destino.nombreCorto}`}
   descripcion={`Qué competencias de ${origen.nombreCorto} ya sirven como ${destino.nombreCorto} y cuáles conviene fortalecer, según el CNPO.`}
 >
-  <h1>De {origen.nombreCorto} a {destino.nombreCorto}</h1>
+  <div class="con-icono flex items-center gap-3" aria-hidden="true">
+    <IconoOcupacion id={origen.id} tamano={64} />
+    <span class="text-3xl font-bold text-primario">→</span>
+    <IconoOcupacion id={destino.id} tamano={64} />
+  </div>
+  <h1 class="mt-4">De {origen.nombreCorto} a {destino.nombreCorto}</h1>
   <p data-testid="resumen" class="mt-4 text-xl font-semibold">Ya tienes el {porcentaje} % de lo que pide este trabajo</p>
 
   <h2 class="mt-8">Ya lo tienes</h2>

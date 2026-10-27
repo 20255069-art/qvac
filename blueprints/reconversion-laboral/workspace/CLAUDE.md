@@ -91,7 +91,7 @@ Tokens en `src/styles/global.css` dentro de `@theme`. Usa las clases de Tailwind
 - **Botones:** `min-h-12` (48px), ancho completo en móvil (`w-full sm:w-auto`).
 - **Diseño:** móvil primero (360px), ancho máximo `max-w-contenido` (72rem), sin scroll horizontal a 360px.
 - **Color nunca es la única señal:** cada chip lleva su texto ("Ya lo tienes" / "Por fortalecer").
-- **Sin animaciones.** Sin logos, escudos ni marcas de gob.pe: solo el logotipo de texto "Reconversión Laboral".
+- **Animación solo en los íconos de ocupación**, con CSS (se dibujan al cargar; saltan y destellan al pasar el cursor o enfocar) y desactivada con `prefers-reduced-motion`. Sin JavaScript para animar. Sin logos, escudos ni marcas de gob.pe: solo el logotipo de texto "Reconversión Laboral".
 - **Stitch (Google) es solo referencia visual opcional:** si existen `docs/referencias/*.png` puedes mirarlas para la disposición; los tokens de esta tabla siempre ganan y nunca se pega código de Stitch.
 
 ## Entorno

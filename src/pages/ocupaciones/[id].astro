@@ -1,5 +1,6 @@
 ---
 import FilaDestino from "../../components/FilaDestino.astro";
+import IconoOcupacion from "../../components/IconoOcupacion.astro";
 import Base from "../../layouts/Base.astro";
 import { ranking } from "../../lib/afinidad.ts";
 import { ocupaciones, ocupacionPorId } from "../../lib/datos.ts";
@@ -17,7 +18,10 @@ const destinos = ranking(origen.id);
   titulo={`De ${origen.nombreCorto} a otros trabajos`}
   descripcion={`Mira a qué trabajos afines puede pasar una persona que trabaja como ${origen.nombreCorto}, según el CNPO.`}
 >
-  <h1>De {origen.nombreCorto} a otros trabajos</h1>
+  <div class="con-icono flex items-center gap-4">
+    <IconoOcupacion id={origen.id} tamano={80} />
+    <h1>De {origen.nombreCorto} a otros trabajos</h1>
+  </div>
   <p class="mt-4">
     Estos son los trabajos afines ordenados por afinidad: cuánto de lo que ya sabes hacer sirve en cada uno, según el CNPO.
   </p>
