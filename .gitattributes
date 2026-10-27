@@ -1,0 +1,4 @@
+# Fin de línea LF en todo el repositorio, aunque Git tenga core.autocrlf=true (Biome exige LF).
+* text=auto eol=lf
+*.pdf binary
+*.png binary

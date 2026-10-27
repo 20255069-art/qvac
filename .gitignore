@@ -1,0 +1,11 @@
+# Dependencias y salidas generadas: nunca se versionan
+node_modules/
+dist/
+.astro/
+test-results/
+playwright-report/
+.wrangler/
+
+# Este proyecto no usa archivos .env; si alguien crea uno, no se sube
+.env
+.env.*

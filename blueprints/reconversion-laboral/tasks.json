@@ -1,0 +1,463 @@
+[
+  {
+    "id": "E1-T1",
+    "title": "Esqueleto Astro con tokens de diseño",
+    "epic": "01-base",
+    "dependencies": [],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm run build` se ejecuta THE SYSTEM SHALL terminar con código 0 y generar `dist/index.html`.",
+      "WHEN `npx playwright test e2e/esqueleto.spec.ts` construye y sirve el sitio en `http://127.0.0.1:4321` THE SYSTEM SHALL responder 200 en `/` y mostrar exactamente un `h1` visible, en los proyectos `chromium` y `movil`.",
+      "WHEN `/` se carga THE SYSTEM SHALL aplicar al `body` los tokens de `src/styles/global.css`: fondo `rgb(255, 255, 255)`, color `rgb(31, 41, 51)` y tamaño de letra `18px`.",
+      "WHEN `src/styles/global.css` se inspecciona THE SYSTEM SHALL contener las líneas `@import \"tailwindcss\";`, `@source not \"../../blueprints\";`, `@source not \"../../fuentes\";` y `--color-primario: #c1121f;`.",
+      "WHEN `npm run check` se ejecuta THE SYSTEM SHALL terminar con código 0."
+    ],
+    "verify": [
+      "npm run build",
+      "test -f dist/index.html",
+      "grep -qF '@import \"tailwindcss\";' src/styles/global.css",
+      "grep -qF '@source not \"../../blueprints\";' src/styles/global.css",
+      "grep -qF '@source not \"../../fuentes\";' src/styles/global.css",
+      "grep -qiF -- '--color-primario: #c1121f;' src/styles/global.css",
+      "npm run check",
+      "npx playwright test e2e/esqueleto.spec.ts"
+    ],
+    "checkpoint": "paso-01",
+    "files": [
+      "src/styles/global.css",
+      "src/pages/index.astro",
+      "e2e/esqueleto.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E1-T2",
+    "title": "Layout base con aviso, encabezado y pie",
+    "epic": "01-base",
+    "dependencies": [
+      "E1-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar en `[data-testid=\"aviso-prototipo\"]` el texto `Prototipo para el Innovathon Ulima x Tether. No es un sitio oficial del Estado peruano.`",
+      "WHEN `/` se carga THE SYSTEM SHALL tener `<html lang=\"es\">` y el título `Inicio | Reconversión Laboral`.",
+      "WHEN se presiona Tab una vez en `/` THE SYSTEM SHALL enfocar el enlace `Saltar al contenido` con `href=\"#contenido\"`, y la página SHALL tener exactamente un `main#contenido`.",
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar en el `footer` el texto `Catálogo Nacional de Perfiles Ocupacionales (CNPO)` y no contener ningún elemento `img`.",
+      "WHEN `npx playwright test e2e/esqueleto.spec.ts e2e/layout.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run check",
+      "npx playwright test e2e/esqueleto.spec.ts e2e/layout.spec.ts"
+    ],
+    "checkpoint": "paso-02",
+    "files": [
+      "src/layouts/Base.astro",
+      "src/components/AvisoPrototipo.astro",
+      "src/components/PiePagina.astro",
+      "src/pages/index.astro",
+      "e2e/layout.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E2-T1",
+    "title": "Copia de perfiles CNPO y extracción de texto",
+    "epic": "02-datos",
+    "dependencies": [
+      "E1-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm run copiar-perfiles` se ejecuta en esta máquina THE SYSTEM SHALL dejar en `fuentes/perfiles/` exactamente los 9 PDF de la lista, sin `compras_H2452004.pdf`, y terminar con código 0.",
+      "WHEN `node scripts/copiar-perfiles.mjs` se ejecuta por segunda vez THE SYSTEM SHALL imprimir 9 líneas que empiezan con `omitido ` y terminar con código 0 sin sobrescribir ningún archivo.",
+      "WHEN `npm run extraer` se ejecuta THE SYSTEM SHALL escribir un `fuentes/texto/<nombre>.txt` por cada PDF y terminar con código 0.",
+      "WHEN `npx vitest run tests/extraccion.test.ts` se ejecuta THE SYSTEM SHALL comprobar que cada uno de los 9 `.txt` tiene más de 5000 caracteres, contiene su código de perfil y la marca `===== fin pag 1`, y terminar con código 0.",
+      "WHEN se busca `fuentes/perfiles/compras_H2452004.pdf` THE SYSTEM SHALL no encontrarlo."
+    ],
+    "verify": [
+      "npm run copiar-perfiles",
+      "test \"$(node scripts/copiar-perfiles.mjs | grep -c '^omitido ')\" -eq 9",
+      "npm run extraer",
+      "npx vitest run tests/extraccion.test.ts",
+      "status=0; test -e fuentes/perfiles/compras_H2452004.pdf || status=$?; test \"$status\" -eq 1",
+      "npm run check"
+    ],
+    "checkpoint": "paso-03",
+    "files": [
+      "scripts/copiar-perfiles.mjs",
+      "scripts/extraer-texto.mjs",
+      "fuentes/perfiles/*.pdf",
+      "fuentes/texto/*.txt",
+      "tests/extraccion.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E2-T2",
+    "title": "Esquemas zod y ocupaciones.json",
+    "epic": "02-datos",
+    "dependencies": [
+      "E2-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npx vitest run tests/ocupaciones.test.ts` valida `src/data/ocupaciones.json` con `esquemaOcupaciones` THE SYSTEM SHALL aceptarlo, con los ids `almacen`, `atencion_telefonica`, `caja_comercial`, `caja_financiera`, `housekeeping`, `lavanderia`, `limpieza`, `salon_comidas` y `trabajador_hogar` en ese orden, cada uno con el `codigo`, el `nombreCorto`, el `pdf` y el `demanda.nivel` de la tabla de ocupaciones y `demanda.tipo` igual a `referencial`.",
+      "WHEN el test recorre los estándares de cada ocupación THE SYSTEM SHALL comprobar que cada `codigo` de estándar empieza con `<codigo de la ocupación>-`, que cada elemento tiene id `<codigoEstandar>-E<n>`, que hay al menos un estándar `operativo` con al menos un elemento y que todo estándar cuya descripción empieza con Supervisar, Organizar, Coordinar, Planificar o Gestionar tiene `rol` igual a `supervisor`.",
+      "WHEN el test busca cada código de estándar en `fuentes/texto/<base>.txt` con la expresión `<codigo>\\s*[-–]\\s*<n>` THE SYSTEM SHALL encontrarlo en el texto extraído del PDF de su ocupación.",
+      "WHEN `esquemaOcupacion.safeParse` recibe una ocupación con un estándar de `rol` igual a `jefe` THE SYSTEM SHALL devolver `success: false`.",
+      "WHEN `npm run check` se ejecuta THE SYSTEM SHALL terminar con código 0."
+    ],
+    "verify": [
+      "npx vitest run tests/ocupaciones.test.ts",
+      "npm run check"
+    ],
+    "checkpoint": "paso-04",
+    "files": [
+      "src/lib/esquemas.ts",
+      "src/data/ocupaciones.json",
+      "tests/ocupaciones.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E2-T3",
+    "title": "Catálogo de competencias y mapeo con evidencia",
+    "epic": "02-datos",
+    "dependencies": [
+      "E2-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npx vitest run tests/integridad.test.ts` valida `src/data/competencias.json` THE SYSTEM SHALL encontrar las competencias `C01` a `C30` en orden, `C01`–`C25` con `tipo` igual a `tecnica`, `C26`–`C30` con `tipo` igual a `transversal`, y toda palabra clave en minúsculas sin tildes.",
+      "WHEN `erroresDeIntegridad` revisa los datos reales THE SYSTEM SHALL devolver una lista vacía: todo id de elemento citado en `mapeo.json` existe entre los estándares `operativo` de esa ocupación y toda competencia citada existe en el catálogo.",
+      "WHEN el test cuenta las competencias de cada una de las 9 ocupaciones en `mapeo.json` THE SYSTEM SHALL encontrar entre 6 y 16 por ocupación, con al menos 4 de `tipo` igual a `tecnica`.",
+      "WHEN `erroresDeIntegridad` recibe una copia del mapeo con el id de elemento inexistente `H2452001-99-E99` THE SYSTEM SHALL devolver al menos un error que contiene `H2452001-99-E99`.",
+      "WHEN el test calcula la afinidad con la fórmula de pesos (técnica 1, transversal 0,5; promedio de cobertura y Jaccard) sobre `mapeo.json` THE SYSTEM SHALL dar a `caja_comercial`→`caja_financiera` más afinidad que a `caja_comercial`→`lavanderia`, y a `limpieza`→`housekeeping` más que a `limpieza`→`atencion_telefonica`.",
+      "WHEN `npm run check` se ejecuta THE SYSTEM SHALL terminar con código 0."
+    ],
+    "verify": [
+      "npx vitest run tests/integridad.test.ts",
+      "npx vitest run tests/ocupaciones.test.ts",
+      "npm run check"
+    ],
+    "checkpoint": "paso-05",
+    "files": [
+      "src/data/competencias.json",
+      "src/data/mapeo.json",
+      "src/lib/integridad.ts",
+      "tests/integridad.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E3-T1",
+    "title": "Cursos Capacíta-T, contexto y revisión de enlaces",
+    "epic": "03-motor",
+    "dependencies": [
+      "E2-T3"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npx vitest run tests/complementarios.test.ts` valida `src/data/cursos.json` THE SYSTEM SHALL encontrar exactamente una entrada por cada id de `competencias.json`, todas con `url` igual a `https://capacitacionlaboral.trabajo.gob.pe/` y `horasReferenciales` entero entre 4 y 10.",
+      "WHEN el test valida `src/data/contexto.json` con `esquemaContexto` THE SYSTEM SHALL aceptarlo con `informalidadNacional` 69.8, `anterior` 70.7 y `periodo` `abril 2025 – marzo 2026`.",
+      "WHEN `esquemaCurso.safeParse` recibe `horasReferenciales: 12` o una `url` distinta del portal Capacíta-T THE SYSTEM SHALL devolver `success: false` en ambos casos.",
+      "WHEN `node scripts/verificar-enlaces.mjs --solo-listar` se ejecuta THE SYSTEM SHALL imprimir solo la línea `https://capacitacionlaboral.trabajo.gob.pe/` y terminar con código 0 sin usar la red.",
+      "WHEN `npm run check` se ejecuta THE SYSTEM SHALL terminar con código 0."
+    ],
+    "verify": [
+      "npx vitest run tests/complementarios.test.ts",
+      "test \"$(node scripts/verificar-enlaces.mjs --solo-listar)\" = \"https://capacitacionlaboral.trabajo.gob.pe/\"",
+      "npm run check"
+    ],
+    "checkpoint": "paso-06",
+    "files": [
+      "src/data/cursos.json",
+      "src/data/contexto.json",
+      "scripts/verificar-enlaces.mjs",
+      "tests/complementarios.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E3-T2",
+    "title": "Motor de afinidad con pruebas a mano y reales",
+    "epic": "03-motor",
+    "dependencies": [
+      "E3-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npx vitest run tests/afinidad.test.ts` calcula `a`→`b` con `crearMotor(datosMinimos)` THE SYSTEM SHALL devolver `cobertura` 0.6, `jaccard` 0.428571 con 6 decimales, `afinidad` 0.514, compartidas `C02` y `C26`, y por fortalecer `C03` con el curso `Tema tres`.",
+      "WHEN el test pide `ranking(\"a\")` en el conjunto mínimo THE SYSTEM SHALL devolver los destinos `d`, `c`, `b` en ese orden, con el empate de afinidad 0.7 y cobertura 1 resuelto por `nombreCorto` (`Alfa` antes que `Beta`).",
+      "WHEN el test recorre los 72 pares ordenados de las 9 ocupaciones reales THE SYSTEM SHALL cumplir en cada uno que los ids de compartidas y por fortalecer, unidos, son exactamente las competencias del destino en `mapeo.json`, que no se repiten entre ambas listas, y que `afinidad`, `cobertura` y `jaccard` están entre 0 y 1.",
+      "WHEN el test pide `ranking` para cada una de las 9 ocupaciones reales THE SYSTEM SHALL devolver 8 destinos sin el origen, ordenados por afinidad no creciente.",
+      "WHEN `calcularTransicion` recibe el mismo id como origen y destino, o el id desconocido `no_existe` THE SYSTEM SHALL lanzar un `Error` con el mensaje `origen y destino deben ser distintos` o `ocupación desconocida: no_existe`, respectivamente.",
+      "WHEN `npm run check` y `npm test` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npx vitest run tests/afinidad.test.ts",
+      "npm test",
+      "npm run check"
+    ],
+    "checkpoint": "paso-07",
+    "files": [
+      "src/lib/pesos.ts",
+      "src/lib/datos.ts",
+      "src/lib/afinidad.ts",
+      "tests/fixtures/datos-minimos.ts",
+      "tests/afinidad.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E4-T1",
+    "title": "Portada con dato de informalidad y llamados",
+    "epic": "04-paginas",
+    "dependencies": [
+      "E1-T2",
+      "E3-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar el `h1` `Lo que ya sabes hacer vale en otros trabajos`.",
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar el dato `69,8 %` y el texto `Fuente: IEES (Sociedad Nacional de Industrias) con datos INEI-EPEN, Reporte Estadístico Laboral N° 02-2026`.",
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar el enlace `Elige tu ocupación` con `href=\"/ocupaciones/\"` y el enlace `Cuéntanos tu experiencia` con `href=\"/entrevista/\"`, cada uno de al menos 48 px de alto.",
+      "WHEN `/` se carga THE SYSTEM SHALL mostrar dentro de `main` una lista ordenada con exactamente 3 pasos.",
+      "WHEN `/` se abre con 360 px de ancho THE SYSTEM SHALL tener `document.documentElement.scrollWidth` menor o igual a 360.",
+      "WHEN `npx playwright test e2e/esqueleto.spec.ts e2e/layout.spec.ts e2e/portada.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run check",
+      "npx playwright test e2e/esqueleto.spec.ts e2e/layout.spec.ts e2e/portada.spec.ts"
+    ],
+    "checkpoint": "paso-08",
+    "files": [
+      "src/pages/index.astro",
+      "src/components/DatoInformalidad.astro",
+      "src/components/BotonEnlace.astro",
+      "src/lib/formato.ts",
+      "e2e/portada.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E4-T2",
+    "title": "Directorio de ocupaciones",
+    "epic": "04-paginas",
+    "dependencies": [
+      "E1-T2",
+      "E3-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `/ocupaciones/` se carga THE SYSTEM SHALL responder 200, mostrar el `h1` `Elige tu ocupación` y tener el título `Elige tu ocupación | Reconversión Laboral`.",
+      "WHEN `/ocupaciones/` se carga THE SYSTEM SHALL mostrar dentro de `main` exactamente un enlace a `/ocupaciones/<id>/` por cada uno de los 9 ids de `ocupaciones.json`, y el de `caja_comercial` SHALL tener el texto `Cajero(a) de tienda`.",
+      "WHEN `/ocupaciones/` se abre con 360 px de ancho THE SYSTEM SHALL tener `document.documentElement.scrollWidth` menor o igual a 360.",
+      "WHEN se inspecciona `dist/ocupaciones/index.html` después de `npm run build` THE SYSTEM SHALL no contener ninguna etiqueta `<script`.",
+      "WHEN `npx playwright test e2e/ocupaciones.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run build",
+      "status=0; grep -q '<script' dist/ocupaciones/index.html || status=$?; test \"$status\" -eq 1",
+      "npm run check",
+      "npx playwright test e2e/ocupaciones.spec.ts"
+    ],
+    "checkpoint": "paso-09",
+    "files": [
+      "src/pages/ocupaciones/index.astro",
+      "src/components/TarjetaOcupacion.astro",
+      "e2e/ocupaciones.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E4-T3",
+    "title": "Ranking de destinos por ocupación",
+    "epic": "04-paginas",
+    "dependencies": [
+      "E4-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm run build` se ejecuta THE SYSTEM SHALL generar `dist/ocupaciones/<id>/index.html` para cada uno de los 9 ids de `ocupaciones.json`.",
+      "WHEN `/ocupaciones/caja_comercial/` se carga THE SYSTEM SHALL mostrar el `h1` `De Cajero(a) de tienda a otros trabajos` y exactamente 8 elementos `[data-testid=\"destino\"]`, sin ningún enlace a `/transicion/caja_comercial/caja_comercial/`.",
+      "WHEN se leen en orden los `data-afinidad` de esos 8 elementos THE SYSTEM SHALL encontrarlos en orden no creciente.",
+      "WHEN se lee cada fila de destino THE SYSTEM SHALL mostrar el texto `Ya tienes el <N> % de lo que pide este trabajo`, una insignia `Demanda referencial: Alta`, `Demanda referencial: Media` o `Demanda referencial: Baja`, y un enlace a `/transicion/caja_comercial/<destino>/`.",
+      "WHEN `/ocupaciones/caja_comercial/` se carga THE SYSTEM SHALL mostrar la nota `Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE` y, con 360 px de ancho, `scrollWidth` menor o igual a 360.",
+      "WHEN `npx playwright test e2e/ocupacion.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run build",
+      "test \"$(ls dist/ocupaciones/*/index.html | wc -l)\" -eq 9",
+      "npm run check",
+      "npx playwright test e2e/ocupacion.spec.ts"
+    ],
+    "checkpoint": "paso-10",
+    "files": [
+      "src/pages/ocupaciones/[id].astro",
+      "src/components/FilaDestino.astro",
+      "src/components/InsigniaDemanda.astro",
+      "e2e/ocupacion.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E4-T4",
+    "title": "Páginas de transición con evidencia y cursos",
+    "epic": "04-paginas",
+    "dependencies": [
+      "E4-T3"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm run build` se ejecuta THE SYSTEM SHALL generar 72 páginas `dist/transicion/<origen>/<destino>/index.html` (9 orígenes × 8 destinos) y ninguna con origen igual a destino.",
+      "WHEN `/transicion/caja_comercial/almacen/` se carga THE SYSTEM SHALL mostrar el `h1` `De Cajero(a) de tienda a Operario(a) de almacén` y un resumen `Ya tienes el <N> % de lo que pide este trabajo`.",
+      "WHEN se lee cada competencia de la sección `Ya lo tienes` THE SYSTEM SHALL mostrar la etiqueta de texto `Ya lo tienes` y evidencia con ids de elemento del origen que empiezan con `G2347002-` y del destino que empiezan con `H2452001-`.",
+      "WHEN se lee cada competencia de la sección `Por fortalecer` THE SYSTEM SHALL mostrar la etiqueta de texto `Por fortalecer`, evidencia del destino que empieza con `H2452001-`, el texto `Busca el tema «<tema>» en Capacíta-T (gratuito)` y un enlace a `https://capacitacionlaboral.trabajo.gob.pe/`.",
+      "WHEN cualquiera de las páginas de transición probadas se carga THE SYSTEM SHALL mostrar `Esta es una orientación preliminar. No evalúa ni certifica; la certificación la otorgan entidades autorizadas.`",
+      "WHEN `npx playwright test e2e/transicion.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run build",
+      "test \"$(ls dist/transicion/*/*/index.html | wc -l)\" -eq 72",
+      "status=0; test -e dist/transicion/caja_comercial/caja_comercial/index.html || status=$?; test \"$status\" -eq 1",
+      "npm run check",
+      "npx playwright test e2e/transicion.spec.ts"
+    ],
+    "checkpoint": "paso-11",
+    "files": [
+      "src/pages/transicion/[origen]/[destino].astro",
+      "src/components/ChipCompetencia.astro",
+      "src/components/ItemPorFortalecer.astro",
+      "e2e/transicion.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E5-T1",
+    "title": "Traductor por palabras clave y sugerencias",
+    "epic": "05-entrevista",
+    "dependencies": [
+      "E3-T2"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN el traductor de palabras clave recibe `cobro con yape y cuadro la caja al cierre` THE SYSTEM SHALL detectar `C03` por `yape` y `C04` por `cuadro`.",
+      "WHEN el traductor recibe `Uso lejía para desinfectar los baños` THE SYSTEM SHALL detectar `C11` por `lejia`, ignorando tildes y mayúsculas.",
+      "WHEN el traductor recibe un relato vacío o solo con espacios THE SYSTEM SHALL devolver una lista vacía.",
+      "WHEN el traductor recibe `posada` THE SYSTEM SHALL no detectar `C03`, porque la palabra clave `pos` solo coincide como palabra completa.",
+      "WHEN `sugerirOcupaciones` recibe `[\"C01\"]` con el conjunto mínimo de prueba THE SYSTEM SHALL devolver `d`, `c` y `a` en ese orden con coberturas 1, 1 y 0.4, y con datos reales SHALL devolver como máximo 3 ocupaciones, todas con cobertura mayor que 0 y en orden no creciente.",
+      "WHEN `npm run check` y `npm test` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npx vitest run tests/traductor.test.ts",
+      "npm test",
+      "npm run check"
+    ],
+    "checkpoint": "paso-12",
+    "files": [
+      "src/lib/traductor/tipos.ts",
+      "src/lib/traductor/palabras-clave.ts",
+      "src/lib/sugerencias.ts",
+      "tests/traductor.test.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E5-T2",
+    "title": "Isla de entrevista sin guardar datos",
+    "epic": "05-entrevista",
+    "dependencies": [
+      "E4-T1",
+      "E5-T1"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `/entrevista/` se carga THE SYSTEM SHALL mostrar el `h1` `Cuéntanos tu experiencia`, las 3 preguntas como etiquetas de 3 campos de texto y el aviso `Traducción simulada por palabras clave. En la versión final la realizará la IA local QVAC de Tether.`",
+      "WHEN se escribe `cobro con yape y cuadro la caja al cierre` en la primera pregunta y se pulsa `Ver mis competencias` THE SYSTEM SHALL mostrar la competencia `Cobro con medios de pago electrónicos` y entre 1 y 3 enlaces a `/ocupaciones/<id>/`.",
+      "WHEN se pulsa `Ver mis competencias` con todas las respuestas de menos de 15 caracteres THE SYSTEM SHALL mostrar en un elemento `role=\"alert\"` el texto `Escribe al menos 15 caracteres en alguna de las respuestas.` y no mostrar resultados.",
+      "WHEN la respuesta `me gusta mucho el futbol los domingos` se envía THE SYSTEM SHALL mostrar `No encontramos competencias en lo que escribiste. Cuéntanos con más detalle qué haces en tu trabajo.`",
+      "WHEN se completa el flujo de la entrevista THE SYSTEM SHALL no hacer ninguna petición de red después del clic y dejar `localStorage.length` y `sessionStorage.length` en 0.",
+      "WHEN `npx playwright test e2e/entrevista.spec.ts` y `npm run check` se ejecutan THE SYSTEM SHALL terminar ambos con código 0."
+    ],
+    "verify": [
+      "npm run check",
+      "npx playwright test e2e/entrevista.spec.ts"
+    ],
+    "checkpoint": "paso-13",
+    "files": [
+      "src/components/islas/Entrevista.tsx",
+      "src/pages/entrevista.astro",
+      "e2e/entrevista.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E6-T1",
+    "title": "Metodología, 404, accesibilidad y E2E completo",
+    "epic": "06-calidad-publicacion",
+    "dependencies": [
+      "E4-T1",
+      "E4-T4",
+      "E5-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `e2e/rutas.spec.ts` visita `/`, `/ocupaciones/`, `/ocupaciones/caja_comercial/`, `/ocupaciones/limpieza/`, `/ocupaciones/salon_comidas/`, `/transicion/caja_comercial/almacen/`, `/transicion/limpieza/housekeeping/`, `/transicion/salon_comidas/atencion_telefonica/`, `/entrevista/` y `/acerca/` THE SYSTEM SHALL responder 200 en cada una y mostrar su `h1` esperado y el aviso de prototipo.",
+      "WHEN se visita `/ruta-que-no-existe/` THE SYSTEM SHALL mostrar el texto `No encontramos esta página` y un enlace `Volver al inicio` a `/`.",
+      "WHEN `/acerca/` se carga THE SYSTEM SHALL contener `CNPO`, `Demanda referencial` y `H2452004`.",
+      "WHEN `e2e/accesibilidad.spec.ts` ejecuta axe con las etiquetas `wcag2a` y `wcag2aa` sobre `/`, `/ocupaciones/`, `/ocupaciones/caja_comercial/`, `/transicion/caja_comercial/almacen/` y `/entrevista/` THE SYSTEM SHALL encontrar 0 violaciones de impacto `critical` o `serious`.",
+      "WHEN esas 5 páginas se abren con 360 px de ancho THE SYSTEM SHALL tener `document.documentElement.scrollWidth` menor o igual a 360 en todas.",
+      "WHEN `npm run check`, `npm test` y `npx playwright test` se ejecutan THE SYSTEM SHALL terminar los tres con código 0."
+    ],
+    "verify": [
+      "npm run check",
+      "npm test",
+      "npx playwright test",
+      "test -f dist/404.html"
+    ],
+    "checkpoint": "paso-14",
+    "files": [
+      "src/pages/acerca.astro",
+      "src/pages/404.astro",
+      "e2e/rutas.spec.ts",
+      "e2e/accesibilidad.spec.ts"
+    ],
+    "status": "pending"
+  },
+  {
+    "id": "E6-T2",
+    "title": "Preparación de la publicación en Cloudflare Pages",
+    "epic": "06-calidad-publicacion",
+    "dependencies": [
+      "E6-T1"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `npm run build` se ejecuta THE SYSTEM SHALL copiar `public/_headers` a `dist/_headers`.",
+      "WHEN se lee `dist/_headers` THE SYSTEM SHALL contener las cabeceras `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin` y `Content-Security-Policy:` para la ruta `/*`.",
+      "WHEN `npx wrangler --version` se ejecuta THE SYSTEM SHALL terminar con código 0 usando el wrangler local instalado desde `package.json`.",
+      "WHEN se lee `docs/PUBLICAR.md` THE SYSTEM SHALL contener los comandos `npx wrangler login` y `npm run deploy` y el dominio `.pages.dev`.",
+      "WHEN `npm run check` se ejecuta THE SYSTEM SHALL terminar con código 0."
+    ],
+    "verify": [
+      "npm run build",
+      "test -f dist/_headers",
+      "grep -qF 'X-Content-Type-Options: nosniff' dist/_headers",
+      "grep -qF 'X-Frame-Options: DENY' dist/_headers",
+      "grep -qF 'Referrer-Policy: strict-origin-when-cross-origin' dist/_headers",
+      "grep -qF 'Content-Security-Policy:' dist/_headers",
+      "npx wrangler --version",
+      "grep -qF 'npx wrangler login' docs/PUBLICAR.md",
+      "grep -qF 'npm run deploy' docs/PUBLICAR.md",
+      "grep -qF '.pages.dev' docs/PUBLICAR.md",
+      "npm run check"
+    ],
+    "checkpoint": "paso-15",
+    "files": [
+      "public/_headers",
+      "docs/PUBLICAR.md"
+    ],
+    "status": "pending"
+  }
+]

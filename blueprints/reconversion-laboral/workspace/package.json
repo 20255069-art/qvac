@@ -1,0 +1,44 @@
+{
+  "name": "reconversion-laboral",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "check": "astro check && biome check .",
+    "format": "biome check --write .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "copiar-perfiles": "node scripts/copiar-perfiles.mjs",
+    "extraer": "node scripts/extraer-texto.mjs",
+    "verificar-enlaces": "node scripts/verificar-enlaces.mjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=reconversion-laboral --branch=main"
+  },
+  "dependencies": {
+    "@astrojs/react": "7.1.1",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.1.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwindcss": "4.3.3",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "4.14.0",
+    "@biomejs/biome": "2.6.3",
+    "@playwright/test": "1.64.1",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "pdfjs-dist": "6.4.299",
+    "typescript": "6.0.3",
+    "vitest": "5.0.5",
+    "wrangler": "4.152.0"
+  }
+}

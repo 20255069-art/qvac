@@ -1,0 +1,78 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(command -v node)",
+      "Bash(node -v)",
+      "Bash(npm -v)",
+      "Bash(npm install)",
+      "Bash(npm ci)",
+      "Bash(npm audit:*)",
+      "Bash(npm run build)",
+      "Bash(npm run check)",
+      "Bash(npm run format)",
+      "Bash(npm test)",
+      "Bash(npm run test)",
+      "Bash(npm run test:e2e)",
+      "Bash(npm run dev)",
+      "Bash(npm run preview)",
+      "Bash(npm run copiar-perfiles)",
+      "Bash(npm run extraer)",
+      "Bash(npm run verificar-enlaces)",
+      "Bash(node scripts/copiar-perfiles.mjs)",
+      "Bash(node scripts/extraer-texto.mjs)",
+      "Bash(node scripts/verificar-enlaces.mjs)",
+      "Bash(node scripts/verificar-enlaces.mjs --solo-listar)",
+      "Bash(node scripts/codex-revision-etapa.mjs)",
+      "Bash(npx vitest run:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(npx playwright install chromium)",
+      "Bash(npx biome check:*)",
+      "Bash(npx astro check)",
+      "Bash(npx wrangler --version)",
+      "Bash(test:*)",
+      "Bash(cp -R blueprints/reconversion-laboral/workspace/. .)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(git init -b main)",
+      "Bash(git rev-parse:*)",
+      "Bash(git config user.name:*)",
+      "Bash(git config user.email:*)",
+      "Bash(git add -A)",
+      "Bash(git commit -m:*)",
+      "Bash(git tag:*)",
+      "Bash(git tag -l:*)",
+      "Bash(git tag -f inicio-paso-:*)",
+      "Bash(git reset --hard inicio-paso-:*)",
+      "Bash(git add docs/revisiones-codex)",
+      "Bash(git for-each-ref:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git rev-list:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push:*)",
+      "Bash(npm run deploy)",
+      "Bash(npx wrangler login)",
+      "Bash(npx wrangler pages deploy:*)",
+      "Bash(npx wrangler pages project:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/codex-revision-etapa.mjs",
+            "timeout": 900
+          }
+        ]
+      }
+    ]
+  }
+}
