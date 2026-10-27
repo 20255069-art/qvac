@@ -1,0 +1,152 @@
+{
+  "C01": {
+    "tema": "Atención al cliente",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C02": {
+    "tema": "Manejo de efectivo",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C03": {
+    "tema": "Medios de pago digitales",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C04": {
+    "tema": "Cierre y cuadre de caja",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C05": {
+    "tema": "Ofimática básica",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 10
+  },
+  "C06": {
+    "tema": "Comprobantes de pago",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C07": {
+    "tema": "Control de inventarios",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C08": {
+    "tema": "Gestión de almacenes",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C09": {
+    "tema": "Metodología 5S",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C10": {
+    "tema": "Limpieza y desinfección",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C11": {
+    "tema": "Manejo seguro de productos químicos",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C12": {
+    "tema": "Mantenimiento de equipos",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C13": {
+    "tema": "Lavandería y planchado",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C14": {
+    "tema": "Ropa blanca y lencería",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C15": {
+    "tema": "Housekeeping",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C16": {
+    "tema": "Atención en salón de comidas",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C17": {
+    "tema": "Cocina básica",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 10
+  },
+  "C18": {
+    "tema": "Manipulación de alimentos",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C19": {
+    "tema": "Atención telefónica",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C20": {
+    "tema": "Orientación al usuario",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C21": {
+    "tema": "Manejo de reclamos",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C22": {
+    "tema": "Técnicas de venta",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C23": {
+    "tema": "Equipos de carga y descarga",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 8
+  },
+  "C24": {
+    "tema": "Seguridad y salud en el trabajo",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 6
+  },
+  "C25": {
+    "tema": "Cuidado de personas",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 10
+  },
+  "C26": {
+    "tema": "Comunicación efectiva",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C27": {
+    "tema": "Trabajo en equipo",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C28": {
+    "tema": "Gestión del tiempo",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C29": {
+    "tema": "Manejo del estrés",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  },
+  "C30": {
+    "tema": "Calidad y procedimientos",
+    "url": "https://capacitacionlaboral.trabajo.gob.pe/",
+    "horasReferenciales": 4
+  }
+}

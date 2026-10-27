@@ -176,7 +176,7 @@
       "scripts/verificar-enlaces.mjs",
       "tests/complementarios.test.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E3-T2",
