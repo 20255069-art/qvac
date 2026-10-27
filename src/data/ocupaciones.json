@@ -1,0 +1,621 @@
+[
+  {
+    "id": "almacen",
+    "codigo": "H2452001",
+    "nombre": "Operaciones de Almacén",
+    "nombreCorto": "Operario(a) de almacén",
+    "puestos": ["Almacenero", "Operario de Almacén", "Operador de equipos de almacenaje"],
+    "proposito": "Almacenar todo tipo de existencias, de acuerdo a las políticas y procedimientos de la empresa, requerimientos del cliente y normativa correspondiente.",
+    "norma": "RD N° 028-2014-MTPE/3/19",
+    "pdf": "fuentes/perfiles/almacen_H2452001.pdf",
+    "estandares": [
+      {
+        "codigo": "H2452001-1",
+        "rol": "operativo",
+        "descripcion": "Realizar las actividades de almacenamiento de todo tipo de existencias, de acuerdo a las políticas de la empresa, requerimientos del cliente y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "H2452001-1-E1",
+            "texto": "Recepcionar las existencias que ingresan al almacén, de acuerdo a los procedimientos de la empresa, requerimientos de clientes y normativa correspondiente."
+          },
+          {
+            "id": "H2452001-1-E2",
+            "texto": "Almacenar las existencias, según tipo y características, de acuerdo a los procedimientos de la empresa, requerimientos de clientes y normativa correspondiente."
+          },
+          {
+            "id": "H2452001-1-E3",
+            "texto": "Despachar las existencias, de acuerdo a los procedimientos de la empresa, requerimientos de clientes y normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "H2452001-2",
+        "rol": "operativo",
+        "descripcion": "Trasladar las existencias empleando equipo de carga y descarga, de acuerdo a las políticas de la empresa, requerimientos del cliente y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "H2452001-2-E1",
+            "texto": "Verificar la conformidad del área de trabajo y el funcionamiento del equipo mecánico/eléctrico para las operaciones de almacén, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          },
+          {
+            "id": "H2452001-2-E2",
+            "texto": "Trasladar las existencias según tipo y característica, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "H2452001-3",
+        "rol": "supervisor",
+        "descripcion": "Supervisar las operaciones de almacén, de acuerdo a los procedimientos de la empresa, requerimientos del cliente y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "H2452001-3-E1",
+            "texto": "Organizar las operaciones de almacén, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          },
+          {
+            "id": "H2452001-3-E2",
+            "texto": "Supervisar las operaciones de almacén, de acuerdo a los procedimientos de la empresa y los requerimientos del cliente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "alta",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "atencion_telefonica",
+    "codigo": "M2982001",
+    "nombre": "Servicio de Atención al Usuario por Teléfono",
+    "nombreCorto": "Teleoperador(a)",
+    "puestos": ["Asesor o teleoperador", "Monitor de calidad"],
+    "proposito": "Proporcionar atención telefónica al usuario, de acuerdo a los protocolos de atención, procedimientos de la empresa y normativa correspondiente.",
+    "norma": "Resolución Directoral General N° 013-2019-MTPE/3/19",
+    "pdf": "fuentes/perfiles/atencion_telefono_M2982001.pdf",
+    "estandares": [
+      {
+        "codigo": "M2982001-1",
+        "rol": "operativo",
+        "descripcion": "Atender los requerimientos del usuario, de acuerdo al tipo de llamada, protocolos de atención, procedimientos de la empresa y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "M2982001-1-E1",
+            "texto": "Identificar la necesidad del usuario, de acuerdo a los protocolos de atención, procedimientos de la empresa y normativa correspondiente."
+          },
+          {
+            "id": "M2982001-1-E2",
+            "texto": "Dar respuesta al requerimiento del usuario, de acuerdo a los protocolos de atención, procedimientos de la empresa y normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "M2982001-2",
+        "rol": "operativo",
+        "descripcion": "Auditar las llamadas telefónicas del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "M2982001-2-E1",
+            "texto": "Evaluar las llamadas telefónicas del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          },
+          {
+            "id": "M2982001-2-E2",
+            "texto": "Efectuar el feedback del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "M2982001-3",
+        "rol": "operativo",
+        "descripcion": "Controlar las actividades del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "M2982001-3-E1",
+            "texto": "Monitorear el desempeño del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          },
+          {
+            "id": "M2982001-3-E2",
+            "texto": "Asegurar la operatividad del servicio a su cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "alta",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "caja_comercial",
+    "codigo": "G2347002",
+    "nombre": "Caja en establecimientos comerciales",
+    "nombreCorto": "Cajero(a) de tienda",
+    "puestos": ["Cajero/a"],
+    "proposito": "Desarrollar, controlar y gestionar las operaciones del área de caja, de acuerdo a los procedimientos establecidos por la empresa y la normativa vigente.",
+    "norma": "RDG N° 000020-2026-MTPE/3/19",
+    "pdf": "fuentes/perfiles/caja_comercial_G2347002.pdf",
+    "estandares": [
+      {
+        "codigo": "G2347002-1",
+        "rol": "operativo",
+        "descripcion": "Realizar las transacciones comerciales en caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente.",
+        "elementos": [
+          {
+            "id": "G2347002-1-E1",
+            "texto": "Ejecutar la apertura del punto de caja asignado, teniendo en cuenta los procedimientos establecidos por la empresa y normativa vigente."
+          },
+          {
+            "id": "G2347002-1-E2",
+            "texto": "Realizar la cobranza y de corresponder la entrega de los productos/servicios, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente."
+          },
+          {
+            "id": "G2347002-1-E3",
+            "texto": "Ejecutar el arqueo y cuadre de caja, teniendo en cuenta los procedimientos establecidos por la empresa y normativa vigente."
+          }
+        ]
+      },
+      {
+        "codigo": "G2347002-2",
+        "rol": "operativo",
+        "descripcion": "Controlar las operaciones de caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente.",
+        "elementos": [
+          {
+            "id": "G2347002-2-E1",
+            "texto": "Verificar la apertura y cierre de caja del personal, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente."
+          },
+          {
+            "id": "G2347002-2-E2",
+            "texto": "Supervisar las actividades del área de caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente."
+          }
+        ]
+      },
+      {
+        "codigo": "G2347002-3",
+        "rol": "operativo",
+        "descripcion": "Administrar el área de caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente",
+        "elementos": [
+          {
+            "id": "G2347002-3-E1",
+            "texto": "Elaborar los indicadores de gestión del área de caja, así como proponer las acciones pertinentes, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente."
+          },
+          {
+            "id": "G2347002-3-E2",
+            "texto": "Asegurar las operaciones del área de caja, según los procedimientos establecidos por la empresa y normativa vigente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "media",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "caja_financiera",
+    "codigo": "K2764001",
+    "nombre": "Operaciones de Caja en Entidades Financieras",
+    "nombreCorto": "Cajero(a) de entidad financiera",
+    "puestos": [
+      "Promotor de servicios",
+      "Cajero",
+      "Recibidor",
+      "Pagador",
+      "Asistente de servicios"
+    ],
+    "proposito": "Asegurar la gestión de las operaciones en caja, considerando los procedimientos establecidos por la entidad financiera y la normativa legal.",
+    "norma": "Resolución Directoral General N° 006-2017-MTPE/3/19",
+    "pdf": "fuentes/perfiles/caja_financiera_K2764001.pdf",
+    "estandares": [
+      {
+        "codigo": "K2764001-1",
+        "rol": "operativo",
+        "descripcion": "Ejecutar las operaciones de caja, de acuerdo a los procedimientos establecidos por la entidad financiera y la normativa legal.",
+        "elementos": [
+          {
+            "id": "K2764001-1-E1",
+            "texto": "Acondicionar la ventanilla asignada para la apertura de caja, considerando los procedimientos establecidos por la entidad financiera y la normativa legal."
+          },
+          {
+            "id": "K2764001-1-E2",
+            "texto": "Realizar las operaciones de caja según lo requerido por el usuario, teniendo en cuenta los procedimientos establecidos por la entidad financiera y la normativa legal."
+          },
+          {
+            "id": "K2764001-1-E3",
+            "texto": "Realizar el cuadre y cierre de caja, de acuerdo a los procedimientos establecidos por la entidad financiera y la normativa legal."
+          }
+        ]
+      },
+      {
+        "codigo": "K2764001-2",
+        "rol": "operativo",
+        "descripcion": "Controlar las operaciones de caja, según los procedimientos establecidos por la entidad financiera y la normativa legal.",
+        "elementos": [
+          {
+            "id": "K2764001-2-E1",
+            "texto": "Habilitar la apertura y cierre de caja, considerando los procedimientos establecidos por la entidad financiera y la normativa legal."
+          },
+          {
+            "id": "K2764001-2-E2",
+            "texto": "Supervisar las operaciones de caja, de acuerdo a los procedimientos establecidos por la entidad financiera y la normativa legal."
+          }
+        ]
+      },
+      {
+        "codigo": "K2764001-3",
+        "rol": "operativo",
+        "descripcion": "Administrar las operaciones de bóveda y financieras, considerando los procedimientos establecidos por la entidad financiera y la normativa legal.",
+        "elementos": [
+          {
+            "id": "K2764001-3-E1",
+            "texto": "Dirigir las operaciones de bóveda; según los procedimientos establecidos por la entidad financiera y la normativa legal."
+          },
+          {
+            "id": "K2764001-3-E2",
+            "texto": "Administrar la gestión de los recursos, de acuerdo a los procedimientos establecidos por la entidad financiera y la normativa legal."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "media",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "housekeeping",
+    "codigo": "I2555002",
+    "nombre": "Operaciones de Housekeeping",
+    "nombreCorto": "Cuartelero(a) de hotel",
+    "puestos": ["Cuartelero(a) de hotel"],
+    "proposito": "Mantener la higiene, presentación y orden de las áreas asignadas y habitaciones, de acuerdo a los procedimientos y las políticas de la empresa.",
+    "norma": "RD. N° 0028-2023-MTPE/3/19 del 02/05/2023",
+    "pdf": "fuentes/perfiles/housekeeping_I2555002.pdf",
+    "estandares": [
+      {
+        "codigo": "I2555002-1",
+        "rol": "operativo",
+        "descripcion": "Realizar la limpieza de las áreas asignadas, de acuerdo a los procedimientos y las políticas de la empresa.",
+        "elementos": [
+          {
+            "id": "I2555002-1-E1",
+            "texto": "Organizar las actividades de limpieza de las áreas asignadas, teniendo en cuenta las indicaciones del jefe inmediato, de acuerdo a las políticas y los procedimientos de la empresa."
+          },
+          {
+            "id": "I2555002-1-E2",
+            "texto": "Aplicar las técnicas de limpieza en las áreas asignadas, teniendo en cuenta las indicaciones del jefe inmediato, de acuerdo a las políticas y los procedimientos de la empresa."
+          }
+        ]
+      },
+      {
+        "codigo": "I2555002-2",
+        "rol": "operativo",
+        "descripcion": "Acondicionar las habitaciones, teniendo en cuenta los requerimientos del huésped, procedimientos y las políticas de la empresa.",
+        "elementos": [
+          {
+            "id": "I2555002-2-E1",
+            "texto": "Organizar las actividades para el acondicionamiento de la habitación asignada, teniendo en cuenta los requerimientos del huésped, de acuerdo a las políticas y los procedimientos de la empresa."
+          },
+          {
+            "id": "I2555002-2-E2",
+            "texto": "Habilitar la habitación, teniendo en cuenta los requerimientos del huésped, de acuerdo a las políticas y los procedimientos de la empresa."
+          }
+        ]
+      },
+      {
+        "codigo": "I2555002-3",
+        "rol": "operativo",
+        "descripcion": "Interactuar con el cliente, teniendo en cuenta las políticas y los procedimientos de la empresa.",
+        "elementos": [
+          {
+            "id": "I2555002-3-E1",
+            "texto": "Cumplir con los estándares de atención al cliente, de acuerdo a las políticas y los procedimientos de la empresa."
+          },
+          {
+            "id": "I2555002-3-E2",
+            "texto": "Atender los requerimientos del cliente, de acuerdo a las políticas y los procedimientos de la empresa."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "media",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "lavanderia",
+    "codigo": "S3496002",
+    "nombre": "Lavandería",
+    "nombreCorto": "Lavandero(a) y planchador(a)",
+    "puestos": ["Lavandero(a)", "Planchador(a)"],
+    "proposito": "Brindar el servicio de lavandería, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente.",
+    "norma": "RDG N° 044 -2017-MTPE/3/19",
+    "pdf": "fuentes/perfiles/lavanderia_S3496002.pdf",
+    "estandares": [
+      {
+        "codigo": "S3496002-1",
+        "rol": "operativo",
+        "descripcion": "Limpiar la ropa, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "S3496002-1-E1",
+            "texto": "Organizar el área de lavado y secado, de acuerdo a los procedimientos del establecimiento y normativa correspondiente."
+          },
+          {
+            "id": "S3496002-1-E2",
+            "texto": "Realizar el lavado y secado de la ropa, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "S3496002-2",
+        "rol": "operativo",
+        "descripcion": "Realizar la presentación final de la ropa limpia, de acuerdo a las especificaciones requeridas, a los procedimientos del establecimiento y la normativa vigente",
+        "elementos": [
+          {
+            "id": "S3496002-2-E1",
+            "texto": "Ejecutar el planchado de ropa, de acuerdo a las especificaciones requeridas, a los procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "S3496002-2-E2",
+            "texto": "Acondicionar la ropa, de acuerdo a las especificaciones requeridas, los procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "S3496002-3",
+        "rol": "supervisor",
+        "descripcion": "Supervisar las operaciones del área de lavandería, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "S3496002-3-E1",
+            "texto": "Organizar las labores del área de lavandería, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "S3496002-3-E2",
+            "texto": "Controlar las actividades del área de lavandería, de acuerdo a los procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "baja",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "limpieza",
+    "codigo": "M2981001",
+    "nombre": "Servicios de Limpieza",
+    "nombreCorto": "Operario(a) de limpieza",
+    "puestos": ["Operario (a) de Limpieza"],
+    "proposito": "Acondicionar las áreas asignadas, de acuerdo a sus procedimientos y teniendo en cuenta la normativa vigente.",
+    "norma": "Resolución Directoral N° 133-2016-MTPE/3/19",
+    "pdf": "fuentes/perfiles/limpieza_M2981001.pdf",
+    "estandares": [
+      {
+        "codigo": "M2981001-1",
+        "rol": "operativo",
+        "descripcion": "Habilitar las áreas asignadas, de acuerdo a las políticas del establecimiento, teniendo en cuenta la normativa vigente.",
+        "elementos": [
+          {
+            "id": "M2981001-1-E1",
+            "texto": "Organizar las actividades de limpieza de las áreas designadas, de acuerdo a las políticas del establecimiento y teniendo en cuenta la normativa vigente."
+          },
+          {
+            "id": "M2981001-1-E2",
+            "texto": "Limpiar las áreas asignadas, teniendo en cuenta las políticas del establecimiento y la normativa vigente."
+          },
+          {
+            "id": "M2981001-1-E3",
+            "texto": "Ordenar y verificar el estado óptimo de los enseres e infraestructura, de acuerdo a las políticas del establecimiento y teniendo en cuenta la normativa vigente."
+          }
+        ]
+      },
+      {
+        "codigo": "M2981001-2",
+        "rol": "supervisor",
+        "descripcion": "Supervisar las actividades de limpieza de las áreas asignadas, de acuerdo a las políticas del establecimiento, teniendo en cuenta la normativa vigente.",
+        "elementos": [
+          {
+            "id": "M2981001-2-E1",
+            "texto": "Planificar las actividades de las áreas asignadas, según las políticas del establecimiento y la normativa vigente."
+          },
+          {
+            "id": "M2981001-2-E2",
+            "texto": "Controlar el proceso de limpieza de las áreas asignadas, de acuerdo a las políticas del establecimiento, teniendo en cuenta la normativa vigente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "media",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "salon_comidas",
+    "codigo": "I2556002",
+    "nombre": "Atención en Salón de Comidas y Bebidas/Eventos",
+    "nombreCorto": "Mozo(a) / ayudante de salón",
+    "puestos": ["Ayudante de mozo", "Mozo", "Mesera", "Maître"],
+    "proposito": "Asegurar el servicio de atención al cliente en el salón de comidas y bebidas/o eventos, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
+    "norma": "Resolución Directoral General N° 000018-2026-MTPE/3/19",
+    "pdf": "fuentes/perfiles/salon_comidas_I2556002.pdf",
+    "estandares": [
+      {
+        "codigo": "I2556002-1",
+        "rol": "operativo",
+        "descripcion": "Preparar el salón para el servicio o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "I2556002-1-E1",
+            "texto": "Organizar el menaje para el servicio en salón o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "I2556002-1-E2",
+            "texto": "Realizar el montaje y desmontaje del salón o evento, de acuerdo al servicio requerido, las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "I2556002-2",
+        "rol": "operativo",
+        "descripcion": "Servir al cliente, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "I2556002-2-E1",
+            "texto": "Asistir al cliente, brindándole información sobre los servicios, productos y ofertas disponibles, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "I2556002-2-E2",
+            "texto": "Atender los pedidos del cliente, teniendo en cuenta las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "I2556002-3",
+        "rol": "operativo",
+        "descripcion": "Realizar el manejo operativo del área de servicio del salón o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "I2556002-3-E1",
+            "texto": "Organizar la prestación del servicio de atención al cliente, en el salón o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "I2556002-3-E2",
+            "texto": "Supervisar el desarrollo del servicio en el salón o evento, de acuerdo al tipo de servicio requerido, teniendo en cuenta las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      },
+      {
+        "codigo": "I2556002-4",
+        "rol": "supervisor",
+        "descripcion": "Gestionar el servicio de atención al cliente en el salón o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
+        "elementos": [
+          {
+            "id": "I2556002-4-E1",
+            "texto": "Planificar el desarrollo del servicio, en el salón o eventos, según las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "I2556002-4-E2",
+            "texto": "Realizar la administración de personal, de acuerdo al tipo de servicio requerido, las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          },
+          {
+            "id": "I2556002-4-E3",
+            "texto": "Controlar el desarrollo del servicio, en el salón o eventos; de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente."
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "media",
+      "tipo": "referencial"
+    }
+  },
+  {
+    "id": "trabajador_hogar",
+    "codigo": "S3497002",
+    "nombre": "Trabajador/a del Hogar Remunerado (THR)",
+    "nombreCorto": "Trabajador(a) del hogar",
+    "puestos": [
+      "Servicio de limpieza",
+      "Lavandera/o",
+      "Planchador/a",
+      "Cocinera/o",
+      "cuidado de niños/personas adultas mayores"
+    ],
+    "proposito": "Garantizar el cuidado integral del hogar (sus espacios, objetos, mascotas y plantas), así como el cuidado básico de los miembros de la familia que requieran asistencia, de acuerdo a las indicaciones de la persona empleadora, la normativa correspondiente y considerando el contrato de trabajo.",
+    "norma": "Resolución Directoral General N° 000099-2024-MTPE/3/19",
+    "pdf": "fuentes/perfiles/trabajador_hogar_S3497002.pdf",
+    "estandares": [
+      {
+        "codigo": "S3497002-1",
+        "rol": "operativo",
+        "descripcion": "Preparar alimentos para responder a las necesidades de alimentación de la persona/ familia, según indicaciones y aplicando buenas prácticas de manipulación de alimentos.",
+        "elementos": [
+          {
+            "id": "S3497002-1-E1",
+            "texto": "Organizar los insumos requeridos en la elaboración del menú, de acuerdo a las indicaciones de la persona empleadora, buenas prácticas de higiene y conservación de alimentos, en condiciones de SST (Seguridad y Salud en el Trabajo)."
+          },
+          {
+            "id": "S3497002-1-E2",
+            "texto": "Elaborar preparaciones culinarias según especificaciones técnicas, conforme a indicaciones recibidas (menú, plan nutricional, dieta establecida) y buenas prácticas de manipulación de alimentos"
+          }
+        ]
+      },
+      {
+        "codigo": "S3497002-2",
+        "rol": "operativo",
+        "descripcion": "Mantener el espacio físico (mobiliario, espacios y objetos) en condiciones de orden y limpieza, según necesidades e indicaciones o procedimientos establecidos por el/la empleador/a.",
+        "elementos": [
+          {
+            "id": "S3497002-2-E1",
+            "texto": "Preparar los insumos e implementos de limpieza, de acuerdo a las superficies/objetos a limpiar e indicaciones de la persona empleadora, en condiciones de SST (Seguridad y Salud en el Trabajo)."
+          },
+          {
+            "id": "S3497002-2-E2",
+            "texto": "Realizar la limpieza de los muebles, espacios y objetos del hogar, según sus características y las indicaciones de la persona empleadora, en condiciones de SST (Seguridad y Salud en el Trabajo)"
+          },
+          {
+            "id": "S3497002-2-E3",
+            "texto": "Mantener el orden del espacio físico (muebles y objetos), de acuerdo a indicaciones de la persona empleadora y en condiciones de SST (Seguridad y Salud en el Trabajo)"
+          }
+        ]
+      },
+      {
+        "codigo": "S3497002-3",
+        "rol": "operativo",
+        "descripcion": "Mantener en condiciones de orden e higiene la ropa de distinto tipo (personal/del hogar), de acuerdo a necesidades y procedimientos establecidos.",
+        "elementos": [
+          {
+            "id": "S3497002-3-E1",
+            "texto": "Realizar el lavado de prendas, utilizando los medios e insumos requeridos para cada textil, de acuerdo a indicaciones de la persona empleadora, en condiciones de SST (Seguridad y Salud en el Trabajo)."
+          },
+          {
+            "id": "S3497002-3-E2",
+            "texto": "Realizar el secado y planchado de las prendas, según indicaciones de la persona empleadora, equipamiento disponible, en condiciones de SST (Seguridad y Salud en el Trabajo)."
+          },
+          {
+            "id": "S3497002-3-E3",
+            "texto": "Guardar las prendas, de acuerdo a indicaciones de la persona empleadora y en condiciones de SST (Seguridad y Salud en el Trabajo)"
+          }
+        ]
+      },
+      {
+        "codigo": "S3497002-4",
+        "rol": "operativo",
+        "descripcion": "Brindar cuidados básicos para garantizar la alimentación, higiene corporal y prevención de accidentes de las personas y demás seres vivos que habitan en el hogar (niños/as, adolescentes, persona adulta mayor, mascotas y plantas), según necesidades e indicaciones.",
+        "elementos": [
+          {
+            "id": "S3497002-4-E1",
+            "texto": "Monitorear el cumplimiento de las rutinas y hábitos diarios de alimentación e higiene corporal de niños/as, adolescentes, personas adultas mayores y demás seres vivos (mascotas y plantas) que habitan en el hogar, según indicaciones de la persona empleadora."
+          },
+          {
+            "id": "S3497002-4-E2",
+            "texto": "Cuidar la integridad de niños/as, adolescentes, personas adultas mayores para prevenir accidentes domésticos, según riesgos identificados e indicaciones recibidas."
+          }
+        ]
+      },
+      {
+        "codigo": "S3497002-5",
+        "rol": "operativo",
+        "descripcion": "Cuidar de sí mismo/a en el desempeño de su rol como trabajador/a del hogar remunerado, según normativa vigente.",
+        "elementos": [
+          {
+            "id": "S3497002-5-E1",
+            "texto": "Acordar el alcance del rol con la persona empleadora, según los derechos y obligaciones estipulados en el contrato."
+          },
+          {
+            "id": "S3497002-5-E2",
+            "texto": "Prevenir situaciones de riesgo físico y emocional a los que está expuesto/a en las diferentes actividades que desempeña como Trabajador/a del Hogar Remunerado, según normativa de SST (Seguridad y Salud en el Trabajo)"
+          }
+        ]
+      }
+    ],
+    "demanda": {
+      "nivel": "baja",
+      "tipo": "referencial"
+    }
+  }
+]
