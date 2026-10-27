@@ -1,8 +1,27 @@
 ---
+import BotonEnlace from "../components/BotonEnlace.astro";
+import DatoInformalidad from "../components/DatoInformalidad.astro";
 import Base from "../layouts/Base.astro";
+import { contexto } from "../lib/datos.ts";
 ---
 
 <Base titulo="Inicio" descripcion="Descubre a qué trabajos afines puedes pasar con lo que ya sabes hacer, según el CNPO.">
-  <h1>Reconversión Laboral</h1>
-  <p class="text-texto-suave">Prototipo en construcción.</p>
+  <h1>Lo que ya sabes hacer vale en otros trabajos</h1>
+  <p class="mt-4">
+    Elige tu ocupación y descubre a qué trabajos afines puedes pasar, qué competencias ya tienes y cuáles te conviene fortalecer, según el Catálogo Nacional de Perfiles Ocupacionales del MTPE.
+  </p>
+  <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+    <BotonEnlace href="/ocupaciones/" variante="principal">Elige tu ocupación</BotonEnlace>
+    <BotonEnlace href="/entrevista/" variante="secundario">Cuéntanos tu experiencia</BotonEnlace>
+  </div>
+  <div class="mt-8">
+    <DatoInformalidad contexto={contexto} />
+  </div>
+  <h2 class="mt-8">Cómo funciona</h2>
+  <ol class="mt-4 list-decimal space-y-2 pl-6">
+    <li>Elige la ocupación en la que trabajas o cuéntanos tu experiencia.</li>
+    <li>Mira a qué trabajos afines puedes pasar y cuánto de lo que piden ya sabes hacer.</li>
+    <li>Revisa qué te falta fortalecer y dónde capacitarte gratis.</li>
+  </ol>
+  <p class="mt-6 text-texto-suave">Es una orientación preliminar: no evalúa ni certifica tus competencias.</p>
 </Base>

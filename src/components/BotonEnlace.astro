@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  variante: "principal" | "secundario";
+}
+
+const { href, variante } = Astro.props;
+const comunes =
+  "inline-flex min-h-12 w-full items-center justify-center rounded-base px-6 font-semibold no-underline sm:w-auto";
+const porVariante =
+  variante === "principal"
+    ? "bg-primario text-fondo hover:bg-primario-oscuro"
+    : "border border-primario bg-fondo text-primario";
+---
+
+<a href={href} class:list={[comunes, porVariante]}><slot /></a>
