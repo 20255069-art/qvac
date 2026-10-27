@@ -1,0 +1,15 @@
+---
+import type { Ocupacion } from "../lib/esquemas.ts";
+
+interface Props {
+  ocupacion: Ocupacion;
+}
+
+const { ocupacion } = Astro.props;
+---
+
+<li class="rounded-base border border-borde bg-fondo p-4">
+  <h2 class="text-xl"><a href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>
+  <p class="mt-2 text-base text-texto-suave">También: {ocupacion.puestos.join(", ")}</p>
+  <p class="mt-2 text-sm text-texto-suave">CNPO {ocupacion.codigo}</p>
+</li>

@@ -268,7 +268,7 @@
       "src/components/TarjetaOcupacion.astro",
       "e2e/ocupaciones.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E4-T3",
