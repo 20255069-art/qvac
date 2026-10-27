@@ -28,7 +28,7 @@
       "src/pages/index.astro",
       "e2e/esqueleto.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E1-T2",
