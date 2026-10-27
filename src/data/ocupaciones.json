@@ -69,7 +69,7 @@
     "codigo": "M2982001",
     "nombre": "Servicio de Atención al Usuario por Teléfono",
     "nombreCorto": "Teleoperador(a)",
-    "puestos": ["Asesor o teleoperador", "Monitor de calidad"],
+    "puestos": ["Asesor o teleoperador"],
     "proposito": "Proporcionar atención telefónica al usuario, de acuerdo a los protocolos de atención, procedimientos de la empresa y normativa correspondiente.",
     "norma": "Resolución Directoral General N° 013-2019-MTPE/3/19",
     "pdf": "fuentes/perfiles/atencion_telefono_M2982001.pdf",
@@ -91,7 +91,7 @@
       },
       {
         "codigo": "M2982001-2",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Auditar las llamadas telefónicas del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente.",
         "elementos": [
           {
@@ -106,7 +106,7 @@
       },
       {
         "codigo": "M2982001-3",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Controlar las actividades del personal a cargo, de acuerdo a los procedimientos de la empresa y normativa correspondiente.",
         "elementos": [
           {
@@ -156,7 +156,7 @@
       },
       {
         "codigo": "G2347002-2",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Controlar las operaciones de caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente.",
         "elementos": [
           {
@@ -171,7 +171,7 @@
       },
       {
         "codigo": "G2347002-3",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Administrar el área de caja, de acuerdo a los procedimientos establecidos por la empresa y normativa vigente",
         "elementos": [
           {
@@ -195,13 +195,7 @@
     "codigo": "K2764001",
     "nombre": "Operaciones de Caja en Entidades Financieras",
     "nombreCorto": "Cajero(a) de entidad financiera",
-    "puestos": [
-      "Promotor de servicios",
-      "Cajero",
-      "Recibidor",
-      "Pagador",
-      "Asistente de servicios"
-    ],
+    "puestos": ["Promotor de servicios", "Cajero", "Recibidor", "Pagador"],
     "proposito": "Asegurar la gestión de las operaciones en caja, considerando los procedimientos establecidos por la entidad financiera y la normativa legal.",
     "norma": "Resolución Directoral General N° 006-2017-MTPE/3/19",
     "pdf": "fuentes/perfiles/caja_financiera_K2764001.pdf",
@@ -227,7 +221,7 @@
       },
       {
         "codigo": "K2764001-2",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Controlar las operaciones de caja, según los procedimientos establecidos por la entidad financiera y la normativa legal.",
         "elementos": [
           {
@@ -242,7 +236,7 @@
       },
       {
         "codigo": "K2764001-3",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Administrar las operaciones de bóveda y financieras, considerando los procedimientos establecidos por la entidad financiera y la normativa legal.",
         "elementos": [
           {
@@ -438,7 +432,7 @@
     "codigo": "I2556002",
     "nombre": "Atención en Salón de Comidas y Bebidas/Eventos",
     "nombreCorto": "Mozo(a) / ayudante de salón",
-    "puestos": ["Ayudante de mozo", "Mozo", "Mesera", "Maître"],
+    "puestos": ["Ayudante de mozo", "Mozo", "Mesera"],
     "proposito": "Asegurar el servicio de atención al cliente en el salón de comidas y bebidas/o eventos, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
     "norma": "Resolución Directoral General N° 000018-2026-MTPE/3/19",
     "pdf": "fuentes/perfiles/salon_comidas_I2556002.pdf",
@@ -475,7 +469,7 @@
       },
       {
         "codigo": "I2556002-3",
-        "rol": "operativo",
+        "rol": "supervisor",
         "descripcion": "Realizar el manejo operativo del área de servicio del salón o evento, de acuerdo a las políticas, procedimientos del establecimiento y la normativa correspondiente.",
         "elementos": [
           {
