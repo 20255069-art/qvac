@@ -299,7 +299,7 @@
       "src/components/InsigniaDemanda.astro",
       "e2e/ocupacion.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E4-T4",

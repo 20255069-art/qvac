@@ -1,0 +1,33 @@
+---
+import type { Transicion } from "../lib/afinidad.ts";
+import type { Ocupacion } from "../lib/esquemas.ts";
+import InsigniaDemanda from "./InsigniaDemanda.astro";
+
+interface Props {
+  transicion: Transicion;
+  destino: Ocupacion;
+  origenId: string;
+}
+
+const { transicion, destino, origenId } = Astro.props;
+const porcentaje = Math.round(transicion.cobertura * 100);
+---
+
+<li data-testid="destino" data-afinidad={transicion.afinidad} class="rounded-base border border-borde p-4">
+  <h3>{destino.nombreCorto}</h3>
+  <p class="mt-2">Ya tienes el {porcentaje} % de lo que pide este trabajo</p>
+  <div class="mt-2 h-3 w-full rounded-base bg-superficie" aria-hidden="true">
+    <div class="h-3 rounded-base bg-ya-tienes-texto" style={`width: ${porcentaje}%`}></div>
+  </div>
+  <p class="mt-2"><InsigniaDemanda nivel={destino.demanda.nivel} /></p>
+  <p class="mt-2 text-base text-texto-suave">
+    {transicion.compartidas.length} competencias que ya tienes · {transicion.porFortalecer.length} por fortalecer
+  </p>
+  <p class="mt-3">
+    <a
+      href={`/transicion/${origenId}/${destino.id}/`}
+      aria-label={`Ver el detalle de la transición a ${destino.nombreCorto}`}
+      >Ver el detalle</a
+    >
+  </p>
+</li>

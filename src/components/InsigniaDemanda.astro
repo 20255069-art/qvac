@@ -1,0 +1,10 @@
+---
+interface Props {
+  nivel: "alta" | "media" | "baja";
+}
+
+const { nivel } = Astro.props;
+const etiqueta = nivel.charAt(0).toUpperCase() + nivel.slice(1);
+---
+
+<span class="inline-block rounded-base bg-referencial-fondo px-2 py-1 text-sm font-semibold text-referencial-texto">Demanda referencial: {etiqueta}</span>
