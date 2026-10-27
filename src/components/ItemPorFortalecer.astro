@@ -1,0 +1,21 @@
+---
+import type { PorFortalecer } from "../lib/afinidad.ts";
+import ChipCompetencia from "./ChipCompetencia.astro";
+
+interface Props {
+  item: PorFortalecer;
+}
+
+const { item } = Astro.props;
+---
+
+<li data-testid="por-fortalecer" class="rounded-base border border-borde p-4">
+  <ChipCompetencia estado="por-fortalecer" />
+  <h3 class="mt-2">{item.competencia.nombre}</h3>
+  <p class="mt-1">{item.competencia.descripcionSencilla}</p>
+  <p class="mt-2 break-words text-sm text-texto-suave">Evidencia CNPO: {item.evidenciaDestino.join(", ")}</p>
+  <p class="mt-2">
+    <a href={item.curso.url}>Busca el tema «{item.curso.tema}» en Capacíta-T (gratuito)</a>
+  </p>
+  <p class="mt-1 text-base text-texto-suave">Duración referencial: {item.curso.horasReferenciales} horas</p>
+</li>

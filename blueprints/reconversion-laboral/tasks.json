@@ -331,7 +331,7 @@
       "src/components/ItemPorFortalecer.astro",
       "e2e/transicion.spec.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E5-T1",

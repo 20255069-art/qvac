@@ -1,0 +1,14 @@
+---
+interface Props {
+  estado: "ya-tienes" | "por-fortalecer";
+}
+
+const { estado } = Astro.props;
+const texto = estado === "ya-tienes" ? "Ya lo tienes" : "Por fortalecer";
+const colores =
+  estado === "ya-tienes"
+    ? "bg-ya-tienes-fondo text-ya-tienes-texto"
+    : "bg-por-fortalecer-fondo text-por-fortalecer-texto";
+---
+
+<span class:list={["inline-block rounded-base px-2 py-1 text-sm font-semibold", colores]}>{texto}</span>
