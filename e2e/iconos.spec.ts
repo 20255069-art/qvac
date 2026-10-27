@@ -29,3 +29,21 @@ test.describe("con movimiento reducido", () => {
     expect(animacion).toBe("none");
   });
 });
+
+test("toda la tarjeta de una ocupación lleva a su página", async ({ page }) => {
+  await page.goto("/ocupaciones/");
+  const tarjeta = page.locator("li.tarjeta-enlace").first();
+  const caja = await tarjeta.boundingBox();
+  if (caja === null) throw new Error("tarjeta sin tamaño");
+  await page.mouse.click(caja.x + 12, caja.y + caja.height - 12);
+  await expect(page).toHaveURL(/\/ocupaciones\/[a-z_]+\/$/);
+});
+
+test("toda la fila de un destino lleva a su transición", async ({ page }) => {
+  await page.goto("/ocupaciones/limpieza/");
+  const fila = page.getByTestId("destino").first();
+  const caja = await fila.boundingBox();
+  if (caja === null) throw new Error("fila sin tamaño");
+  await page.mouse.click(caja.x + caja.width - 20, caja.y + 20);
+  await expect(page).toHaveURL(/\/transicion\/limpieza\/[a-z_]+\/$/);
+});

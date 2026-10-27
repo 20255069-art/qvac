@@ -14,7 +14,7 @@ const { transicion, destino, origenId } = Astro.props;
 const porcentaje = Math.round(transicion.cobertura * 100);
 ---
 
-<li data-testid="destino" data-afinidad={transicion.afinidad} class="caja con-icono">
+<li data-testid="destino" data-afinidad={transicion.afinidad} class="caja tarjeta-enlace con-icono">
   <div class="flex items-center gap-3">
     <IconoOcupacion id={destino.id} tamano={48} />
     <h3>{destino.nombreCorto}</h3>
@@ -29,6 +29,7 @@ const porcentaje = Math.round(transicion.cobertura * 100);
   </p>
   <p class="mt-3">
     <a
+      class="enlace-tarjeta"
       href={`/transicion/${origenId}/${destino.id}/`}
       aria-label={`Ver el detalle de la transición a ${destino.nombreCorto}`}
       >Ver el detalle</a

@@ -9,10 +9,10 @@ interface Props {
 const { ocupacion } = Astro.props;
 ---
 
-<li class="caja con-icono flex gap-4">
+<li class="caja tarjeta-enlace con-icono flex gap-4">
   <IconoOcupacion id={ocupacion.id} tamano={72} />
   <div class="min-w-0">
-    <h2 class="text-xl"><a href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>
+    <h2 class="text-xl"><a class="enlace-tarjeta" href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>
     <p class="mt-2 text-base text-texto-suave">También: {ocupacion.puestos.join(", ")}</p>
     <p class="mt-2 text-sm text-texto-suave">CNPO {ocupacion.codigo}</p>
   </div>
