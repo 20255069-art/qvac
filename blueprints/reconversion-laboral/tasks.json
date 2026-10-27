@@ -90,7 +90,7 @@
       "fuentes/texto/*.txt",
       "tests/extraccion.test.ts"
     ],
-    "status": "pending"
+    "status": "done"
   },
   {
     "id": "E2-T2",

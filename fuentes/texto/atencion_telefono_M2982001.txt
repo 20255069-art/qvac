@@ -1,0 +1,560 @@
+I. Información del Perfil Ocupacional:
+Nombre del Perfil Ocupacional: Servicio de Atención al Usuario
+1
+por Teléfono
+Código del Perfil Ocupacional: M2982001
+Sector: ACTIVIDADES PROFESIONALES CIENTÍFICAS Y TÉCNICAS (M)
+Familia productiva Servicios Prestados a Empresas
+Nivel de Competencia Laboral: 2 y 3
+Código de Clasificación Internacional: CIIU* CNO* CIUO*
+---- ---- ----
+Otros nombres relacionados al Perfil
+Ocupacional (cargos, puestos de trabajo):
+Asesor o teleoperador; Monitor de calidad; Supervisor.
+Fecha Aprobación: 26/04/2019
+Requisitos excluyentes: NO ( X )
+SÍ ( )
+Vigencia: 3 años
+Norma de aprobación Resolución Directoral General N° 013-2019-MTPE/3/19
+Versión: 03
+II. Propósito del Perfil Ocupacional:
+Proporcionar atención telefónica al usuario, de acuerdo a los protocolos de atención, procedimientos de la
+empresa y normativa correspondiente.
+III. Ámbito de Desempeño: No se precisa información *
+IV. Estándares de Competencia laboral que componen el Perfil Ocupacional:
+Código Estándar
+de Competencia
+Descripción del Estándar de Competencia Laboral
+M2982001-1
+Atender los requerimientos del usuario, de acuerdo al tipo de llamada
+2
+, protocolos de
+atención, procedimientos de la empresa y normativa correspondiente.
+M2982001-2
+Auditar las llamadas telefónicas del personal a cargo, de acuerdo a los procedimientos de
+la empresa y normativa correspondiente.
+M2982001-3
+Controlar las actividades del personal a cargo, de acuerdo a los procedimientos de la
+empresa y normativa correspondiente.
+V. Representación Funcional asociada al Perfil Ocupacional:
+Propósito del Perfil Ocupacional: Proporcionar atención telefónica al usuario, de acuerdo a los
+protocolos de atención, procedimientos de la empresa y normativa correspondiente.
+Estándar de Competencia Laboral Elementos de Competencia
+Atender los requerimientos del usuario,
+de acuerdo al tipo de llamada, protocolos
+de atención, procedimientos de la
+empresa y normativa correspondiente.
+Identificar la necesidad del usuario, de acuerdo a los protocolos de
+atención, procedimientos de la empresa y normativa
+correspondiente.
+Dar respuesta al requerimiento del usuario, de acuerdo a los
+protocolos de atención, procedimientos de la empresa y normativa
+correspondiente.
+Auditar las llamadas telefónicas del
+personal a cargo, de acuerdo a los
+procedimientos de la empresa y
+normativa correspondiente.
+Evaluar las llamadas telefónicas del personal a cargo, de acuerdo a
+los procedimientos de la empresa y normativa correspondiente.
+Efectuar el feedback del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Controlar las actividades del personal a
+cargo, de acuerdo a los procedimientos
+de la empresa y normativa
+Monitorear el desempeño del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Asegurar la operatividad del servicio a su cargo, de acuerdo a los
+1
+Quien requiere la prestación de servicios o atención específica que satisfaga su necesidad.
+2
+Inbound (llamadas entrantes) u outbound (llamadas salientes).
+1
+===== fin pag 1
+correspondiente.
+procedimientos de la empresa y normativa correspondiente.
+VI. Participantes de la Elaboración y Validación: No se precisa información *
+Nombre: Cargo: Empresa u organización: Actividad: Fecha:
+---- ----- ---- ---- -----
+* Información no contemplada en el Formato establecido en la Guía Metodológica para la Elaboración de Mapas
+Funcionales, Perfiles Ocupacionales y Estándares de Competencia Laboral aprobada con RDG N°
+139-2017-MTPE/3/19 (derogada), utilizada para la elaboración del presente perfil ocupacional. La citada información
+será consignada en la actualización respectiva.
+2
+===== fin pag 2
+I. Información del Estándar de Competencia:
+Nombre del Estándar de
+Competencia Laboral (ECL)
+Atender los requerimientos del usuario, de acuerdo al tipo de llamada
+3
+,
+protocolos de atención, procedimientos de la empresa y normativa
+correspondiente.
+Código del Estándar de
+Competencia Laboral:
+M2982001-1
+Sector Económico: ACTIVIDADES PROFESIONALES CIENTÍFICAS Y TÉCNICAS (M)
+Familia Productiva: Servicios Prestados a Empresas
+Actividad Económica*: -------
+Código de Clasificación
+Internacional:
+CIIU* CNO* CIUO*
+---- ---- ----
+Nivel de Competencia Laboral: 2
+Versión: 03
+Perfil/es Ocupacional/es asociado Servicio de Atención al Usuario por Teléfono
+Puestos de trabajo asociados: Asesor o teleoperador
+Desarrollada por el CCL
+4
+: -------
+Norma de aprobación del
+Estándar de Competencia:
+Resolución Directoral General N° 013-2019-MTPE/3/19
+Fecha de aprobación: 26/04/2019
+Tiempo de Vigencia 3 años
+Fecha de actualización*: ---------------
+II. Actividades claves:
+Elemento de Competencia 1: Identificar la necesidad del usuario, de acuerdo a los protocolos de
+atención, procedimientos de la empresa y normativa correspondiente.
+Criterios de desempeño: - Accede a los aplicativos del sistema de atención, de acuerdo a los
+procedimientos de la empresa.
+- Contacta con el usuario según el tipo de llamada (inbound u
+outbound), de acuerdo a los protocolos de atención de la empresa.
+- Verifica la información del usuario en los aplicativos de la empresa,
+de acuerdo al requerimiento del usuario, teniendo en cuenta la
+confidencialidad y seguridad de la información.
+- Identifica y verifica la necesidad del usuario, de acuerdo a
+estándares/protocolos de atención y procedimientos de la
+empresa.
+Evidencias de Conocimientos: - Manejo de aplicativos de sistema de atención y equipos de
+comunicación telefónica.
+- Reglamento interno de la empresa, procedimientos de trabajo y
+protocolos de atención.
+- Estándares de calidad en atención al usuario.
+- Normativa vinculada a la protección de datos personales.
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Técnicas de resolución de conflictos.
+- Técnicas de negociación.
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Usuario contactado mediante el sistema de atención, conforme los
+3
+Inbound (llamadas entrantes) u outbound (llamadas salientes).
+4
+Comité de competencia laboral.
+3
+===== fin pag 3
+protocolos y procedimientos establecidos.
+- Necesidad del usuario identificado y verificado.
+Elemento de Competencia 2: Dar respuesta al requerimiento del usuario, de acuerdo a los protocolos
+de atención, procedimientos de la empresa y normativa
+correspondiente.
+Criterios de desempeño: - Transmite la información al usuario, de acuerdo a la necesidad
+identificada, protocolos de atención y procedimientos de la
+empresa.
+- De ser el caso, transfiere las llamadas telefónicas al área que
+corresponda, según la necesidad del usuario y procedimientos de
+la empresa.
+- Absuelve dudas u observaciones sobre la información brindada, de
+acuerdo a los protocolos e instructivos de atención.
+- Culmina la llamada, de acuerdo a los protocolos de atención y
+procedimientos de la empresa.
+- Tipifica y registra la llamada en el sistema, según los
+procedimientos de la empresa.
+Conocimientos: - Manejo de aplicativos de sistema de atención y equipos de
+comunicación telefónica.
+- Reglamento interno de la empresa, procedimientos de trabajo,
+protocolos e instructivos de atención.
+- Estándares de calidad en atención al usuario.
+- Normativa vinculada a la protección de datos personales.
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Técnicas de resolución de conflictos.
+- Técnicas de negociación.
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Requerimiento del usuario atendido o transferido conforme a los
+protocolos y procedimientos establecidos.
+- Dudas u observaciones absueltas conforme a los protocolos e
+instructivos de atención.
+- Llamada culminada conforme a los protocolos y procedimientos
+establecidos.
+- Llamada tipificada y registrada en el sistema, conforme los
+procedimientos de la empresa.
+Contexto de desempeño laboral: Instalaciones:
+- Área de atención de llamadas, acondicionada con instalaciones
+eléctricas e internet, y ventilado.
+Equipamiento/Herramientas:
+- Computadora.
+- Audífono y micrófono.
+- Software de comunicación telefónica.
+- Repisa.
+- Silla giratoria.
+- Teléfono.
+Equipo Personal:
+- Fotocheck.
+- Agenda.
+Insumos/Materiales:
+- Útiles de oficina:
+o Block de notas.
+o Lapiceros.
+4
+===== fin pag 4
+o Lápiz.
+o Resaltador.
+o Regla.
+Información / Formatos:
+- Reglamento interno de trabajo.
+- Procedimientos de trabajo.
+- Protocolos de atención.
+- Instructivos de solución de problemas
+- Anexos de áreas relacionadas a problemáticas de usuarios.
+- Base de datos de usuarios.
+Competencias Básicas
+5
+: - Habilidades básicas: Lectura; Aritmética; Matemática; Capacidad
+para escuchar.
+- Aptitudes analíticas: Pensar creativamente; Tomar decisiones.
+Cualidades personales: Responsabilidad; Sociabilidad; Dominio
+sobre sí mismo.
+Competencias Genéricas: - Gestión de recursos: Distribuye el tiempo.
+- Relaciones interpersonales: Sabe trabajar en equipo; Sirve a los
+clientes; Trabaja con personas de diversas culturas; Ejerce
+liderazgo.
+- Gestión de la información: Adquiere y evalúa la información;
+Organiza y mantiene la información; Interpreta y comunica
+información; Utiliza computadora para procesar información.
+5
+Basada en las categorizaciones y tipos que figuran en el Informe SCANS: Secretary´s Commission on Achieving Necessary Skills
+(1991). What Work Requires of Schools: A SCANS Report for América 2000, The Secretary’s Commission on Achieving Necessary
+Skills. Washington D.C.: U.S. Department of Labor. Recuperado de http://wdr.doleta.gov/SCANS/whatwork/whatwork.pdf
+5
+===== fin pag 5
+* Información no contemplada en el Formato establecido en la Guía Metodológica para la Elaboración de Mapas
+Funcionales, Perfiles Ocupacionales y Estándares de Competencia Laboral aprobada con RDG N°
+139-2017-MTPE/3/19 (derogada), utilizada para la elaboración del presente perfil ocupacional. La citada información
+será consignada en la actualización respectiva.
+I. Información del Estándar de Competencia:
+Nombre del Estándar de
+Competencia Laboral (ECL)
+Auditar las llamadas telefónicas del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Código del Estándar de
+Competencia Laboral:
+M2982001-2
+Sector Económico: ACTIVIDADES PROFESIONALES CIENTÍFICAS Y TÉCNICAS (M)
+Familia Productiva: Servicios Prestados a Empresas
+Actividad Económica*: -------
+Código de Clasificación
+Internacional:
+CIIU* CIIU* CIIU*
+---- ---- ----
+Nivel de Competencia Laboral: 3
+Versión: 03
+Perfil/es Ocupacional/es asociado Servicio de Atención al Usuario por Teléfono
+Puestos de trabajo asociados: Monitor de calidad
+Desarrollada por el CCL
+6
+: -------
+Norma de aprobación del
+Estándar de Competencia:
+Resolución Directoral General N° 013-2019-MTPE/3/19
+Fecha de aprobación: 26/04/2019
+Tiempo de Vigencia 3 años
+Fecha de actualización*: ----------------
+I. Actividades claves:
+Elemento de Competencia 1: Evaluar las llamadas telefónicas del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Criterios de desempeño: - Realiza el muestreo de las llamadas del personal a su cargo, de
+acuerdo a los procedimientos de la empresa.
+- Realiza la escucha de las llamadas (online o grabadas), según el
+muestreo.
+- Evalúa la calidad del speech
+7
+e información brindada, de acuerdo a
+estándares y protocolos de atención establecidos.
+- Absuelve consultas del personal a su cargo, durante la llamada,
+con la finalidad que cumplan los objetivos del servicio y
+productividad.
+- Efectúa reportes del personal a su cargo, de acuerdo a los
+procedimientos de la empresa.
+Evidencias de Conocimientos: - Reglamento interno de la empresa, procedimientos de trabajo y
+protocolos de atención.
+- Manejo de aplicativos de sistema de atención y escucha, y equipos
+de comunicación telefónica.
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Normativa vinculada a la protección de datos personales.
+- Estándares de calidad en atención al usuario.
+- Técnicas de resolución de conflictos.
+- Técnicas de negociación.
+6
+Comité de competencia laboral.
+7
+Discurso o diálogo que se debe brindar al interactuar con el usuario, principalmente al iniciar el contacto telefónico.
+6
+===== fin pag 6
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Evaluación de la calidad del speech, según la muestra.
+- Consultas del personal a su cargo, absueltas.
+- Reportes elaborados del personal a su cargo.
+Elemento de Competencia 2: Efectuar el feedback del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Criterios de desempeño: - Retroalimenta al personal a su cargo, de acuerdo a los resultados
+de la evaluación.
+- Elabora programas de capacitación, para mejorar el desempeño
+del personal a su cargo.
+- Elabora estrategias para mejorar la operación (llamadas),
+considerando los reportes individuales de su equipo de trabajo.
+- Informa sobre los resultados de la evaluación de llamadas y
+programas de capacitación, así como el impacto de este último, de
+acuerdo a los procedimientos de la empresa.
+Conocimientos: - Reglamento interno de la empresa, procedimientos de trabajo y
+protocolos de atención.
+- Manejo de aplicativos de sistema de atención y equipos de
+comunicación telefónica.
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Normativa vinculada a la protección de datos personales.
+- Estándares de calidad en atención al usuario.
+- Elaboración de programas de capacitación.
+- Técnicas de resolución de conflictos.
+- Técnicas de negociación.
+- Técnicas de retroalimentación.
+- Técnicas de motivación.
+- Medios de presentación de información.
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Registro de personal retroalimentado.
+- Programa de capacitación elaborado, de acuerdo a las necesidades
+del personal a su cargo.
+- Informe con estrategias para mejorar la operación, resultados de
+evaluación de llamadas y programas de capacitación.
+Contexto de desempeño laboral: Instalaciones:
+- Sala de reuniones.
+- Área de trabajo con instalaciones eléctricas e internet, y ventilado.
+Equipamiento/Herramientas:
+- Escritorio.
+- Computadora.
+- Diadema.
+- Audífono.
+- Software de comunicación telefónica.
+- Impresora/fotocopiadora.
+- Teléfono.
+- Pizarra.
+- Mesa.
+- Sillas.
+- Organizador de archivadores.
+Equipo Personal:
+- Fotocheck.
+7
+===== fin pag 7
+- Celular.
+- Agenda.
+Insumos/Materiales:
+- Archivadores.
+- Útiles de escritorio.
+- Proyector.
+- Lista de asistencia.
+Información / Formatos:
+- Reglamento interno de trabajo.
+- Procedimientos de trabajo.
+- Protocolos de atención.
+- Instructivos de solución de problemas.
+- Reportes diarios del software de comunicación telefónica.
+- Planillas de evaluación.
+- Formatos para programas de capacitación.
+Competencias Básicas
+8
+: - Habilidades básicas: Lectura; Aritmética; Matemática; Capacidad
+para escuchar.
+- Aptitudes analíticas: Pensar creativamente; Tomar decisiones.
+- Cualidades personales: Responsabilidad; Sociabilidad; Dominio
+sobre sí mismo.
+Competencias Genéricas: - Gestión de recursos: Distribuye el tiempo; Organización de
+recursos.
+- Relaciones interpersonales: Sabe trabajar en equipo; Enseña a
+otros; Sirve a los clientes; Trabaja con personas de diversas
+culturas; Ejerce liderazgo.
+- Gestión de la información: Adquiere y evalúa la información;
+Organiza y mantiene la información; Interpreta y comunica
+información; Utiliza computadora para procesar información.
+8
+Basada en las categorizaciones y tipos que figuran en el Informe SCANS: Secretary´s Commission on Achieving Necessary Skills
+(1991). What Work Requires of Schools: A SCANS Report for América 2000, The Secretary’s Commission on Achieving Necessary
+Skills. Washington D.C.: U.S. Department of Labor. Recuperado de http://wdr.doleta.gov/SCANS/whatwork/whatwork.pdf
+8
+===== fin pag 8
+* Información no contemplada en el Formato establecido en la Guía Metodológica para la Elaboración de Mapas
+Funcionales, Perfiles Ocupacionales y Estándares de Competencia Laboral aprobada con RDG N°
+139-2017-MTPE/3/19 (derogada), utilizada para la elaboración del presente perfil ocupacional. La citada información
+será consignada en la actualización respectiva.
+I. Información del Estándar de Competencia:
+Nombre del Estándar de
+Competencia Laboral (ECL)
+Controlar las actividades del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Código del Estándar de
+Competencia Laboral:
+M2982001-3
+Sector Económico: ACTIVIDADES PROFESIONALES CIENTÍFICAS Y TÉCNICAS (M)
+Familia Productiva: Servicios Prestados a Empresas
+Actividad Económica*: -------
+Código de Clasificación
+Internacional:
+CIIU* CIIU* CIIU*
+---- ---- ----
+Nivel de Competencia Laboral: 3
+Versión: 03
+Perfil/es Ocupacional/es asociado Servicio de Atención al Usuario por Teléfono
+Puestos de trabajo asociados: Supervisor
+Desarrollada por el CCL
+9
+: -------
+Norma de aprobación del
+Estándar de Competencia:
+Resolución Directoral General N° 013-2019-MTPE/3/19
+Fecha de aprobación: 26/04/2019
+Tiempo de Vigencia 3 años
+Fecha de actualización*: ---------------
+II. Actividades claves:
+Elemento de Competencia 1: Monitorear el desempeño del personal a cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Criterios de desempeño: - Controla la asistencia y logueo
+10
+del personal a su cargo, de
+acuerdo a los procedimientos de la empresa.
+- Realiza el seguimiento del personal a su cargo, con relación al
+tiempo medio de operaciones (TMO
+11
+), de acuerdo a los
+procedimientos de la empresa.
+- Verifica la cantidad y tiempo de llamadas recibidas y atendidas del
+personal a su cargo, de acuerdo a los procedimientos de la
+empresa.
+- Verifica el uso de los protocolos de atención e instructivos de
+solución de problemas, de acuerdo a las políticas y procedimientos
+de la empresa.
+- Consolida la información de los reportes del personal a su cargo,
+de acuerdo a la cantidad de usuarios atendidos y soluciones
+brindadas.
+- Informa sobre las acciones de supervisión del personal a su cargo,
+de acuerdo a los procedimientos de la empresa.
+Evidencias de Conocimientos: - Reglamento interno de la empresa, procedimientos de trabajo y
+protocolos de atención.
+- Manejo de aplicativos de sistema de atención y monitoreo, y
+equipos de comunicación telefónica.
+9
+Comité de competencia laboral.
+10
+Autenticación del personal en el aplicativo del sistema de atención.
+11
+Tiempo medio de operación o tiempo medio de gestión – tiempo empleado en la atención.
+9
+===== fin pag 9
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Estándares de calidad en atención al usuario.
+- Organización y manejo de personas.
+- Elaboración de informes y reportes.
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Asistencia y logueo del personal a cargo, controlado.
+- Operación del personal a su cargo, controlado y verificado.
+- Reportes del personal a su cargo, consolidados.
+- Acciones de supervisión informadas.
+Elemento de Competencia 2: Asegurar la operatividad del servicio a su cargo, de acuerdo a los
+procedimientos de la empresa y normativa correspondiente.
+Criterios de desempeño: - Verifica que el personal a su cargo, disponga de los aplicativos de
+atención al usuario, herramientas y materiales necesarios para la
+operación del servicio.
+- Coordina con el área correspondiente
+12
+en caso de inconvenientes
+o fallas técnicas detectadas en los equipos y herramientas de
+trabajo.
+- Brinda orientación al personal a su cargo respecto a las consultas
+de los usuarios, durante la llamada, teniendo en cuenta las
+políticas y procedimientos de la empresa.
+- Fortalece las capacidades del personal a su cargo, tomando en
+cuenta los resultados de las evaluaciones de llamadas y problemas
+detectados.
+- Implementa estrategias de mejora en las operaciones, teniendo en
+cuenta los reportes del personal a su cargo.
+- Coordina la asignación de personal, de acuerdo a los
+procedimientos de la empresa.
+Conocimientos: - Reglamento interno de la empresa, procedimientos de trabajo y
+protocolos de atención.
+- Manejo de aplicativos de sistema de atención y equipos de
+comunicación telefónica.
+- Manejo de información del servicio de atención, según los
+instructivos de trabajo de la empresa.
+- Estándares de calidad en atención al usuario.
+- Organización y manejo de personas.
+- Técnicas de resolución de conflictos.
+- Técnicas de negociación.
+- Técnicas de retroalimentación.
+- Técnicas de motivación.
+- Office a nivel usuario.
+Evidencias de Desempeño/Producto: - Aplicativos de atención al usuario, herramientas y materiales del
+personal, operativos.
+- Personal a su cargo, orientado y con capacidades técnicas
+fortalecidas.
+- Estrategias de mejora en la operación, implementadas.
+- Cobertura del servicio con la cantidad de personal necesario.
+Contexto de desempeño laboral: Instalaciones:
+- Sala de reuniones.
+- Área de trabajo con instalaciones eléctricas e internet, y ventilado.
+Equipamiento/Herramientas:
+12
+Área de sistemas u otro que atienda inconvenientes o fallas técnicas en los aplicativos de los sistemas de atención, según la
+estructura organizacional de la empresa.
+10
+===== fin pag 10
+- Escritorio.
+- Computadora.
+- Diadema.
+- Audífono.
+- Software de comunicación telefónica.
+- Impresora/fotocopiadora.
+- Software de monitoreo
+- Teléfono.
+- Mesa.
+- Sillas.
+- Organizador de archivadores.
+Equipo Personal:
+- Fotocheck.
+- Agenda.
+- Celular.
+Insumos/Materiales:
+- Archivadores.
+- Útiles de escritorio.
+Información / Formatos:
+- Reglamento interno de trabajo.
+- Procedimientos de trabajo.
+- Protocolos de atención.
+- Instructivos de solución de problemas.
+- Reportes diarios del software de comunicación telefónica.
+Competencias Básicas
+13
+:  Habilidades básicas: Lectura; Aritmética; Matemática; Capacidad
+para escuchar.
+- Aptitudes analíticas: Pensar creativamente; Tomar decisiones.
+- Cualidades personales: Responsabilidad; Sociabilidad; Dominio
+sobre sí mismo.
+Competencias Genéricas: - Gestión de recursos: Distribuye el tiempo; Organización de
+recursos.
+- Relaciones interpersonales: Sabe trabajar en equipo; Enseña a
+otros; Sirve a los clientes; Ejerce liderazgo; Trabaja con personas
+de diversas culturas.
+- Gestión de la Información: Adquiere y evalúa la información;
+Organiza y mantiene la información; Interpreta y comunica
+información; Utiliza computadoras para procesar la información.
+13
+Basada en las categorizaciones y tipos que figuran en el Informe SCANS: Secretary´s Commission on Achieving Necessary Skills
+(1991). What Work Requires of Schools: A SCANS Report for América 2000, The Secretary’s Commission on Achieving Necessary
+Skills. Washington D.C.: U.S. Department of Labor. Recuperado de http://wdr.doleta.gov/SCANS/whatwork/whatwork.pdf
+11
+===== fin pag 11
+* Información no contemplada en el Formato establecido en la Guía Metodológica para la Elaboración de Mapas
+Funcionales, Perfiles Ocupacionales y Estándares de Competencia Laboral aprobada con RDG N°
+139-2017-MTPE/3/19 (derogada), utilizada para la elaboración del presente perfil ocupacional. La citada información
+será consignada en la actualización respectiva.
+12
+===== fin pag 12
