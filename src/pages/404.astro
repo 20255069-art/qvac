@@ -1,0 +1,12 @@
+---
+import BotonEnlace from "../components/BotonEnlace.astro";
+import Base from "../layouts/Base.astro";
+---
+
+<Base titulo="Página no encontrada" descripcion="La página que buscas no existe o cambió de lugar.">
+  <h1>No encontramos esta página</h1>
+  <p class="mt-4">Puede que el enlace esté mal escrito o que la página ya no exista.</p>
+  <div class="mt-6">
+    <BotonEnlace href="/" variante="principal">Volver al inicio</BotonEnlace>
+  </div>
+</Base>
