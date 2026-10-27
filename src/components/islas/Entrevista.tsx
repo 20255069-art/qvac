@@ -1,4 +1,4 @@
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useState } from "react";
 import type { Competencia, Mapeo } from "../../lib/esquemas.ts";
 import { formatearPorcentaje } from "../../lib/formato.ts";
 import type { OcupacionMotor } from "../../lib/pesos.ts";
@@ -26,6 +26,13 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
   const traductor = useMemo(() => crearTraductorPalabrasClave(competencias), [competencias]);
   const [error, setError] = useState<string | null>(null);
   const [resultado, setResultado] = useState<Resultado | null>(null);
+  // El botón sale deshabilitado en el HTML del servidor: sin JavaScript (o antes de hidratar)
+  // el formulario no puede enviarse por GET y las respuestas nunca llegan a la URL.
+  const [hidratado, setHidratado] = useState(false);
+
+  useEffect(() => {
+    setHidratado(true);
+  }, []);
 
   async function enviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -65,7 +72,8 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         ))}
         <button
           type="submit"
-          className="min-h-12 w-full rounded-base bg-primario px-6 font-semibold text-fondo hover:bg-primario-oscuro sm:w-auto"
+          disabled={!hidratado}
+          className="min-h-12 w-full rounded-base bg-primario px-6 font-semibold text-fondo hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           Ver mis competencias
         </button>

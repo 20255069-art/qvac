@@ -69,3 +69,17 @@ test("avisa cuando no encuentra competencias", async ({ page }) => {
     ),
   ).toBeVisible();
 });
+
+test.describe("sin JavaScript", () => {
+  test.use({ javaScriptEnabled: false });
+
+  test("el envío queda deshabilitado y las respuestas no viajan por la URL", async ({ page }) => {
+    await page.goto("/entrevista/");
+    const boton = page.getByRole("button", { name: "Ver mis competencias" });
+    await expect(boton).toBeDisabled();
+    await page.getByLabel(PREGUNTAS[0] as string).fill("cobro con yape y cuadro la caja al cierre");
+    await boton.click({ force: true, timeout: 2000 }).catch(() => undefined);
+    expect(page.url()).not.toContain("?");
+    expect(page.url()).toMatch(/\/entrevista\/$/);
+  });
+});
