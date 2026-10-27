@@ -18,7 +18,7 @@ test("los tokens de global.css se aplican al body", async ({ page }) => {
     };
   });
   expect(estilos).toEqual({
-    fondo: "rgb(255, 255, 255)",
+    fondo: "rgb(242, 246, 251)", // fondo gris de página (superficie), estilo gob.pe
     color: "rgb(31, 41, 51)",
     tamano: "18px",
   });

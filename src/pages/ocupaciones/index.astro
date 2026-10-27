@@ -5,10 +5,12 @@ import { ocupaciones } from "../../lib/datos.ts";
 ---
 
 <Base titulo="Elige tu ocupación" descripcion="Elige la ocupación en la que trabajas para ver a qué trabajos afines puedes pasar.">
-  <h1>Elige tu ocupación</h1>
-  <p class="mt-4">
-    Toca la ocupación en la que trabajas o trabajaste. Te mostraremos los trabajos afines según el CNPO.
-  </p>
+  <section class="caja">
+    <h1>Elige tu ocupación</h1>
+    <p class="mt-4">
+      Toca la ocupación en la que trabajas o trabajaste. Te mostraremos los trabajos afines según el CNPO.
+    </p>
+  </section>
   <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {ocupaciones.map((ocupacion) => <TarjetaOcupacion ocupacion={ocupacion} />)}
   </ul>

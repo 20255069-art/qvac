@@ -9,7 +9,7 @@ interface Props {
 const { ocupacion } = Astro.props;
 ---
 
-<li class="con-icono flex gap-4 rounded-base border border-borde bg-fondo p-4">
+<li class="caja con-icono flex gap-4">
   <IconoOcupacion id={ocupacion.id} tamano={72} />
   <div class="min-w-0">
     <h2 class="text-xl"><a href={`/ocupaciones/${ocupacion.id}/`}>{ocupacion.nombreCorto}</a></h2>

@@ -3,25 +3,42 @@ import BotonEnlace from "../components/BotonEnlace.astro";
 import DatoInformalidad from "../components/DatoInformalidad.astro";
 import Base from "../layouts/Base.astro";
 import { contexto } from "../lib/datos.ts";
+
+const PASOS = [
+  { titulo: "Elige", texto: "Elige la ocupación en la que trabajas o cuéntanos tu experiencia." },
+  {
+    titulo: "Compara",
+    texto: "Mira a qué trabajos afines puedes pasar y cuánto de lo que piden ya sabes hacer.",
+  },
+  { titulo: "Fortalece", texto: "Revisa qué te falta fortalecer y dónde capacitarte gratis." },
+];
 ---
 
 <Base titulo="Inicio" descripcion="Descubre a qué trabajos afines puedes pasar con lo que ya sabes hacer, según el CNPO.">
-  <h1>Lo que ya sabes hacer vale en otros trabajos</h1>
-  <p class="mt-4">
-    Elige tu ocupación y descubre a qué trabajos afines puedes pasar, qué competencias ya tienes y cuáles te conviene fortalecer, según el Catálogo Nacional de Perfiles Ocupacionales del MTPE.
-  </p>
-  <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-    <BotonEnlace href="/ocupaciones/" variante="principal">Elige tu ocupación</BotonEnlace>
-    <BotonEnlace href="/entrevista/" variante="secundario">Cuéntanos tu experiencia</BotonEnlace>
-  </div>
-  <div class="mt-8">
+  <section class="caja">
+    <h1>Lo que ya sabes hacer vale en otros trabajos</h1>
+    <p class="mt-4">
+      Elige tu ocupación y descubre a qué trabajos afines puedes pasar, qué competencias ya tienes y cuáles te conviene fortalecer, según el Catálogo Nacional de Perfiles Ocupacionales del MTPE.
+    </p>
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+      <BotonEnlace href="/ocupaciones/" variante="principal">Elige tu ocupación</BotonEnlace>
+      <BotonEnlace href="/entrevista/" variante="secundario">Cuéntanos tu experiencia</BotonEnlace>
+    </div>
+  </section>
+  <div class="mt-6">
     <DatoInformalidad contexto={contexto} />
   </div>
   <h2 class="mt-8">Cómo funciona</h2>
-  <ol class="mt-4 list-decimal space-y-2 pl-6">
-    <li>Elige la ocupación en la que trabajas o cuéntanos tu experiencia.</li>
-    <li>Mira a qué trabajos afines puedes pasar y cuánto de lo que piden ya sabes hacer.</li>
-    <li>Revisa qué te falta fortalecer y dónde capacitarte gratis.</li>
+  <ol class="mt-4 grid gap-4 sm:grid-cols-3">
+    {
+      PASOS.map((paso, indice) => (
+        <li class="caja">
+          <p class="flex h-10 w-10 items-center justify-center rounded-full bg-celeste-fondo text-xl font-bold text-primario">{indice + 1}</p>
+          <h3 class="mt-1">{paso.titulo}</h3>
+          <p class="mt-2">{paso.texto}</p>
+        </li>
+      ))
+    }
   </ol>
-  <p class="mt-6 text-texto-suave">Es una orientación preliminar: no evalúa ni certifica tus competencias.</p>
+  <p class="caja mt-6 text-texto-suave">Es una orientación preliminar: no evalúa ni certifica tus competencias.</p>
 </Base>

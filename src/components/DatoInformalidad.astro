@@ -9,7 +9,7 @@ interface Props {
 const { contexto } = Astro.props;
 ---
 
-<div class="rounded-base border border-borde bg-superficie p-4">
+<div class="caja">
   <p class="text-4xl font-bold text-primario">{formatearPorcentaje(contexto.informalidadNacional)}</p>
   <p>de las personas que trabajan en el Perú tiene un empleo informal ({contexto.periodo}).</p>
   <p class="text-base text-texto-suave">Fuente: {contexto.fuente}</p>

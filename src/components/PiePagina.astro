@@ -1,11 +1,21 @@
-<footer class="mt-12 border-t border-borde bg-superficie">
-  <div class="mx-auto max-w-contenido space-y-2 px-4 py-6 text-base text-texto-suave">
-    <p>
-      Fuentes: Catálogo Nacional de Perfiles Ocupacionales (CNPO) del Ministerio de Trabajo y Promoción del
-      Empleo (MTPE); IEES (Sociedad Nacional de Industrias) con datos del INEI.
-    </p>
-    <p>Prototipo para el Innovathon Ulima x Tether. No es un sitio oficial del Estado peruano.</p>
-    <p>La orientación es preliminar: no evalúa ni certifica competencias.</p>
-    <p><a href="/acerca/">Cómo funciona este prototipo</a></p>
+---
+import AvisoPrototipo from "./AvisoPrototipo.astro";
+---
+
+<footer class="mt-12 border-t border-borde bg-fondo">
+  <div class="mx-auto grid max-w-contenido gap-4 px-4 py-6 text-base text-texto-suave sm:grid-cols-2">
+    <div class="caja">
+      <p class="font-semibold text-texto">Fuentes</p>
+      <p class="mt-1">
+        Catálogo Nacional de Perfiles Ocupacionales (CNPO) del Ministerio de Trabajo y Promoción del Empleo (MTPE);
+        IEES (Sociedad Nacional de Industrias) con datos del INEI.
+      </p>
+    </div>
+    <div class="caja">
+      <p class="font-semibold text-texto">Importante</p>
+      <p class="mt-1">La orientación es preliminar: no evalúa ni certifica competencias.</p>
+      <p class="mt-2"><a href="/acerca/">Cómo funciona este prototipo</a></p>
+    </div>
   </div>
+  <AvisoPrototipo />
 </footer>

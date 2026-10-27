@@ -18,17 +18,19 @@ const destinos = ranking(origen.id);
   titulo={`De ${origen.nombreCorto} a otros trabajos`}
   descripcion={`Mira a qué trabajos afines puede pasar una persona que trabaja como ${origen.nombreCorto}, según el CNPO.`}
 >
-  <div class="con-icono flex items-center gap-4">
-    <IconoOcupacion id={origen.id} tamano={80} />
-    <h1>De {origen.nombreCorto} a otros trabajos</h1>
-  </div>
-  <p class="mt-4">
-    Estos son los trabajos afines ordenados por afinidad: cuánto de lo que ya sabes hacer sirve en cada uno, según el CNPO.
-  </p>
+  <section class="caja">
+    <div class="con-icono flex items-center gap-4">
+      <IconoOcupacion id={origen.id} tamano={80} />
+      <h1>De {origen.nombreCorto} a otros trabajos</h1>
+    </div>
+    <p class="mt-4">
+      Estos son los trabajos afines ordenados por afinidad: cuánto de lo que ya sabes hacer sirve en cada uno, según el CNPO.
+    </p>
+  </section>
   <h2 class="mt-8">Ocupaciones afines, de mayor a menor afinidad</h2>
   {
     destinos.length === 0 ? (
-      <p class="mt-4">Aún no hay trabajos afines para esta ocupación.</p>
+      <p class="caja mt-4">Aún no hay trabajos afines para esta ocupación.</p>
     ) : (
       <ol class="mt-4 space-y-4">
         {destinos.map((transicion) => (
@@ -41,7 +43,7 @@ const destinos = ranking(origen.id);
       </ol>
     )
   }
-  <p class="mt-6 text-base text-texto-suave">
+  <p class="caja mt-6 text-base text-texto-suave">
     Demanda referencial: valor ilustrativo definido por el equipo. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE. No cambia el orden de la lista.
   </p>
 </Base>

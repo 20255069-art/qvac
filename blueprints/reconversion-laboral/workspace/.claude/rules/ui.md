@@ -10,6 +10,7 @@ paths:
 # Interfaz
 
 - Toda página usa `src/layouts/Base.astro` con `titulo` y `descripcion` propios; el `<title>` queda "<titulo> | Reconversión Laboral" y es único por página.
+- Estilo gob.pe: fondo gris `bg-superficie`; cada oración vive dentro de una `.caja` (`src/styles/global.css`). Fuera de las cajas solo van títulos cortos (h2). El aviso de prototipo está en el pie (`PiePagina.astro`).
 - Un solo `h1` por página; encabezados en orden (h1 → h2 → h3).
 - Solo tokens de `src/styles/global.css`: `bg-primario`, `text-texto`, `text-texto-suave`, `bg-superficie`, `border-borde`, `text-enlace`, `bg-ya-tienes-fondo`, `text-ya-tienes-texto`, `bg-por-fortalecer-fondo`, `text-por-fortalecer-texto`, `bg-aviso-fondo`, `text-aviso-texto`, `bg-referencial-fondo`, `text-referencial-texto` (y, solo dentro de los íconos, `--color-icono-trazo` / `--color-icono-relleno`). Ningún hex suelto ni color de la paleta por defecto de Tailwind.
 - El color nunca es la única señal: cada chip muestra "Ya lo tienes" o "Por fortalecer" como texto, y cada insignia dice "Demanda referencial: Alta|Media|Baja".

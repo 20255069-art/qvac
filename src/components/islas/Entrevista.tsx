@@ -56,7 +56,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
 
   return (
     <div>
-      <form onSubmit={enviar} className="space-y-4">
+      <form onSubmit={enviar} className="caja space-y-4">
         {PREGUNTAS.map((pregunta, indice) => (
           <div key={pregunta}>
             <label htmlFor={`respuesta-${indice}`} className="block font-semibold">
@@ -79,7 +79,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         </button>
       </form>
 
-      <div className="mt-4 space-y-1 text-base text-texto-suave">
+      <div className="caja mt-4 space-y-1 text-base text-texto-suave">
         <p>
           Traducción simulada por palabras clave. En la versión final la realizará la IA local QVAC
           de Tether.
@@ -88,20 +88,20 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
       </div>
 
       {error !== null && (
-        <p role="alert" className="mt-4 font-semibold text-por-fortalecer-texto">
+        <p role="alert" className="caja mt-4 font-semibold text-por-fortalecer-texto">
           {error}
         </p>
       )}
 
       <section aria-live="polite" className="mt-6">
         {resultado !== null && resultado.detectadas.length === 0 && (
-          <p>
+          <p className="caja">
             No encontramos competencias en lo que escribiste. Cuéntanos con más detalle qué haces en
             tu trabajo.
           </p>
         )}
         {resultado !== null && resultado.detectadas.length > 0 && (
-          <div>
+          <div className="caja">
             <h2>Competencias que reconocimos</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
               {resultado.detectadas.map((detectada) => (

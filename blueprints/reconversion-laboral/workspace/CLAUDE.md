@@ -77,17 +77,19 @@ Tokens en `src/styles/global.css` dentro de `@theme`. Usa las clases de Tailwind
 
 | Token | Valor | Uso |
 |---|---|---|
-| `primario` / `primario-oscuro` | `#C1121F` / `#8E0E18` | Barra superior, botón principal / su hover |
+| `primario` / `primario-oscuro` | `#0B5CAD` / `#08457F` | Barra superior, botones, números y acentos (azul estilo gob.pe; **nunca rojo en la interfaz**) / hover |
 | `texto` / `texto-suave` | `#1F2933` / `#52606D` | Texto / textos secundarios |
-| `fondo` / `superficie` / `borde` | `#FFFFFF` / `#F4F6F8` / `#D9DEE3` | Página / tarjetas y pie / bordes de 1px |
+| `fondo` / `superficie` / `borde` | `#FFFFFF` / `#F2F6FB` / `#D9DEE3` | Página / tarjetas y pie / bordes de 1px |
 | `enlace` / `foco` | `#0B5CAD` / `#0B5CAD` | Enlaces / contorno de foco de 3px |
 | `ya-tienes-texto` / `ya-tienes-fondo` | `#1E7B3A` / `#E6F4EA` | Competencias que ya tiene |
 | `por-fortalecer-texto` / `por-fortalecer-fondo` | `#B54708` / `#FEF0E1` | Competencias por fortalecer |
+| `celeste-fondo` | `#E6F0FA` | Fondos de acento (números de pasos) |
+| `icono-trazo` / `icono-relleno` / `icono-acento` | `#4A3B78` / `#FDE8EC` / `#D6283C` | Solo dentro de los íconos de ocupación (el rojo existe solo aquí) |
 | `aviso-texto` / `aviso-fondo` | `#5C4813` / `#FFF8DB` | Aviso de prototipo |
 | `referencial-texto` / `referencial-fondo` | `#3E4C59` / `#E4E7EB` | Insignia "Demanda referencial" |
 
 - **Letra:** `system-ui, "Segoe UI", Roboto, Arial, sans-serif`; sin fuentes web ni peticiones externas. Base 18px / 1.6; h1 2rem 700, h2 1.5rem 700, h3 1.25rem 600.
-- **Espaciado:** escala de 4px de Tailwind. **Radio:** 8px (`rounded-base`). **Sombras:** ninguna, solo bordes de 1px.
+- **Espaciado:** escala de 4px de Tailwind. **Radio:** 8px (`rounded-base`). **Cajas (estilo gob.pe):** fondo de página gris (`superficie`); toda oración va dentro de una `.caja` blanca (borde 1px y sombra suave `--shadow-caja`); fuera de las cajas solo títulos cortos. El aviso de prototipo va al pie de cada página.
 - **Botones:** `min-h-12` (48px), ancho completo en móvil (`w-full sm:w-auto`).
 - **Diseño:** móvil primero (360px), ancho máximo `max-w-contenido` (72rem), sin scroll horizontal a 360px.
 - **Color nunca es la única señal:** cada chip lleva su texto ("Ya lo tienes" / "Por fortalecer").

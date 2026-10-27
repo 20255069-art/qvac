@@ -25,6 +25,7 @@ const porcentaje = Math.round(t.cobertura * 100);
   titulo={`${origen.nombreCorto} → ${destino.nombreCorto}`}
   descripcion={`Qué competencias de ${origen.nombreCorto} ya sirven como ${destino.nombreCorto} y cuáles conviene fortalecer, según el CNPO.`}
 >
+  <section class="caja">
   <div class="con-icono flex items-center gap-3" aria-hidden="true">
     <IconoOcupacion id={origen.id} tamano={64} />
     <span class="text-3xl font-bold text-primario">→</span>
@@ -32,15 +33,16 @@ const porcentaje = Math.round(t.cobertura * 100);
   </div>
   <h1 class="mt-4">De {origen.nombreCorto} a {destino.nombreCorto}</h1>
   <p data-testid="resumen" class="mt-4 text-xl font-semibold">Ya tienes el {porcentaje} % de lo que pide este trabajo</p>
+  </section>
 
   <h2 class="mt-8">Ya lo tienes</h2>
   {
     t.compartidas.length === 0 ? (
-      <p class="mt-4">Aún no encontramos competencias en común. Revisa la lista de abajo para empezar.</p>
+      <p class="caja mt-4">Aún no encontramos competencias en común. Revisa la lista de abajo para empezar.</p>
     ) : (
       <ul class="mt-4 space-y-4">
         {t.compartidas.map((compartida) => (
-          <li data-testid="ya-tienes" class="rounded-base border border-borde p-4">
+          <li data-testid="ya-tienes" class="caja">
             <ChipCompetencia estado="ya-tienes" />
             <h3 class="mt-2">{compartida.competencia.nombre}</h3>
             <p class="mt-1">{compartida.competencia.descripcionSencilla}</p>
@@ -56,7 +58,7 @@ const porcentaje = Math.round(t.cobertura * 100);
   <h2 class="mt-8">Por fortalecer</h2>
   {
     t.porFortalecer.length === 0 ? (
-      <p class="mt-4">Ya tienes todas las competencias que pide este trabajo según el CNPO.</p>
+      <p class="caja mt-4">Ya tienes todas las competencias que pide este trabajo según el CNPO.</p>
     ) : (
       <ul class="mt-4 space-y-4">
         {t.porFortalecer.map((item) => (
@@ -69,5 +71,5 @@ const porcentaje = Math.round(t.cobertura * 100);
   <div class="mt-8 rounded-base bg-aviso-fondo p-4 text-aviso-texto">
     <p>Esta es una orientación preliminar. No evalúa ni certifica; la certificación la otorgan entidades autorizadas.</p>
   </div>
-  <p class="mt-6"><a href={`/ocupaciones/${origen.id}/`}>Volver a los trabajos afines</a></p>
+  <p class="caja mt-6"><a href={`/ocupaciones/${origen.id}/`}>Volver a los trabajos afines</a></p>
 </Base>

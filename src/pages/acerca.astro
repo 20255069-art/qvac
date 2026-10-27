@@ -4,49 +4,58 @@ import { contexto, ocupaciones } from "../lib/datos.ts";
 ---
 
 <Base titulo="Cómo funciona" descripcion="Metodología, fuentes y límites del prototipo de reconversión laboral.">
-  <h1>Cómo funciona este prototipo</h1>
+  <section class="caja">
+    <h1>Cómo funciona este prototipo</h1>
+  </section>
 
-  <h2 class="mt-8">Qué hace</h2>
-  <p class="mt-4">
-    Te orienta, a partir del Catálogo Nacional de Perfiles Ocupacionales (CNPO), sobre a qué trabajos afines puedes pasar. Es una orientación preliminar: no evalúa ni certifica tus competencias. La certificación la otorgan entidades autorizadas.
-  </p>
-
-  <h2 class="mt-8">Cómo calculamos la afinidad</h2>
-  <ul class="mt-4 list-disc space-y-2 pl-6">
-    <li>Cada competencia técnica vale 1 punto y cada competencia transversal vale 0,5.</li>
-    <li>
-      «Cuánto ya tienes» (cobertura) es la parte de lo que pide el trabajo destino que ya está en tu ocupación.
-    </li>
-    <li>«Parecido general» compara los dos trabajos completos.</li>
-    <li>La afinidad es el promedio de las dos medidas y es lo que ordena la lista.</li>
-    <li>La demanda no cambia el orden.</li>
-  </ul>
-
-  <h2 class="mt-8">Fuentes</h2>
-  <p class="mt-4">
-    Catálogo Nacional de Perfiles Ocupacionales (CNPO) del Ministerio de Trabajo y Promoción del Empleo (MTPE). Estas son las 9 ocupaciones que usamos:
-  </p>
-  <ul class="mt-4 list-disc space-y-1 pl-6">
-    {ocupaciones.map((ocupacion) => <li>{ocupacion.nombreCorto} (CNPO {ocupacion.codigo})</li>)}
-  </ul>
-  <p class="mt-4">Dato de informalidad: {contexto.fuente}.</p>
-  <p class="mt-4">
-    Cursos: portal Capacíta-T del MTPE,
-    <a href="https://capacitacionlaboral.trabajo.gob.pe/">https://capacitacionlaboral.trabajo.gob.pe/</a>.
-  </p>
-
-  <h2 class="mt-8">Demanda referencial</h2>
-  <p class="mt-4">
-    El nivel Alta, Media o Baja es un valor ilustrativo definido por el equipo. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE.
-  </p>
-
-  <h2 class="mt-8">Qué no incluye todavía</h2>
-  <ul class="mt-4 list-disc space-y-2 pl-6">
-    <li>La ocupación Compras (H2452004) quedó fuera porque su PDF es un escaneo sin texto.</li>
-    <li>Solo se consideran los estándares de nivel operativo.</li>
-    <li>La entrevista usa palabras clave en lugar de la IA local QVAC de Tether.</li>
-  </ul>
-
-  <h2 class="mt-8">Aviso</h2>
-  <p class="mt-4">Prototipo para el Innovathon Ulima x Tether. No es un sitio oficial del Estado peruano.</p>
+  <section class="caja mt-6">
+    <h2>Qué hace</h2>
+    <p class="mt-4">
+      Te orienta, a partir del Catálogo Nacional de Perfiles Ocupacionales (CNPO), sobre a qué trabajos afines puedes pasar. Es una orientación preliminar: no evalúa ni certifica tus competencias. La certificación la otorgan entidades autorizadas.
+    </p>
+  </section>
+  <section class="caja mt-6">
+    <h2>Cómo calculamos la afinidad</h2>
+    <ul class="mt-4 list-disc space-y-2 pl-6">
+      <li>Cada competencia técnica vale 1 punto y cada competencia transversal vale 0,5.</li>
+      <li>
+        «Cuánto ya tienes» (cobertura) es la parte de lo que pide el trabajo destino que ya está en tu ocupación.
+      </li>
+      <li>«Parecido general» compara los dos trabajos completos.</li>
+      <li>La afinidad es el promedio de las dos medidas y es lo que ordena la lista.</li>
+      <li>La demanda no cambia el orden.</li>
+    </ul>
+  </section>
+  <section class="caja mt-6">
+    <h2>Fuentes</h2>
+    <p class="mt-4">
+      Catálogo Nacional de Perfiles Ocupacionales (CNPO) del Ministerio de Trabajo y Promoción del Empleo (MTPE). Estas son las 9 ocupaciones que usamos:
+    </p>
+    <ul class="mt-4 list-disc space-y-1 pl-6">
+      {ocupaciones.map((ocupacion) => <li>{ocupacion.nombreCorto} (CNPO {ocupacion.codigo})</li>)}
+    </ul>
+    <p class="mt-4">Dato de informalidad: {contexto.fuente}.</p>
+    <p class="mt-4">
+      Cursos: portal Capacíta-T del MTPE,
+      <a href="https://capacitacionlaboral.trabajo.gob.pe/">https://capacitacionlaboral.trabajo.gob.pe/</a>.
+    </p>
+  </section>
+  <section class="caja mt-6">
+    <h2>Demanda referencial</h2>
+    <p class="mt-4">
+      El nivel Alta, Media o Baja es un valor ilustrativo definido por el equipo. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE.
+    </p>
+  </section>
+  <section class="caja mt-6">
+    <h2>Qué no incluye todavía</h2>
+    <ul class="mt-4 list-disc space-y-2 pl-6">
+      <li>La ocupación Compras (H2452004) quedó fuera porque su PDF es un escaneo sin texto.</li>
+      <li>Solo se consideran los estándares de nivel operativo.</li>
+      <li>La entrevista usa palabras clave en lugar de la IA local QVAC de Tether.</li>
+    </ul>
+  </section>
+  <section class="caja mt-6">
+    <h2>Aviso</h2>
+    <p class="mt-4">Prototipo para el Innovathon Ulima x Tether. No es un sitio oficial del Estado peruano.</p>
+  </section>
 </Base>

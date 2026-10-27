@@ -14,7 +14,7 @@ const { transicion, destino, origenId } = Astro.props;
 const porcentaje = Math.round(transicion.cobertura * 100);
 ---
 
-<li data-testid="destino" data-afinidad={transicion.afinidad} class="con-icono rounded-base border border-borde p-4">
+<li data-testid="destino" data-afinidad={transicion.afinidad} class="caja con-icono">
   <div class="flex items-center gap-3">
     <IconoOcupacion id={destino.id} tamano={48} />
     <h3>{destino.nombreCorto}</h3>

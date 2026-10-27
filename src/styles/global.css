@@ -3,12 +3,12 @@
 @source not "../../fuentes";
 
 @theme {
-  --color-primario: #c1121f;
-  --color-primario-oscuro: #8e0e18;
+  --color-primario: #0b5cad;
+  --color-primario-oscuro: #08457f;
   --color-texto: #1f2933;
   --color-texto-suave: #52606d;
   --color-fondo: #ffffff;
-  --color-superficie: #f4f6f8;
+  --color-superficie: #f2f6fb;
   --color-borde: #d9dee3;
   --color-enlace: #0b5cad;
   --color-foco: #0b5cad;
@@ -22,14 +22,17 @@
   --color-referencial-fondo: #e4e7eb;
   --color-icono-trazo: #4a3b78;
   --color-icono-relleno: #fde8ec;
+  --color-icono-acento: #d6283c;
+  --color-celeste-fondo: #e6f0fa;
   --font-sans: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
   --radius-base: 8px;
   --container-contenido: 72rem;
+  --shadow-caja: 0 1px 4px rgb(31 41 51 / 0.08);
 }
 
 @layer base {
   body {
-    background-color: var(--color-fondo);
+    background-color: var(--color-superficie);
     color: var(--color-texto);
     font-family: var(--font-sans);
     font-size: 1.125rem;
@@ -65,6 +68,17 @@
   }
 }
 
+/* Cajas al estilo gob.pe: toda oración va dentro de una caja blanca sobre el fondo gris. */
+@layer components {
+  .caja {
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-caja);
+    padding: 1.25rem;
+  }
+}
+
 /* Íconos de ocupación (IconoOcupacion.astro): micro-animaciones solo con CSS. */
 @layer components {
   .icono .ico-trazo,
@@ -80,7 +94,7 @@
   }
 
   .icono .ico-acento-trazo {
-    stroke: var(--color-primario);
+    stroke: var(--color-icono-acento);
   }
 
   .icono .ico-relleno {
@@ -89,7 +103,7 @@
 
   .icono .ico-acento,
   .icono .ico-destello {
-    fill: var(--color-primario);
+    fill: var(--color-icono-acento);
   }
 
   .icono .ico-destello {
