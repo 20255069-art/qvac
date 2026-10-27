@@ -1,0 +1,298 @@
+[
+  {
+    "id": "C01",
+    "nombre": "Atención al cliente presencial",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Recibir y atender a las personas en persona con amabilidad: saludar, escuchar y responder sus consultas.",
+    "palabrasClave": [
+      "atender",
+      "cliente",
+      "clientes",
+      "publico",
+      "huesped",
+      "comensal",
+      "saludar",
+      "consultas"
+    ]
+  },
+  {
+    "id": "C02",
+    "nombre": "Manejo y verificación de efectivo",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Cobrar en efectivo, revisar que los billetes sean buenos y entregar el vuelto exacto.",
+    "palabrasClave": ["cobrar", "efectivo", "billetes", "vuelto", "dinero", "sencillo", "monedas"]
+  },
+  {
+    "id": "C03",
+    "nombre": "Cobro con medios de pago electrónicos",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Cobrar con tarjeta, POS, Yape, Plin, QR o transferencia y revisar que el pago se confirme.",
+    "palabrasClave": ["pos", "tarjeta", "yape", "plin", "qr", "transferencia", "voucher"]
+  },
+  {
+    "id": "C04",
+    "nombre": "Arqueo, cuadre y cierre de caja",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Contar el dinero al final del turno y comprobar que coincide con lo vendido o registrado.",
+    "palabrasClave": [
+      "cuadre",
+      "cuadrar",
+      "cuadro",
+      "arqueo",
+      "cierre de caja",
+      "faltante",
+      "sobrante"
+    ]
+  },
+  {
+    "id": "C05",
+    "nombre": "Registro de operaciones en sistema informático",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Anotar ventas, pedidos u operaciones en la computadora o en el sistema de la empresa.",
+    "palabrasClave": ["sistema", "registrar", "registro", "computadora", "digitar", "excel"]
+  },
+  {
+    "id": "C06",
+    "nombre": "Emisión y control de comprobantes y documentos",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Entregar boletas, facturas o guías y ordenar los documentos de cada operación.",
+    "palabrasClave": ["boleta", "factura", "guia", "comprobante", "recibo", "documentos"]
+  },
+  {
+    "id": "C07",
+    "nombre": "Control de inventarios y existencias",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Contar productos, llevar el control del stock y avisar qué hay que reponer.",
+    "palabrasClave": ["inventario", "stock", "conteo", "kardex", "existencias", "reponer"]
+  },
+  {
+    "id": "C08",
+    "nombre": "Recepción, almacenamiento y despacho de mercadería",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Recibir mercadería, guardarla en su lugar y preparar los pedidos que salen.",
+    "palabrasClave": [
+      "mercaderia",
+      "almacen",
+      "almacenar",
+      "despachar",
+      "despacho",
+      "pedidos",
+      "recepcion"
+    ]
+  },
+  {
+    "id": "C09",
+    "nombre": "Orden y organización del área de trabajo",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Mantener el lugar de trabajo ordenado, con cada cosa en su sitio y clasificada.",
+    "palabrasClave": ["ordenar", "organizar", "acomodar", "clasificar", "orden"]
+  },
+  {
+    "id": "C10",
+    "nombre": "Limpieza y desinfección de ambientes",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Limpiar y desinfectar pisos, baños y ambientes siguiendo un orden y un método.",
+    "palabrasClave": ["limpiar", "limpieza", "desinfectar", "barrer", "trapear", "banos"]
+  },
+  {
+    "id": "C11",
+    "nombre": "Uso seguro de productos químicos de limpieza",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Usar lejía, detergentes y desinfectantes en la dosis correcta y sin mezclarlos de forma peligrosa.",
+    "palabrasClave": ["lejia", "detergente", "quimicos", "desinfectante", "dosificar", "mezclar"]
+  },
+  {
+    "id": "C12",
+    "nombre": "Operación y cuidado de equipos y herramientas de trabajo",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Usar máquinas y herramientas como aspiradoras o lustradoras y mantenerlas en buen estado.",
+    "palabrasClave": [
+      "maquina",
+      "equipo",
+      "aspiradora",
+      "lustradora",
+      "herramientas",
+      "mantenimiento"
+    ]
+  },
+  {
+    "id": "C13",
+    "nombre": "Lavado, secado y planchado de prendas",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Lavar, secar y planchar ropa según su tela, quitando manchas sin dañarla.",
+    "palabrasClave": [
+      "lavar",
+      "lavado",
+      "planchar",
+      "planchado",
+      "secar",
+      "ropa",
+      "prendas",
+      "manchas"
+    ]
+  },
+  {
+    "id": "C14",
+    "nombre": "Cuidado de ropa blanca y lencería",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Manejar sábanas, toallas y ropa de cama: contarlas, doblarlas y guardarlas limpias.",
+    "palabrasClave": ["sabanas", "toallas", "lenceria", "ropa de cama", "frazadas"]
+  },
+  {
+    "id": "C15",
+    "nombre": "Acondicionamiento de habitaciones",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Preparar habitaciones: tender camas, reponer artículos y dejar todo listo para quien llega.",
+    "palabrasClave": [
+      "habitacion",
+      "habitaciones",
+      "tender cama",
+      "camas",
+      "dormitorio",
+      "amenities"
+    ]
+  },
+  {
+    "id": "C16",
+    "nombre": "Servicio de alimentos y bebidas en mesa",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Atender mesas: presentar la carta, tomar el pedido y servir platos y bebidas.",
+    "palabrasClave": ["mesa", "mesas", "mozo", "servir", "platos", "bebidas", "carta", "comanda"]
+  },
+  {
+    "id": "C17",
+    "nombre": "Preparación básica de alimentos",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Preparar comidas sencillas y menús siguiendo indicaciones.",
+    "palabrasClave": ["cocinar", "cocina", "comida", "menu", "preparar", "alimentos"]
+  },
+  {
+    "id": "C18",
+    "nombre": "Higiene e inocuidad alimentaria",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Manipular alimentos con higiene, conservarlos bien y evitar que se contaminen.",
+    "palabrasClave": [
+      "manipulacion de alimentos",
+      "inocuidad",
+      "higiene",
+      "refrigeracion",
+      "contaminacion"
+    ]
+  },
+  {
+    "id": "C19",
+    "nombre": "Atención telefónica y por canales remotos",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Atender llamadas, chats o WhatsApp y resolver consultas a distancia.",
+    "palabrasClave": ["telefono", "llamada", "llamadas", "central", "whatsapp", "chat", "linea"]
+  },
+  {
+    "id": "C20",
+    "nombre": "Identificación de necesidades y orientación al usuario",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Preguntar qué necesita la persona y explicarle con claridad sus opciones.",
+    "palabrasClave": [
+      "orientar",
+      "orientacion",
+      "informar",
+      "explicar",
+      "necesidad",
+      "necesidades",
+      "recomendar"
+    ]
+  },
+  {
+    "id": "C21",
+    "nombre": "Gestión de reclamos y solución de problemas del cliente",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Escuchar quejas o reclamos y buscar una solución dentro de las reglas de la empresa.",
+    "palabrasClave": [
+      "reclamo",
+      "reclamos",
+      "queja",
+      "quejas",
+      "problema",
+      "solucionar",
+      "resolver"
+    ]
+  },
+  {
+    "id": "C22",
+    "nombre": "Venta y ofrecimiento de productos o servicios",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Ofrecer productos, promociones o servicios y ayudar al cliente a decidir.",
+    "palabrasClave": ["vender", "venta", "ventas", "ofrecer", "promocion", "producto", "productos"]
+  },
+  {
+    "id": "C23",
+    "nombre": "Operación de equipos de carga",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Mover mercadería con transpaleta, carretilla u otro equipo de carga de forma segura.",
+    "palabrasClave": ["transpaleta", "montacargas", "estoca", "carretilla", "carga", "descarga"]
+  },
+  {
+    "id": "C24",
+    "nombre": "Seguridad y salud en el trabajo y uso de EPP",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Usar guantes, mascarilla u otro equipo de protección y cuidar tu seguridad y la del equipo.",
+    "palabrasClave": [
+      "epp",
+      "guantes",
+      "casco",
+      "seguridad",
+      "accidente",
+      "senalizacion",
+      "mascarilla"
+    ]
+  },
+  {
+    "id": "C25",
+    "nombre": "Cuidado básico de personas en el hogar",
+    "tipo": "tecnica",
+    "descripcionSencilla": "Acompañar y cuidar a niños o adultos mayores en sus necesidades diarias.",
+    "palabrasClave": ["ninos", "nino", "adulto mayor", "cuidar", "cuidado", "acompanar", "bebe"]
+  },
+  {
+    "id": "C26",
+    "nombre": "Comunicación efectiva",
+    "tipo": "transversal",
+    "descripcionSencilla": "Escuchar y hablar con claridad y buen trato con clientes y compañeros.",
+    "palabrasClave": ["comunicar", "conversar", "trato", "amable", "escuchar"]
+  },
+  {
+    "id": "C27",
+    "nombre": "Trabajo en equipo",
+    "tipo": "transversal",
+    "descripcionSencilla": "Coordinar y apoyar a tus compañeros para cumplir las tareas del turno.",
+    "palabrasClave": ["equipo", "companeros", "coordinar", "apoyar", "ayudar"]
+  },
+  {
+    "id": "C28",
+    "nombre": "Responsabilidad y puntualidad",
+    "tipo": "transversal",
+    "descripcionSencilla": "Llegar a la hora, cumplir el horario y terminar lo que se te encarga.",
+    "palabrasClave": ["puntual", "puntualidad", "responsable", "horario", "cumplir"]
+  },
+  {
+    "id": "C29",
+    "nombre": "Trabajo bajo presión",
+    "tipo": "transversal",
+    "descripcionSencilla": "Mantener la calma y la calidad del trabajo en horas punta o con muchos clientes.",
+    "palabrasClave": [
+      "presion",
+      "rapido",
+      "hora punta",
+      "cola",
+      "colas",
+      "muchos clientes",
+      "estres"
+    ]
+  },
+  {
+    "id": "C30",
+    "nombre": "Atención al detalle y cumplimiento de procedimientos",
+    "tipo": "transversal",
+    "descripcionSencilla": "Revisar con cuidado y seguir los pasos y protocolos establecidos.",
+    "palabrasClave": ["detalle", "revisar", "verificar", "procedimiento", "protocolo", "cuidadoso"]
+  }
+]
