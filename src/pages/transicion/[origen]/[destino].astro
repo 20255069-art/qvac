@@ -5,6 +5,7 @@ import ItemPorFortalecer from "../../../components/ItemPorFortalecer.astro";
 import Base from "../../../layouts/Base.astro";
 import { calcularTransicion } from "../../../lib/afinidad.ts";
 import { ocupaciones, ocupacionPorId } from "../../../lib/datos.ts";
+import { URL_CAPACITA_T } from "../../../lib/esquemas.ts";
 
 export function getStaticPaths() {
   return ocupaciones.flatMap((origen) =>
@@ -32,7 +33,7 @@ const porcentaje = Math.round(t.cobertura * 100);
     <IconoOcupacion id={destino.id} tamano={64} />
   </div>
   <h1 class="mt-4">De {origen.nombreCorto} a {destino.nombreCorto}</h1>
-  <p data-testid="resumen" class="mt-4 text-xl font-semibold">Ya tienes el {porcentaje} % de lo que pide este trabajo</p>
+  <p data-testid="resumen" class="mt-4 text-xl font-semibold">Los perfiles comparten el {porcentaje} % de las competencias mapeadas</p>
   </section>
 
   <h2 class="mt-8">Ya lo tienes</h2>
@@ -58,7 +59,10 @@ const porcentaje = Math.round(t.cobertura * 100);
   <h2 class="mt-8">Por fortalecer</h2>
   {
     t.porFortalecer.length === 0 ? (
-      <p class="caja mt-4">Ya tienes todas las competencias que pide este trabajo según el CNPO.</p>
+      <div class="caja mt-4">
+        <p>No encontramos brechas entre las competencias incluidas en esta comparación.</p>
+        <p class="mt-2"><a href={URL_CAPACITA_T}>Explora más cursos gratuitos en Capacíta-T</a></p>
+      </div>
     ) : (
       <ul class="mt-4 space-y-4">
         {t.porFortalecer.map((item) => (

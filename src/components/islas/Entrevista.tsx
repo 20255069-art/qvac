@@ -1,5 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-import type { Competencia, Mapeo } from "../../lib/esquemas.ts";
+import type { Competencia } from "../../lib/esquemas.ts";
 import { formatearPorcentaje } from "../../lib/formato.ts";
 import type { OcupacionMotor } from "../../lib/pesos.ts";
 import { type Sugerencia, sugerirOcupaciones } from "../../lib/sugerencias.ts";
@@ -8,8 +8,8 @@ import type { CompetenciaDetectada } from "../../lib/traductor/tipos.ts";
 
 type Props = {
   ocupaciones: OcupacionMotor[];
-  competencias: Competencia[];
-  mapeo: Mapeo;
+  competencias: Pick<Competencia, "id" | "nombre" | "tipo" | "palabrasClave">[];
+  mapeo: Record<string, string[]>;
 };
 
 type Resultado = { detectadas: CompetenciaDetectada[]; sugerencias: Sugerencia[] };
@@ -81,9 +81,10 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
 
       <div className="caja mt-4 space-y-1 text-base text-texto-suave">
         <p>
-          Traducción simulada por palabras clave. En la versión final la realizará la IA local QVAC
-          de Tether.
+          Traducción simulada por palabras clave. La integración con QVAC (IA local de Tether) está
+          prevista y aún no ha sido validada.
         </p>
+        <p>Esta simulación puede interpretar mal negaciones o contexto.</p>
         <p>No guardamos ni enviamos lo que escribes: todo ocurre en tu navegador.</p>
       </div>
 
@@ -102,7 +103,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         )}
         {resultado !== null && resultado.detectadas.length > 0 && (
           <div className="caja">
-            <h2>Competencias que reconocimos</h2>
+            <h2>Posibles competencias mencionadas en tu relato</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
               {resultado.detectadas.map((detectada) => (
                 <li

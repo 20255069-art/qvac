@@ -92,7 +92,17 @@
     "nombre": "Limpieza y desinfección de ambientes",
     "tipo": "tecnica",
     "descripcionSencilla": "Limpiar y desinfectar pisos, baños y ambientes siguiendo un orden y un método.",
-    "palabrasClave": ["limpiar", "limpieza", "desinfectar", "barrer", "trapear", "banos"]
+    "palabrasClave": [
+      "limpiar",
+      "limpieza",
+      "desinfectar",
+      "barrer",
+      "trapear",
+      "banos",
+      "limpio",
+      "limpia",
+      "limpiamos"
+    ]
   },
   {
     "id": "C11",
@@ -105,15 +115,8 @@
     "id": "C12",
     "nombre": "Operación y cuidado de equipos y herramientas de trabajo",
     "tipo": "tecnica",
-    "descripcionSencilla": "Usar máquinas y herramientas como aspiradoras o lustradoras y mantenerlas en buen estado.",
-    "palabrasClave": [
-      "maquina",
-      "equipo",
-      "aspiradora",
-      "lustradora",
-      "herramientas",
-      "mantenimiento"
-    ]
+    "descripcionSencilla": "Revisar y cuidar los equipos que usas en tu puesto y mantenerlos en buen estado.",
+    "palabrasClave": ["maquina", "aspiradora", "lustradora", "herramientas", "mantenimiento"]
   },
   {
     "id": "C13",
@@ -164,7 +167,7 @@
     "nombre": "Preparación básica de alimentos",
     "tipo": "tecnica",
     "descripcionSencilla": "Preparar comidas sencillas y menús siguiendo indicaciones.",
-    "palabrasClave": ["cocinar", "cocina", "comida", "menu", "preparar", "alimentos"]
+    "palabrasClave": ["cocinar", "cocina", "comida", "menu", "alimentos"]
   },
   {
     "id": "C18",

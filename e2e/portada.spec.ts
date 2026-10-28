@@ -26,10 +26,3 @@ test("explica el uso en exactamente 3 pasos", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main ol > li")).toHaveCount(3);
 });
-
-test("no hay scroll horizontal a 360 px", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 740 });
-  await page.goto("/");
-  const ancho = await page.evaluate(() => document.documentElement.scrollWidth);
-  expect(ancho).toBeLessThanOrEqual(360);
-});

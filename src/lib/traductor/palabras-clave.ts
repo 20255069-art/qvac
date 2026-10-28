@@ -1,7 +1,7 @@
 import type { Competencia } from "../esquemas.ts";
 import type { CompetenciaDetectada, TraductorCompetencias } from "./tipos.ts";
 
-export function normalizar(texto: string): string {
+function normalizar(texto: string): string {
   return texto
     .toLowerCase()
     .normalize("NFD")
@@ -11,6 +11,15 @@ export function normalizar(texto: string): string {
 function expresionPara(palabraClave: string): RegExp {
   const escapada = palabraClave.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
   return new RegExp(`\\b${escapada}\\b`);
+}
+
+// Una palabra clave negada («no sé cobrar», «ni usar yape») no cuenta como competencia.
+const NEGACION = /\b(no|nunca|ni|jamas|tampoco)[ ]+(?:\S+[ ]+){0,2}$/;
+
+function afirmada(expresion: RegExp, texto: string): boolean {
+  return [...texto.matchAll(new RegExp(expresion.source, "g"))].some(
+    (coincidencia) => !NEGACION.test(texto.slice(0, coincidencia.index)),
+  );
 }
 
 export function crearTraductorPalabrasClave(
@@ -32,7 +41,7 @@ export function crearTraductorPalabrasClave(
     const detectadas: CompetenciaDetectada[] = [];
     for (const { competencia, expresiones } of reglas) {
       const palabrasEncontradas = expresiones
-        .filter(({ expresion }) => expresion.test(texto))
+        .filter(({ expresion }) => afirmada(expresion, texto))
         .map(({ palabra }) => palabra);
       if (palabrasEncontradas.length > 0) {
         detectadas.push({

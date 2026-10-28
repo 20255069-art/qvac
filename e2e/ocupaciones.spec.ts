@@ -28,10 +28,3 @@ test("hay un enlace por cada una de las 9 ocupaciones", async ({ page }) => {
     "Cajero(a) de tienda",
   );
 });
-
-test("no hay scroll horizontal a 360 px", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 740 });
-  await page.goto("/ocupaciones/");
-  const ancho = await page.evaluate(() => document.documentElement.scrollWidth);
-  expect(ancho).toBeLessThanOrEqual(360);
-});

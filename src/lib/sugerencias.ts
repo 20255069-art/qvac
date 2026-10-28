@@ -4,8 +4,14 @@ import { type OcupacionMotor, peso } from "./pesos.ts";
 export type DatosSugerencia = {
   ocupaciones: OcupacionMotor[];
   competencias: Pick<Competencia, "id" | "tipo">[];
-  mapeo: Mapeo;
+  mapeo: Record<string, string[]>;
 };
+
+export function competenciasPorOcupacion(mapeo: Mapeo): Record<string, string[]> {
+  return Object.fromEntries(
+    Object.entries(mapeo).map(([id, competencias]) => [id, Object.keys(competencias)]),
+  );
+}
 
 export type Sugerencia = { ocupacion: OcupacionMotor; cobertura: number };
 
@@ -24,7 +30,7 @@ export function sugerirOcupaciones(
   const conjuntoDetectado = new Set(detectadas);
   return datos.ocupaciones
     .map((ocupacion) => {
-      const ids = Object.keys(datos.mapeo[ocupacion.id] ?? {});
+      const ids = datos.mapeo[ocupacion.id] ?? [];
       const total = ids.reduce((suma, id) => suma + pesoDe(id), 0);
       const cubierto = ids
         .filter((id) => conjuntoDetectado.has(id))

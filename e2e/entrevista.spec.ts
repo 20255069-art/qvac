@@ -6,7 +6,7 @@ const PREGUNTAS = [
   "¿Qué es lo que mejor sabes hacer y por qué te lo reconocen?",
 ];
 const AVISO_QVAC =
-  "Traducción simulada por palabras clave. En la versión final la realizará la IA local QVAC de Tether.";
+  "Traducción simulada por palabras clave. La integración con QVAC (IA local de Tether) está prevista y aún no ha sido validada.";
 
 async function abrirEntrevista(page: Page) {
   await page.goto("/entrevista/");
@@ -56,7 +56,9 @@ test("pide más texto cuando las respuestas son demasiado cortas", async ({ page
   await expect(page.getByRole("alert")).toHaveText(
     "Escribe al menos 15 caracteres en alguna de las respuestas.",
   );
-  await expect(page.locator("body")).not.toContainText("Competencias que reconocimos");
+  await expect(page.locator("body")).not.toContainText(
+    "Posibles competencias mencionadas en tu relato",
+  );
 });
 
 test("avisa cuando no encuentra competencias", async ({ page }) => {

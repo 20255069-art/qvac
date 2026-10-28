@@ -22,8 +22,10 @@ test("cada fila muestra cobertura, demanda referencial y enlace al detalle", asy
   const total = await filas.count();
   for (let i = 0; i < total; i += 1) {
     const fila = filas.nth(i);
-    await expect(fila).toContainText(/Ya tienes el \d{1,3} % de lo que pide este trabajo/);
-    await expect(fila).toContainText(/Demanda referencial: (Alta|Media|Baja)/);
+    await expect(fila).toContainText(
+      /Los perfiles comparten el \d{1,3} % de las competencias mapeadas/,
+    );
+    await expect(fila).toContainText(/Demanda de ejemplo, sin validar: (Alta|Media|Baja)/);
     const href = await fila.locator("a").first().getAttribute("href");
     expect(href?.startsWith("/transicion/caja_comercial/")).toBe(true);
   }

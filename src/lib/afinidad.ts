@@ -9,7 +9,7 @@ export type DatosMotor = {
   cursos: Cursos;
 };
 
-export type Compartida = {
+type Compartida = {
   competencia: Competencia;
   evidenciaOrigen: string[];
   evidenciaDestino: string[];

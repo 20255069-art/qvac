@@ -14,12 +14,12 @@ export const ID_OCUPACIONES = [
 
 export const URL_CAPACITA_T = "https://capacitacionlaboral.trabajo.gob.pe/";
 
-export const esquemaElemento = z.object({
+const esquemaElemento = z.object({
   id: z.string().regex(/^[A-Z]\d{7}-\d+-E\d+$/),
   texto: z.string().min(10),
 });
 
-export const esquemaEstandar = z.object({
+const esquemaEstandar = z.object({
   codigo: z.string().regex(/^[A-Z]\d{7}-\d+$/),
   rol: z.enum(["operativo", "supervisor"]),
   descripcion: z.string().min(10),
@@ -44,7 +44,7 @@ export const esquemaOcupacion = z.object({
 
 export const esquemaOcupaciones = z.array(esquemaOcupacion).length(9);
 
-export const esquemaCompetencia = z.object({
+const esquemaCompetencia = z.object({
   id: z.string().regex(/^C\d{2}$/),
   nombre: z.string().min(3),
   tipo: z.enum(["tecnica", "transversal"]),
@@ -67,12 +67,9 @@ export const esquemaCursos = z.record(z.string(), esquemaCurso);
 export const esquemaContexto = z.object({
   informalidadNacional: z.number().min(0).max(100),
   periodo: z.string().min(5),
-  anterior: z.number().min(0).max(100),
   fuente: z.string().min(10),
 });
 
-export type Elemento = z.infer<typeof esquemaElemento>;
-export type Estandar = z.infer<typeof esquemaEstandar>;
 export type Ocupacion = z.infer<typeof esquemaOcupacion>;
 export type Competencia = z.infer<typeof esquemaCompetencia>;
 export type Mapeo = z.infer<typeof esquemaMapeo>;

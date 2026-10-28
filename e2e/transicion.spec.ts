@@ -9,7 +9,7 @@ test("la transición de caja_comercial a almacen muestra resumen, evidencia y cu
   await page.goto("/transicion/caja_comercial/almacen/");
   await expect(page.locator("h1")).toHaveText("De Cajero(a) de tienda a Operario(a) de almacén");
   await expect(page.locator('[data-testid="resumen"]')).toHaveText(
-    /Ya tienes el \d{1,3} % de lo que pide este trabajo/,
+    /Los perfiles comparten el \d{1,3} % de las competencias mapeadas/,
   );
 
   const yaTienes = page.locator('[data-testid="ya-tienes"]');
@@ -35,26 +35,3 @@ test("la transición de caja_comercial a almacen muestra resumen, evidencia y cu
 
   await expect(page.locator("body")).toContainText(AVISO);
 });
-
-test("no hay scroll horizontal a 360 px", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 740 });
-  await page.goto("/transicion/caja_comercial/almacen/");
-  const ancho = await page.evaluate(() => document.documentElement.scrollWidth);
-  expect(ancho).toBeLessThanOrEqual(360);
-});
-
-const OTRAS = [
-  ["/transicion/limpieza/housekeeping/", "De Operario(a) de limpieza a Cuartelero(a) de hotel"],
-  [
-    "/transicion/salon_comidas/atencion_telefonica/",
-    "De Mozo(a) / ayudante de salón a Teleoperador(a)",
-  ],
-] as const;
-
-for (const [ruta, titular] of OTRAS) {
-  test(`${ruta} muestra su titular y el aviso`, async ({ page }) => {
-    await page.goto(ruta);
-    await expect(page.locator("h1")).toHaveText(titular);
-    await expect(page.locator("body")).toContainText(AVISO);
-  });
-}

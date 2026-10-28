@@ -35,7 +35,6 @@ describe("contexto.json", () => {
   it("cumple el esquema y trae los valores de informalidad", () => {
     const contexto = esquemaContexto.parse(contextoJson);
     expect(contexto.informalidadNacional).toBe(69.8);
-    expect(contexto.anterior).toBe(70.7);
     expect(contexto.periodo).toBe("abril 2025 – marzo 2026");
   });
 });

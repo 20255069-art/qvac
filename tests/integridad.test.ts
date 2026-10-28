@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import competenciasJson from "../src/data/competencias.json";
 import mapeoJson from "../src/data/mapeo.json";
 import ocupacionesJson from "../src/data/ocupaciones.json";
+import { calcularTransicion } from "../src/lib/afinidad.ts";
 import {
   esquemaCompetencias,
   esquemaMapeo,
@@ -15,28 +16,6 @@ const competencias = esquemaCompetencias.parse(competenciasJson);
 const mapeo = esquemaMapeo.parse(mapeoJson);
 
 const tipoPorId = new Map(competencias.map((competencia) => [competencia.id, competencia.tipo]));
-
-function peso(id: string): number {
-  return tipoPorId.get(id) === "tecnica" ? 1 : 0.5;
-}
-
-function suma(ids: Iterable<string>): number {
-  let total = 0;
-  for (const id of ids) {
-    total += peso(id);
-  }
-  return total;
-}
-
-function afinidad(origen: string, destino: string): number {
-  const conjuntoA = new Set(Object.keys(mapeo[origen] ?? {}));
-  const conjuntoB = new Set(Object.keys(mapeo[destino] ?? {}));
-  const interseccion = [...conjuntoA].filter((id) => conjuntoB.has(id));
-  const union = new Set([...conjuntoA, ...conjuntoB]);
-  const cobertura = suma(interseccion) / suma(conjuntoB);
-  const jaccard = suma(interseccion) / suma(union);
-  return (cobertura + jaccard) / 2;
-}
 
 describe("competencias.json", () => {
   it("tiene C01 a C30 en orden, con su tipo", () => {
@@ -83,11 +62,21 @@ describe("mapeo.json", () => {
   });
 
   it("la afinidad tiene sentido con los datos reales", () => {
+    const afinidad = (origen: string, destino: string) =>
+      calcularTransicion(origen, destino).afinidad;
     expect(afinidad("caja_comercial", "caja_financiera")).toBeGreaterThan(
       afinidad("caja_comercial", "lavanderia"),
     );
     expect(afinidad("limpieza", "housekeeping")).toBeGreaterThan(
       afinidad("limpieza", "atencion_telefonica"),
     );
+  });
+
+  it("no atribuye manejo de efectivo al mozo (solo entrega comprobante y vuelto)", () => {
+    expect(mapeo.salon_comidas?.C02).toBeUndefined();
+  });
+
+  it("incluye el cuidado de ropa blanca en lavandería (doblado de ropa de cama)", () => {
+    expect(mapeo.lavanderia?.C14).toEqual(["S3496002-2-E2"]);
   });
 });

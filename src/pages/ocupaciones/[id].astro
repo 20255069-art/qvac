@@ -27,23 +27,19 @@ const destinos = ranking(origen.id);
       Estos son los trabajos afines ordenados por afinidad: cuánto de lo que ya sabes hacer sirve en cada uno, según el CNPO.
     </p>
   </section>
-  <h2 class="mt-8">Ocupaciones afines, de mayor a menor afinidad</h2>
-  {
-    destinos.length === 0 ? (
-      <p class="caja mt-4">Aún no hay trabajos afines para esta ocupación.</p>
-    ) : (
-      <ol class="mt-4 space-y-4">
-        {destinos.map((transicion) => (
-          <FilaDestino
-            transicion={transicion}
-            destino={ocupacionPorId(transicion.destino)}
-            origenId={origen.id}
-          />
-        ))}
-      </ol>
-    )
-  }
   <p class="caja mt-6 text-base text-texto-suave">
-    Demanda referencial: valor ilustrativo definido por el equipo. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE. No cambia el orden de la lista.
+    La demanda es un valor de ejemplo definido por el equipo, sin validar. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE y no cambia el orden de la lista.
   </p>
+  <h2 class="mt-8">Ocupaciones afines, de mayor a menor afinidad</h2>
+  <ol class="mt-4 space-y-4">
+    {
+      destinos.map((transicion) => (
+        <FilaDestino
+          transicion={transicion}
+          destino={ocupacionPorId(transicion.destino)}
+          origenId={origen.id}
+        />
+      ))
+    }
+  </ol>
 </Base>

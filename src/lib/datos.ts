@@ -4,7 +4,6 @@ import cursosJson from "../data/cursos.json";
 import mapeoJson from "../data/mapeo.json";
 import ocupacionesJson from "../data/ocupaciones.json";
 import {
-  type Competencia,
   esquemaCompetencias,
   esquemaContexto,
   esquemaCursos,
@@ -36,12 +35,4 @@ export function ocupacionPorId(id: string): Ocupacion {
     throw new Error(`ocupación desconocida: ${id}`);
   }
   return ocupacion;
-}
-
-export function competenciaPorId(id: string): Competencia {
-  const competencia = competencias.find((candidata) => candidata.id === id);
-  if (competencia === undefined) {
-    throw new Error(`competencia desconocida: ${id}`);
-  }
-  return competencia;
 }

@@ -1,6 +1,6 @@
 import type { Competencia, Mapeo, Ocupacion } from "./esquemas.ts";
 
-export type DatosIntegridad = {
+type DatosIntegridad = {
   ocupaciones: Ocupacion[];
   competencias: Competencia[];
   mapeo: Mapeo;
