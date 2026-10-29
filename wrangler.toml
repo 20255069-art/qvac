@@ -1,0 +1,10 @@
+name = "qvac"
+main = "scripts/cloudflare-worker.mjs"
+compatibility_date = "2025-04-01"
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
