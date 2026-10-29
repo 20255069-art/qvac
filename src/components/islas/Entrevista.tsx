@@ -1,16 +1,18 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { Competencia } from "../../lib/esquemas.ts";
-import { formatearPorcentaje } from "../../lib/formato.ts";
 import type { OcupacionMotor } from "../../lib/pesos.ts";
 import { type Sugerencia, sugerirOcupaciones } from "../../lib/sugerencias.ts";
 import { crearTraductorQvac, type ModoTraduccion } from "../../lib/traductor/qvac.ts";
 import type { CompetenciaDetectada } from "../../lib/traductor/tipos.ts";
+import ArbolHabilidades from "./ArbolHabilidades.tsx";
 import GrabadorVoz from "./GrabadorVoz.tsx";
+import MapaEmpleos from "./MapaEmpleos.tsx";
 
 type Props = {
   ocupaciones: OcupacionMotor[];
   competencias: Pick<Competencia, "id" | "nombre" | "tipo" | "palabrasClave">[];
   mapeo: Record<string, string[]>;
+  cursos?: Record<string, { tema: string; url: string; horasReferenciales: number }>;
 };
 
 type Resultado = {
@@ -27,7 +29,36 @@ const PREGUNTAS = [
 
 const MINIMO_CARACTERES = 15;
 
-export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) {
+const DEPARTAMENTOS = [
+  "Lima",
+  "Arequipa",
+  "La Libertad",
+  "Cusco",
+  "Piura",
+  "Junín",
+  "Lambayeque",
+  "Callao",
+  "Áncash",
+  "Ica",
+  "San Martín",
+  "Loreto",
+  "Puno",
+  "Tacna",
+  "Huánuco",
+  "Ayacucho",
+  "Cajamarca",
+  "Ucayali",
+  "Amazonas",
+  "Apurímac",
+  "Huancavelica",
+  "Madre de Dios",
+  "Moquegua",
+  "Pasco",
+  "Tumbes",
+];
+
+export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }: Props) {
+  const [departamento, setDepartamento] = useState("Lima");
   const [error, setError] = useState<string | null>(null);
   const [resultado, setResultado] = useState<Resultado | null>(null);
   const [analizando, setAnalizando] = useState(false);
@@ -96,10 +127,10 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
 
   return (
     <div>
-      <form onSubmit={enviar} className="caja space-y-4">
+      <form onSubmit={enviar} className="caja space-y-5 shadow-sm">
         {PREGUNTAS.map((pregunta, indice) => (
-          <div key={pregunta}>
-            <label htmlFor={`respuesta-${indice}`} className="block font-semibold">
+          <div key={pregunta} className="space-y-1.5">
+            <label htmlFor={`respuesta-${indice}`} className="block font-semibold text-texto">
               {pregunta}
             </label>
             <textarea
@@ -110,7 +141,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
                 areas.current[indice] = area;
               }}
               readOnly={dictando === indice}
-              className="mt-1 w-full rounded-base border border-borde p-2"
+              className="mt-1 w-full rounded-md border border-borde p-3 shadow-sm focus:border-primario focus:outline-none focus:ring-1 focus:ring-primario"
             />
             <GrabadorVoz
               etiqueta={`respuesta ${indice + 1}`}
@@ -125,17 +156,41 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
             />
           </div>
         ))}
+
+        {/* Selector de Departamento Institucional MTPE */}
+        <div className="space-y-1.5 border-t border-borde pt-3">
+          <label htmlFor="departamento" className="block font-semibold text-texto">
+            Departamento de residencia o búsqueda laboral:
+          </label>
+          <select
+            id="departamento"
+            name="departamento"
+            value={departamento}
+            onChange={(e) => setDepartamento(e.target.value)}
+            className="w-full rounded-md border border-borde bg-white p-2.5 text-texto shadow-sm focus:border-primario focus:outline-none focus:ring-1 focus:ring-primario sm:w-72"
+          >
+            {DEPARTAMENTOS.map((dep) => (
+              <option key={dep} value={dep}>
+                {dep}
+              </option>
+            ))}
+          </select>
+          <p className="text-xs text-texto-suave">
+            Filtra las ofertas laborales y vacantes en planilla de Empleos Perú (MTPE).
+          </p>
+        </div>
+
         <button
           type="submit"
           disabled={!hidratado || analizando || dictando !== null}
           aria-busy={analizando}
-          className="min-h-12 w-full rounded-base bg-primario px-6 font-semibold text-fondo hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          className="min-h-12 w-full rounded-md bg-primario px-6 font-semibold text-white shadow-sm hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {analizando ? "Analizando experiencia con QVAC..." : "Ver mis competencias"}
         </button>
       </form>
 
-      <div className="caja mt-4 space-y-1 text-base text-texto-suave">
+      <div className="caja mt-4 space-y-1 text-base text-texto-suave shadow-sm">
         <p>
           El análisis usa QVAC, el motor de IA local-first de Tether, con validación determinista
           sobre el catálogo CNPO del MTPE: solo se aceptan competencias que existen en él.
@@ -155,50 +210,40 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
       </div>
 
       {error !== null && (
-        <p role="alert" className="caja mt-4 font-semibold text-por-fortalecer-texto">
+        <p role="alert" className="caja mt-4 font-semibold text-por-fortalecer-texto shadow-sm">
           {error}
         </p>
       )}
 
       <section aria-live="polite" className="mt-6">
         {resultado !== null && resultado.detectadas.length === 0 && (
-          <p className="caja">
+          <p className="caja shadow-sm">
             No encontramos competencias en lo que escribiste. Cuéntanos con más detalle qué haces en
             tu trabajo.
           </p>
         )}
         {resultado !== null && resultado.detectadas.length > 0 && (
-          <div className="caja">
-            <h2>Posibles competencias mencionadas en tu relato</h2>
-            <p className="mt-1 text-base text-texto-suave">
-              {resultado.modo === "qvac"
-                ? "Analizado con QVAC."
-                : "QVAC no estuvo disponible: resultado de la simulación por palabras clave."}
-            </p>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {resultado.detectadas.map((detectada) => (
-                <li
-                  key={detectada.id}
-                  className="rounded-base bg-ya-tienes-fondo px-2 py-1 text-ya-tienes-texto"
-                >
-                  {detectada.nombre}
-                </li>
-              ))}
-            </ul>
-            <h2 className="mt-6">Ocupaciones parecidas a tu experiencia</h2>
-            <ul className="mt-3 space-y-3">
-              {resultado.sugerencias.map((sugerencia) => (
-                <li key={sugerencia.ocupacion.id}>
-                  <a href={`/ocupaciones/${sugerencia.ocupacion.id}/`}>
-                    {sugerencia.ocupacion.nombreCorto}
-                  </a>
-                  <p className="text-base text-texto-suave">
-                    Coincide con el {formatearPorcentaje(sugerencia.cobertura * 100, 0)} de sus
-                    competencias
-                  </p>
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-6">
+            <div className="caja space-y-4 shadow-sm">
+              <h2>Posibles competencias mencionadas en tu relato</h2>
+              <p className="text-base text-texto-suave">
+                {resultado.modo === "qvac"
+                  ? "Analizado con QVAC."
+                  : "QVAC no estuvo disponible: resultado de la simulación por palabras clave."}
+              </p>
+              <ArbolHabilidades
+                detectadas={resultado.detectadas}
+                sugerencias={resultado.sugerencias}
+                todasCompetencias={competencias}
+                mapeo={mapeo}
+                cursos={cursos}
+              />
+            </div>
+
+            <MapaEmpleos
+              departamento={departamento}
+              ocupacionSugerida={resultado.sugerencias[0]?.ocupacion.nombreCorto}
+            />
           </div>
         )}
       </section>

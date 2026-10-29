@@ -1,12 +1,14 @@
+import node from "@astrojs/node";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
-// Sitio 100 % estático: todas las páginas se prerenderizan en dist/. El puente hacia QVAC
-// (/api/traducir) es una función de Cloudflare Pages en functions/api/traducir.ts, que
-// Cloudflare publica junto al sitio. React solo en islas (client:load).
+// Salida estática por defecto: todas las páginas (incluidas las de getStaticPaths) se
+// prerenderizan. Solo las rutas con `export const prerender = false` (src/pages/api/traducir.ts,
+// el puente SSR hacia QVAC) se sirven bajo demanda con el adaptador Node SSR. React solo en islas (client:load).
 export default defineConfig({
   output: "static",
+  adapter: node({ mode: "standalone" }),
   outDir: "./dist",
   integrations: [react()],
   vite: {

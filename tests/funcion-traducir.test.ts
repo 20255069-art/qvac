@@ -15,12 +15,11 @@ const pedir = (
     env,
   });
 
-afterEach(() => {
-  vi.unstubAllGlobals();
-  vi.restoreAllMocks();
-});
-
 describe("función /api/traducir (Cloudflare Pages)", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
   it("devuelve lo que QVAC detecta, validado contra el catálogo", async () => {
     const contenido = JSON.stringify({
       detectadas: [{ id: "C03", evidencias: ["yape"] }, { id: "C99" }],

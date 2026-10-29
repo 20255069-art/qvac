@@ -1,6 +1,6 @@
 // Función de Cloudflare Pages: se publica junto al sitio estático y responde en /api/traducir.
 // Las variables QVAC_* se configuran en el proyecto de Cloudflare (Settings → Variables and
-// Secrets) o, en local con `wrangler pages dev`, en el archivo .dev.vars.
+// Secrets) o, en local con `wrangler pages dev`, en el archivo .dev.vars o .env.
 import { competencias } from "../../src/lib/datos.ts";
 import {
   CONFIG_QVAC_POR_DEFECTO,
@@ -23,11 +23,21 @@ const catalogo = competencias.map(({ id, nombre, descripcionSencilla }) => ({
 const idsValidos = new Set(catalogo.map((competencia) => competencia.id));
 const promptSistema = construirPromptSistema(catalogo);
 
-function leerConfig(env: Entorno): ConfigQvac {
+/**
+ * Lee variables de entorno con prioridad: import.meta.env > process.env > env de Cloudflare.
+ */
+function leerVariable(env: Entorno | undefined, nombre: string, porDefecto: string): string {
+  const deVite = (import.meta.env as Record<string, string | undefined>)?.[nombre];
+  const deProceso = typeof process !== "undefined" ? process.env?.[nombre] : undefined;
+  const deEnv = (env as Record<string, string | undefined>)?.[nombre];
+  return deVite ?? deProceso ?? deEnv ?? porDefecto;
+}
+
+function leerConfig(env?: Entorno): ConfigQvac {
   return {
-    endpoint: env.QVAC_ENDPOINT || CONFIG_QVAC_POR_DEFECTO.endpoint,
-    token: env.QVAC_TOKEN || CONFIG_QVAC_POR_DEFECTO.token,
-    modelo: env.QVAC_MODEL || CONFIG_QVAC_POR_DEFECTO.modelo,
+    endpoint: leerVariable(env, "QVAC_ENDPOINT", CONFIG_QVAC_POR_DEFECTO.endpoint),
+    token: leerVariable(env, "QVAC_TOKEN", CONFIG_QVAC_POR_DEFECTO.token),
+    modelo: leerVariable(env, "QVAC_MODEL", CONFIG_QVAC_POR_DEFECTO.modelo),
   };
 }
 
@@ -43,7 +53,7 @@ export async function onRequestPost({
   env,
 }: {
   request: Request;
-  env: Entorno;
+  env?: Entorno;
 }): Promise<Response> {
   let cuerpo: unknown;
   try {
@@ -68,13 +78,14 @@ export async function onRequestPost({
     const detectadas = interpretarRespuestaQvac(contenido, idsValidos);
     return responderJson({ detectadas, modo: "qvac" }, 200);
   } catch (error) {
-    // Diagnóstico en los registros de la función. Nunca se registra el relato ni el token: solo si hay uno.
-    console.error("[api/traducir] QVAC falló, se responde 502 y el cliente usa el respaldo", {
+    const mensajeError = error instanceof Error ? error.message : String(error);
+    // Diagnóstico en los registros de la función. Nunca se registra el relato ni el token.
+    console.error("[api/traducir] Error al conectar con QVAC (LLM local / ngrok):", mensajeError, {
       url: config.endpoint,
       tokenConfigurado: config.token.length > 0,
-      mensaje: error instanceof Error ? error.message : String(error),
+      mensaje: mensajeError,
       causa: error instanceof Error ? error.cause : undefined,
     });
-    return responderJson({ error: "qvac_unavailable" }, 502);
+    return responderJson({ error: "qvac_unavailable", detalle: mensajeError }, 502);
   }
 }

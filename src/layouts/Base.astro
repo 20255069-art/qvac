@@ -15,22 +15,35 @@ const { titulo, descripcion } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{titulo} | Reconversión Laboral</title>
+    <title>{titulo} | Reconversión Laboral - MTPE</title>
     <meta name="description" content={descripcion} />
   </head>
-  <body class="bg-superficie text-texto">
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-base focus:bg-fondo focus:px-4 focus:py-3">Saltar al contenido</a>
-    <header class="bg-primario text-fondo">
-      <div class="mx-auto flex max-w-contenido flex-wrap items-center justify-between gap-2 px-4 py-3">
-        <a href="/" class="text-xl font-bold text-fondo no-underline focus-visible:outline-fondo">Reconversión Laboral</a>
+  <body class="bg-superficie text-texto antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-fondo focus:px-4 focus:py-3">Saltar al contenido</a>
+    
+    <!-- Franja Superior Institucional Gob.pe -->
+    <div class="border-b border-[#9b0000] bg-[#9b0000] px-4 py-1 text-xs text-white">
+      <div class="mx-auto flex max-w-contenido items-center justify-between">
+        <span class="font-medium tracking-wide">Plataforma Oficial del Estado Peruano — gob.pe</span>
+        <span class="hidden sm:inline text-white/90">Innovathon Ulima x Tether 2026</span>
+      </div>
+    </div>
+
+    <!-- Cabecera Oficial Superior -->
+    <header class="bg-primario text-fondo shadow-sm">
+      <div class="mx-auto flex max-w-contenido flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <a href="/" class="flex items-center gap-2.5 text-base sm:text-lg font-bold text-fondo no-underline focus-visible:outline-fondo">
+          <span class="inline-block h-6 w-1 rounded-sm bg-fondo" aria-hidden="true"></span>
+          <span>Ministerio de Trabajo y Promoción del Empleo - Reconversión Laboral</span>
+        </a>
         <nav aria-label="Principal">
-          <ul class="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <li><a href="/ocupaciones/" class="text-fondo focus-visible:outline-fondo">Ocupaciones</a></li>
-            <li><a href="/entrevista/" class="text-fondo focus-visible:outline-fondo">Entrevista</a></li>
+          <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm sm:text-base">
+            <li><a href="/ocupaciones/" class="text-fondo font-medium hover:underline focus-visible:outline-fondo">Ocupaciones</a></li>
+            <li><a href="/entrevista/" class="text-fondo font-medium hover:underline focus-visible:outline-fondo">Entrevista</a></li>
             <li>
               <a
                 href="/acerca/"
-                class="inline-flex items-center gap-1.5 rounded-base bg-celeste-fondo px-3 py-1 font-semibold text-primario hover:bg-fondo focus-visible:outline-fondo"
+                class="inline-flex items-center gap-1.5 rounded-md bg-fondo px-3 py-1 font-semibold text-primario shadow-sm hover:bg-superficie focus-visible:outline-fondo"
               >
                 Cómo funciona
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>

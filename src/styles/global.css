@@ -3,31 +3,33 @@
 @source not "../../fuentes";
 
 @theme {
-  --color-primario: #0b5cad;
-  --color-primario-oscuro: #08457f;
-  --color-texto: #1f2933;
-  --color-texto-suave: #52606d;
+  --color-primario: #c90000;
+  --color-primario-oscuro: #9b0000;
+  --color-texto: #1f2937;
+  --color-texto-suave: #4b5563;
   --color-fondo: #ffffff;
-  --color-superficie: #f2f6fb;
-  --color-borde: #d9dee3;
-  --color-enlace: #0b5cad;
-  --color-foco: #0b5cad;
-  --color-ya-tienes-texto: #1e7b3a;
-  --color-ya-tienes-fondo: #e6f4ea;
-  --color-por-fortalecer-texto: #b54708;
-  --color-por-fortalecer-fondo: #fef0e1;
-  --color-aviso-texto: #5c4813;
-  --color-aviso-fondo: #fff8db;
-  --color-referencial-texto: #3e4c59;
-  --color-referencial-fondo: #e4e7eb;
-  --color-icono-trazo: #4a3b78;
-  --color-icono-relleno: #fde8ec;
-  --color-icono-acento: #d6283c;
-  --color-celeste-fondo: #e6f0fa;
-  --font-sans: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
-  --radius-base: 8px;
+  --color-superficie: #f3f4f6;
+  --color-borde: #e5e7eb;
+  --color-enlace: #c90000;
+  --color-foco: #c90000;
+  --color-ya-tienes-texto: #166534;
+  --color-ya-tienes-fondo: #dcfce7;
+  --color-por-fortalecer-texto: #9a3412;
+  --color-por-fortalecer-fondo: #ffedd5;
+  --color-aviso-texto: #854d0e;
+  --color-aviso-fondo: #fef9c3;
+  --color-referencial-texto: #374151;
+  --color-referencial-fondo: #e5e7eb;
+  --color-icono-trazo: #1f2937;
+  --color-icono-relleno: #fee2e2;
+  --color-icono-acento: #c90000;
+  --color-celeste-fondo: #fee2e2;
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --radius-base: 0.375rem; /* rounded-md */
   --container-contenido: 72rem;
-  --shadow-caja: 0 1px 4px rgb(31 41 51 / 0.08);
+  --shadow-caja: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
 }
 
 @layer base {
@@ -68,7 +70,7 @@
   }
 }
 
-/* Cajas al estilo gob.pe: toda oración va dentro de una caja blanca sobre el fondo gris. */
+/* Cajas al estilo gob.pe: tarjetas blancas sobre fondo gris con bordes suaves y sombra sutil */
 @layer components {
   .caja {
     background-color: var(--color-fondo);
@@ -79,7 +81,7 @@
   }
 }
 
-/* Tarjeta clicable completa: el enlace principal cubre toda la caja (::after) y la caja se resalta al pasar el cursor o enfocar. */
+/* Tarjeta clicable completa */
 @layer components {
   .tarjeta-enlace {
     position: relative;
@@ -90,8 +92,8 @@
 
   .tarjeta-enlace:hover,
   .tarjeta-enlace:focus-within {
-    border-color: var(--color-texto);
-    box-shadow: 0 2px 10px rgb(31 41 51 / 0.14);
+    border-color: var(--color-primario);
+    box-shadow: 0 2px 8px rgb(201 0 0 / 0.12);
   }
 
   .tarjeta-enlace .enlace-tarjeta::after {
@@ -102,7 +104,7 @@
   }
 }
 
-/* Íconos de ocupación (IconoOcupacion.astro): micro-animaciones solo con CSS. */
+/* Íconos de ocupación (IconoOcupacion.astro) */
 @layer components {
   .icono .ico-trazo,
   .icono .ico-acento-trazo {
@@ -135,14 +137,12 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    /* Al cargar: los trazos se dibujan una sola vez. */
     .icono .ico-trazo {
       stroke-dasharray: 1;
       stroke-dashoffset: 0;
       animation: icono-dibujar 0.9s ease-out 0.1s backwards;
     }
 
-    /* Al pasar el cursor o enfocar la tarjeta: pequeño salto y destellos. */
     .con-icono:hover .icono,
     .con-icono:focus-within .icono {
       animation: icono-salto 0.5s ease-out;
