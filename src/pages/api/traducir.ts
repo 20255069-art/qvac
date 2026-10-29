@@ -22,18 +22,15 @@ const catalogo = competencias.map(({ id, nombre, descripcionSencilla }) => ({
 const idsValidos = new Set(catalogo.map((competencia) => competencia.id));
 const promptSistema = construirPromptSistema(catalogo);
 
-/** process.env manda en tiempo de ejecución (servidor Node); import.meta.env cubre `astro dev`. */
-function leerVariable(nombre: string, porDefecto: string): string {
-  const deProceso = typeof process !== "undefined" ? process.env[nombre] : undefined;
-  const deVite = (import.meta.env as Record<string, string | undefined>)[nombre];
-  return deProceso ?? deVite ?? porDefecto;
-}
-
+// Primero import.meta.env (Astro carga el .env ahí, también en `astro dev`) y después
+// process.env (servidor Node en producción). Los accesos son estáticos para que Vite los resuelva.
 function leerConfig(): ConfigQvac {
+  const proceso = typeof process !== "undefined" ? process.env : {};
   return {
-    endpoint: leerVariable("QVAC_ENDPOINT", CONFIG_QVAC_POR_DEFECTO.endpoint),
-    token: leerVariable("QVAC_TOKEN", CONFIG_QVAC_POR_DEFECTO.token),
-    modelo: leerVariable("QVAC_MODEL", CONFIG_QVAC_POR_DEFECTO.modelo),
+    endpoint:
+      import.meta.env.QVAC_ENDPOINT || proceso.QVAC_ENDPOINT || CONFIG_QVAC_POR_DEFECTO.endpoint,
+    token: import.meta.env.QVAC_TOKEN || proceso.QVAC_TOKEN || CONFIG_QVAC_POR_DEFECTO.token,
+    modelo: import.meta.env.QVAC_MODEL || proceso.QVAC_MODEL || CONFIG_QVAC_POR_DEFECTO.modelo,
   };
 }
 
@@ -62,16 +59,19 @@ export const POST: APIRoute = async ({ request }) => {
     return responderJson({ items: [], modo: "vacio" }, 200);
   }
 
+  const config = leerConfig();
   try {
-    const contenido = await pedirClasificacionQvac(leerConfig(), promptSistema, relatos.join("\n"));
+    const contenido = await pedirClasificacionQvac(config, promptSistema, relatos.join("\n"));
     const detectadas = interpretarRespuestaQvac(contenido, idsValidos);
     return responderJson({ detectadas, modo: "qvac" }, 200);
   } catch (error) {
-    // Nunca se registra el relato: solo el motivo técnico del fallo.
-    console.warn(
-      "[api/traducir] QVAC no disponible:",
-      error instanceof Error ? error.message : error,
-    );
+    // Diagnóstico en la terminal del servidor. Nunca se registra el relato ni el token: solo si hay uno.
+    console.error("[api/traducir] QVAC falló, se responde 502 y el cliente usa el respaldo", {
+      url: config.endpoint,
+      tokenConfigurado: config.token.length > 0,
+      mensaje: error instanceof Error ? error.message : String(error),
+      causa: error instanceof Error ? error.cause : undefined,
+    });
     return responderJson({ error: "qvac_unavailable" }, 502);
   }
 };

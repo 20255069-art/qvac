@@ -1,10 +1,11 @@
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { Competencia } from "../../lib/esquemas.ts";
 import { formatearPorcentaje } from "../../lib/formato.ts";
 import type { OcupacionMotor } from "../../lib/pesos.ts";
 import { type Sugerencia, sugerirOcupaciones } from "../../lib/sugerencias.ts";
 import { crearTraductorQvac, type ModoTraduccion } from "../../lib/traductor/qvac.ts";
 import type { CompetenciaDetectada } from "../../lib/traductor/tipos.ts";
+import GrabadorVoz from "./GrabadorVoz.tsx";
 
 type Props = {
   ocupaciones: OcupacionMotor[];
@@ -47,6 +48,22 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
     setHidratado(true);
   }, []);
 
+  // Las respuestas siguen siendo campos sin controlar (se leen con FormData al enviar): el
+  // dictado escribe directo en el textarea, sobre lo que ya había al empezar a grabar.
+  const areas = useRef<(HTMLTextAreaElement | null)[]>([]);
+  const bases = useRef<string[]>([]);
+
+  function empezarDictado(indice: number) {
+    bases.current[indice] = areas.current[indice]?.value.trim() ?? "";
+  }
+
+  function dictar(indice: number, texto: string) {
+    const area = areas.current[indice];
+    if (area) {
+      area.value = `${bases.current[indice] ?? ""} ${texto}`.trim();
+    }
+  }
+
   async function enviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     const datos = new FormData(evento.currentTarget);
@@ -87,7 +104,18 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
               id={`respuesta-${indice}`}
               name={`respuesta-${indice}`}
               rows={4}
+              ref={(area) => {
+                areas.current[indice] = area;
+              }}
               className="mt-1 w-full rounded-base border border-borde p-2"
+            />
+            <GrabadorVoz
+              onTextoCapturado={(texto) => dictar(indice, texto)}
+              onGrabando={(grabando) => {
+                if (grabando) {
+                  empezarDictado(indice);
+                }
+              }}
             />
           </div>
         ))}
@@ -113,6 +141,10 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         <p>
           No guardamos lo que escribes: tu relato solo viaja a nuestro servidor para analizarlo con
           QVAC y no se almacena.
+        </p>
+        <p>
+          Si dictas con la voz, el audio lo transcribe el servicio de reconocimiento de voz de tu
+          navegador (en Chrome y Edge funciona en la nube); nosotros solo recibimos el texto.
         </p>
       </div>
 
