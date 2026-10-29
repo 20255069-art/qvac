@@ -56,6 +56,7 @@ describe("función /api/traducir (Cloudflare Pages)", () => {
     const impreso = JSON.stringify(registro.mock.calls);
     expect(impreso).toContain("https://qvac.ejemplo/v1");
     expect(impreso).toContain('"tokenConfigurado":true');
+    expect(impreso).toContain("model not found");
     expect(impreso).not.toContain("secreto");
   });
 

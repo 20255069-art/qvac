@@ -143,7 +143,11 @@ export async function pedirClasificacionQvac(
       const json = esquemaChatCompletion.parse(await respuesta.json());
       return json.choices[0]?.message.content ?? "";
     }
-    ultimoError = new Error(`QVAC respondió ${respuesta.status}`);
+    // El cuerpo del error (p. ej. "model not found") dice más que el status solo.
+    const detalle = (await respuesta.text().catch(() => "")).slice(0, 300);
+    ultimoError = new Error(
+      `QVAC respondió ${respuesta.status}${detalle === "" ? "" : `: ${detalle}`}`,
+    );
     if (!esReintentable(respuesta.status)) {
       break;
     }

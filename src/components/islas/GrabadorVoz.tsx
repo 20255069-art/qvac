@@ -1,17 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
+  /** Qué respuesta se dicta (p. ej. "respuesta 1"): da un nombre distinto a cada botón. */
+  etiqueta: string;
   /** Texto dictado hasta ahora en esta grabación (completo, no solo el último fragmento). */
   onTextoCapturado: (texto: string) => void;
   onGrabando: (grabando: boolean) => void;
+  deshabilitado?: boolean;
 };
 
 // El DOM de TypeScript no trae los tipos de SpeechRecognition: solo lo que se usa.
+type ResultadoVoz = ArrayLike<{ transcript: string }> & { isFinal?: boolean };
 type ReconocedorVoz = {
   lang: string;
   continuous: boolean;
   interimResults: boolean;
-  onresult: ((evento: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onresult: ((evento: { results: ArrayLike<ResultadoVoz> }) => void) | null;
   onerror: ((evento: { error: string }) => void) | null;
   onend: (() => void) | null;
   start: () => void;
@@ -27,19 +31,36 @@ function constructorVoz(): ConstructorVoz | undefined {
   return ventana.SpeechRecognition ?? ventana.webkitSpeechRecognition;
 }
 
+const unir = (...trozos: string[]) => trozos.join(" ").replace(/\s+/g, " ").trim();
+
 const BARRAS = 32;
 
-function mensajeDeError(codigo: string): string {
-  if (codigo === "not-allowed" || codigo === "service-not-allowed") {
-    return "Permite el micrófono en el navegador para dictar tu respuesta.";
+/** null: no es un error para la persona (silencio o parada manual). */
+function mensajeDeError(codigo: string): string | null {
+  switch (codigo) {
+    case "no-speech":
+    case "aborted":
+      return null;
+    case "not-allowed":
+    case "service-not-allowed":
+      return "Permite el micrófono en el navegador para dictar tu respuesta.";
+    case "audio-capture":
+      return "No encontramos un micrófono. Revisa que esté conectado o escribe tu respuesta.";
+    case "network":
+      return "El dictado por voz necesita conexión a internet. Escribe tu respuesta.";
+    default:
+      return "No pudimos escucharte. Intenta de nuevo o escribe tu respuesta.";
   }
-  if (codigo === "network") {
-    return "El dictado por voz necesita conexión a internet. Escribe tu respuesta.";
-  }
-  return "No pudimos escucharte. Intenta de nuevo o escribe tu respuesta.";
 }
 
-export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
+export default function GrabadorVoz({
+  etiqueta,
+  onTextoCapturado,
+  onGrabando,
+  deshabilitado = false,
+}: Props) {
+  // Se decide tras hidratar: el HTML del servidor no sabe qué permite el navegador.
+  const [soportado, setSoportado] = useState(false);
   const [grabando, setGrabando] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -48,12 +69,16 @@ export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
   const avisar = useRef({ onTextoCapturado, onGrabando });
   avisar.current = { onTextoCapturado, onGrabando };
 
-  useEffect(() => () => activo.current?.detener(), []);
+  useEffect(() => {
+    setSoportado(
+      constructorVoz() !== undefined && typeof navigator.mediaDevices?.getUserMedia === "function",
+    );
+    return () => activo.current?.detener();
+  }, []);
 
   async function iniciar() {
     const Voz = constructorVoz();
-    if (Voz === undefined || navigator.mediaDevices?.getUserMedia === undefined) {
-      setAviso("Tu navegador no permite dictar por voz. Escribe tu respuesta.");
+    if (Voz === undefined) {
       return;
     }
     setAviso(null);
@@ -95,9 +120,23 @@ export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
     reconocedor.lang = "es-PE";
     reconocedor.continuous = true;
     reconocedor.interimResults = true;
+    // Chrome corta el reconocimiento tras un silencio aunque sea continuo: lo confirmado en
+    // sesiones anteriores se guarda y se reinicia mientras la persona no pulse «Detener».
+    let confirmado = "";
+    let finalDeSesion = "";
     reconocedor.onresult = (evento) => {
-      const dictado = Array.from(evento.results, (resultado) => resultado[0]?.transcript ?? "");
-      avisar.current.onTextoCapturado(dictado.join(" ").replace(/\s+/g, " ").trim());
+      let final = "";
+      let provisional = "";
+      for (const resultado of Array.from(evento.results)) {
+        const texto = resultado[0]?.transcript ?? "";
+        if (resultado.isFinal) {
+          final += ` ${texto}`;
+        } else {
+          provisional += ` ${texto}`;
+        }
+      }
+      finalDeSesion = final;
+      avisar.current.onTextoCapturado(unir(confirmado, final, provisional));
     };
 
     const detener = () => {
@@ -116,20 +155,38 @@ export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
       setGrabando(false);
       avisar.current.onGrabando(false);
     };
-    // El navegador corta solo tras un silencio largo: también cuenta como detener.
-    reconocedor.onend = detener;
-    reconocedor.onerror = (evento) => {
-      if (evento.error !== "no-speech" && evento.error !== "aborted") {
-        setAviso(mensajeDeError(evento.error));
+    reconocedor.onend = () => {
+      confirmado = unir(confirmado, finalDeSesion);
+      finalDeSesion = "";
+      try {
+        reconocedor.start();
+      } catch {
+        detener();
       }
-      detener();
+    };
+    reconocedor.onerror = (evento) => {
+      const mensaje = mensajeDeError(evento.error);
+      if (mensaje !== null) {
+        setAviso(mensaje);
+        detener();
+      }
     };
 
     activo.current = { detener };
-    reconocedor.start();
+    try {
+      reconocedor.start();
+    } catch {
+      setAviso(mensajeDeError("desconocido"));
+      detener();
+      return;
+    }
     pintar();
     setGrabando(true);
     avisar.current.onGrabando(true);
+  }
+
+  if (!soportado) {
+    return null;
   }
 
   return (
@@ -137,8 +194,10 @@ export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
       <button
         type="button"
         aria-pressed={grabando}
+        aria-label={`${grabando ? "Detener dictado de la" : "Dictar por voz la"} ${etiqueta}`}
+        disabled={deshabilitado && !grabando}
         onClick={() => (grabando ? activo.current?.detener() : void iniciar())}
-        className="inline-flex min-h-12 items-center gap-2 rounded-base border border-primario bg-fondo px-4 font-semibold text-primario hover:bg-celeste-fondo"
+        className="inline-flex min-h-12 items-center gap-2 rounded-base border border-primario bg-fondo px-4 font-semibold text-primario hover:bg-celeste-fondo disabled:cursor-not-allowed disabled:opacity-60"
       >
         <svg
           width="20"
@@ -152,10 +211,16 @@ export default function GrabadorVoz({ onTextoCapturado, onGrabando }: Props) {
           aria-hidden="true"
           focusable="false"
         >
-          <rect x="9" y="3" width="6" height="11" rx="3" />
-          <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+          {grabando ? (
+            <rect x="7" y="7" width="10" height="10" rx="1" fill="currentColor" />
+          ) : (
+            <>
+              <rect x="9" y="3" width="6" height="11" rx="3" />
+              <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+            </>
+          )}
         </svg>
-        {grabando ? "Detener dictado" : "Dictar con voz"}
+        {grabando ? "Detener" : "Dictar"}
       </button>
       {grabando && (
         <canvas

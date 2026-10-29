@@ -52,6 +52,8 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
   // dictado escribe directo en el textarea, sobre lo que ya había al empezar a grabar.
   const areas = useRef<(HTMLTextAreaElement | null)[]>([]);
   const bases = useRef<string[]>([]);
+  // Qué pregunta se está dictando: mientras tanto se bloquean los otros micrófonos y el envío.
+  const [dictando, setDictando] = useState<number | null>(null);
 
   function empezarDictado(indice: number) {
     bases.current[indice] = areas.current[indice]?.value.trim() ?? "";
@@ -107,21 +109,25 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
               ref={(area) => {
                 areas.current[indice] = area;
               }}
+              readOnly={dictando === indice}
               className="mt-1 w-full rounded-base border border-borde p-2"
             />
             <GrabadorVoz
+              etiqueta={`respuesta ${indice + 1}`}
+              deshabilitado={dictando !== null || analizando}
               onTextoCapturado={(texto) => dictar(indice, texto)}
               onGrabando={(grabando) => {
                 if (grabando) {
                   empezarDictado(indice);
                 }
+                setDictando(grabando ? indice : null);
               }}
             />
           </div>
         ))}
         <button
           type="submit"
-          disabled={!hidratado || analizando}
+          disabled={!hidratado || analizando || dictando !== null}
           aria-busy={analizando}
           className="min-h-12 w-full rounded-base bg-primario px-6 font-semibold text-fondo hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
