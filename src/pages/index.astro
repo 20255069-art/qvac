@@ -15,9 +15,18 @@ const PASOS = [
 ---
 
 <Base titulo="Inicio" descripcion="Descubre a qué trabajos afines puedes pasar con lo que ya sabes hacer, según el CNPO.">
-  <section class="caja">
+  <!-- Hero Institucional del Reto MTPE -->
+  <section class="caja border-l-4 border-l-primario shadow-sm">
+    <div class="flex flex-wrap items-center justify-between gap-2 pb-2">
+      <span class="inline-block rounded-full bg-red-100 px-3 py-0.5 text-xs font-bold uppercase tracking-wide text-primario">
+        Etapa 1 · Portada Institucional MTPE
+      </span>
+      <span class="rounded bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-900">
+        ⚡ Motor IA Local-First QVAC Activo
+      </span>
+    </div>
     <h1>Lo que ya sabes hacer vale en otros trabajos</h1>
-    <p class="mt-4">
+    <p class="mt-4 text-base sm:text-lg leading-relaxed">
       Elige tu ocupación y descubre a qué trabajos afines puedes pasar, qué competencias ya tienes y cuáles te conviene fortalecer, según el Catálogo Nacional de Perfiles Ocupacionales del MTPE.
     </p>
     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -25,14 +34,84 @@ const PASOS = [
       <BotonEnlace href="/entrevista/" variante="secundario">Cuéntanos tu experiencia</BotonEnlace>
     </div>
   </section>
+
+  <!-- Mapa Didáctico de las 4 Etapas Conectadas -->
+  <section class="caja mt-6 bg-gradient-to-b from-white to-superficie shadow-sm">
+    <div class="border-b border-borde pb-3">
+      <span class="text-xs font-bold uppercase tracking-wide text-primario">
+        Guía Rápida para Ciudadanos y Evaluadores
+      </span>
+      <h2 class="mt-1 text-lg font-bold text-texto">
+        Recorre la plataforma paso a paso desde este único enlace
+      </h2>
+    </div>
+
+    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      <div class="flex flex-col justify-between rounded-md border border-borde bg-white p-4 shadow-2xs">
+        <div>
+          <span class="inline-block rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-primario">
+            Opción A · Etapa 2
+          </span>
+          <h3 class="mt-2 text-base font-bold text-texto">Explorar el Catálogo CNPO</h3>
+          <p class="mt-1 text-sm text-texto-suave">
+            Si ya conoces el nombre de tu oficio (cajero, almacén, limpieza, hotel, etc.), mira las 9 ocupaciones oficiales y compara cuánto tienes en común con otros puestos.
+          </p>
+        </div>
+        <a
+          href="/ocupaciones/"
+          class="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primario hover:underline"
+        >
+          Ir al Catálogo de Ocupaciones →
+        </a>
+      </div>
+
+      <div class="flex flex-col justify-between rounded-md border-2 border-primario/40 bg-red-50/30 p-4 shadow-2xs">
+        <div>
+          <span class="inline-block rounded bg-primario px-2 py-0.5 text-xs font-bold text-white">
+            Opción B · Etapa 3 (Recomendado con IA)
+          </span>
+          <h3 class="mt-2 text-base font-bold text-texto">Entrevista Guiada con QVAC</h3>
+          <p class="mt-1 text-sm text-texto-suave">
+            Cuenta con tu voz o escribe qué haces en tu día a día. La IA soberana QVAC arma tu Árbol de Habilidades RPG, simula tu entrevista, descarga tu ficha y ubica vacantes en tu región.
+          </p>
+        </div>
+        <a
+          href="/entrevista/"
+          class="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primario hover:underline"
+        >
+          Iniciar Entrevista con IA QVAC →
+        </a>
+      </div>
+
+      <div class="flex flex-col justify-between rounded-md border border-borde bg-white p-4 shadow-2xs">
+        <div>
+          <span class="inline-block rounded bg-gray-200 px-2 py-0.5 text-xs font-bold text-gray-800">
+            Sustento Técnico · Etapa 4
+          </span>
+          <h3 class="mt-2 text-base font-bold text-texto">Metodología e Insumos MTPE</h3>
+          <p class="mt-1 text-sm text-texto-suave">
+            Conoce la fórmula de afinidad ponderada, los límites éticos (la IA orienta pero no certifica) y los enlaces directos a CNPO, EDO 2026, Capacíta-T, Empleos Perú e INEI.
+          </p>
+        </div>
+        <a
+          href="/acerca/"
+          class="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primario hover:underline"
+        >
+          Ver Metodología e Insumos →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <div class="mt-6">
     <DatoInformalidad contexto={contexto} />
   </div>
+
   <h2 class="mt-8">Cómo funciona</h2>
   <ol class="mt-4 grid gap-4 sm:grid-cols-3">
     {
       PASOS.map((paso, indice) => (
-        <li class="caja">
+        <li class="caja shadow-sm">
           <p class="flex h-10 w-10 items-center justify-center rounded-full bg-celeste-fondo text-xl font-bold text-primario">{indice + 1}</p>
           <h3 class="mt-1">{paso.titulo}</h3>
           <p class="mt-2">{paso.texto}</p>
@@ -40,5 +119,5 @@ const PASOS = [
       ))
     }
   </ol>
-  <p class="caja mt-6 text-texto-suave">Es una orientación preliminar: no evalúa ni certifica tus competencias.</p>
+  <p class="caja mt-6 text-texto-suave shadow-sm">Es una orientación preliminar: no evalúa ni certifica tus competencias.</p>
 </Base>

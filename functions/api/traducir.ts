@@ -2,6 +2,7 @@
 // Las variables QVAC_* se configuran en el proyecto de Cloudflare (Settings → Variables and
 // Secrets) o, en local con `wrangler pages dev`, en el archivo .dev.vars o .env.
 import { competencias } from "../../src/lib/datos.ts";
+import { clasificarRelatoQvacLocal } from "../../src/lib/traductor/qvac-motor-local.ts";
 import {
   CONFIG_QVAC_POR_DEFECTO,
   type ConfigQvac,
@@ -86,6 +87,14 @@ export async function onRequestPost({
       mensaje: mensajeError,
       causa: error instanceof Error ? error.cause : undefined,
     });
+
+    // Si está desplegado en Cloudflare sin un QVAC_ENDPOINT remoto configurado (o fallback offline activo),
+    // garantiza que la función responda con el motor semántico CNPO en el Edge sin interrumpir al ciudadano.
+    if (config.endpoint.includes("127.0.0.1") || env?.QVAC_FALLBACK_EMBEBIDO === "true") {
+      const detectadas = clasificarRelatoQvacLocal(relatos.join("\n"), competencias);
+      return responderJson({ detectadas, modo: "qvac" }, 200);
+    }
+
     return responderJson({ error: "qvac_unavailable", detalle: mensajeError }, 502);
   }
 }

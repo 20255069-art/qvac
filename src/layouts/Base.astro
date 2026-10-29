@@ -1,5 +1,6 @@
 ---
 import PiePagina from "../components/PiePagina.astro";
+import RutaJerarquica from "../components/RutaJerarquica.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -15,7 +16,7 @@ const { titulo, descripcion } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{titulo} | Reconversión Laboral - MTPE</title>
+    <title>{titulo} | Reconversión Laboral</title>
     <meta name="description" content={descripcion} />
   </head>
   <body class="bg-superficie text-texto antialiased">
@@ -38,6 +39,7 @@ const { titulo, descripcion } = Astro.props;
         </a>
         <nav aria-label="Principal">
           <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm sm:text-base">
+            <li><a href="/" class="text-fondo font-medium hover:underline focus-visible:outline-fondo">Portada</a></li>
             <li><a href="/ocupaciones/" class="text-fondo font-medium hover:underline focus-visible:outline-fondo">Ocupaciones</a></li>
             <li><a href="/entrevista/" class="text-fondo font-medium hover:underline focus-visible:outline-fondo">Entrevista</a></li>
             <li>
@@ -53,9 +55,17 @@ const { titulo, descripcion } = Astro.props;
         </nav>
       </div>
     </header>
+
+    <!-- Barra Jerárquica Didáctica (Etapas 1 → 2 → 3 → 4) -->
+    <RutaJerarquica posicion="arriba" />
+
     <main id="contenido" tabindex="-1" class="mx-auto max-w-contenido px-4 py-8">
       <slot />
     </main>
+
+    <!-- Guía de Siguiente Paso al final de cada página -->
+    <RutaJerarquica posicion="abajo" />
+
     <PiePagina />
   </body>
 </html>

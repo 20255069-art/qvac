@@ -1,0 +1,176 @@
+---
+interface Props {
+  posicion: "arriba" | "abajo";
+}
+
+const { posicion } = Astro.props;
+const rutaActual = Astro.url.pathname;
+
+const ETAPAS = [
+  {
+    numero: 1,
+    titulo: "1. Portada MTPE",
+    subtitulo: "Inicio y diagnóstico",
+    href: "/",
+    activo: rutaActual === "/",
+  },
+  {
+    numero: 2,
+    titulo: "2. Catálogo CNPO",
+    subtitulo: "Ocupaciones y rutas",
+    href: "/ocupaciones/",
+    activo: rutaActual.startsWith("/ocupaciones") || rutaActual.startsWith("/transicion"),
+  },
+  {
+    numero: 3,
+    titulo: "3. Entrevista QVAC",
+    subtitulo: "Tu experiencia con IA",
+    href: "/entrevista/",
+    activo: rutaActual.startsWith("/entrevista"),
+  },
+  {
+    numero: 4,
+    titulo: "4. Metodología e Insumos",
+    subtitulo: "Fuentes MTPE e INEI",
+    href: "/acerca/",
+    activo: rutaActual.startsWith("/acerca"),
+  },
+];
+
+const indiceActivo = Math.max(
+  0,
+  ETAPAS.findIndex((e) => e.activo),
+);
+const etapaAnterior = indiceActivo > 0 ? ETAPAS[indiceActivo - 1] : null;
+const etapaSiguiente = indiceActivo < ETAPAS.length - 1 ? ETAPAS[indiceActivo + 1] : null;
+---
+
+{
+  posicion === "arriba" ? (
+    <div class="border-b border-borde bg-white shadow-2xs">
+      <div class="mx-auto max-w-contenido px-4 py-2.5">
+        <p class="mb-1.5 text-xs font-bold uppercase tracking-wide text-texto-suave">
+          Recorrido guiado del proyecto (haz clic en cualquier etapa):
+        </p>
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {ETAPAS.map((etapa) => (
+            <a
+              href={etapa.href}
+              aria-current={etapa.activo ? "step" : undefined}
+              class:list={[
+                "flex items-center gap-2.5 rounded-md border px-3 py-2 no-underline transition",
+                etapa.activo
+                  ? "border-primario bg-red-50/90 text-primario shadow-2xs ring-1 ring-primario/40"
+                  : "border-borde bg-superficie/60 text-texto hover:border-gray-400 hover:bg-superficie",
+              ]}
+            >
+              <span
+                class:list={[
+                  "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black",
+                  etapa.activo ? "bg-primario text-white" : "bg-gray-200 text-gray-800",
+                ]}
+              >
+                {etapa.numero}
+              </span>
+              <span class="min-w-0 leading-tight">
+                <span class="block truncate text-xs font-bold">{etapa.titulo}</span>
+                <span class="block truncate text-[11px] text-texto-suave">{etapa.subtitulo}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <aside
+      aria-label="Siguiente paso del recorrido"
+      class="mx-auto max-w-contenido px-4 pb-6"
+    >
+      <div class="caja border-2 border-primario/25 bg-gradient-to-r from-red-50/60 via-white to-emerald-50/40 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-block rounded-full bg-red-100 px-3 py-0.5 text-xs font-bold text-primario uppercase tracking-wide">
+              Etapa {indiceActivo + 1} de {ETAPAS.length} completada
+            </span>
+            {indiceActivo === 0 && (
+              <>
+                <h2 class="text-lg font-bold text-texto">
+                  ¿Cómo quieres continuar tu recorrido?
+                </h2>
+                <p class="text-sm text-texto-suave max-w-xl">
+                  Puedes explorar primero el <strong>Catálogo de Ocupaciones del MTPE</strong> para comparar puestos, o pasar directo a la <strong>Entrevista con IA QVAC</strong> si prefieres contar tu experiencia con voz o texto.
+                </p>
+              </>
+            )}
+            {indiceActivo === 1 && (
+              <>
+                <h2 class="text-lg font-bold text-texto">
+                  Siguiente paso: Traduce tu propia experiencia con IA QVAC
+                </h2>
+                <p class="text-sm text-texto-suave max-w-xl">
+                  ¿Has hecho tareas de varios oficios o no sabes cuál elegir? Cuéntanos tu día a día en la <strong>Entrevista Interactiva</strong> y QVAC armará tu Árbol de Habilidades RPG.
+                </p>
+              </>
+            )}
+            {indiceActivo === 2 && (
+              <>
+                <h2 class="text-lg font-bold text-texto">
+                  Siguiente paso: Conoce la Metodología e Insumos Oficiales
+                </h2>
+                <p class="text-sm text-texto-suave max-w-xl">
+                  Revisa cómo se calcula la afinidad sobre el <strong>CNPO del MTPE</strong>, las fuentes del <strong>INEI / EDO 2026</strong> y la arquitectura local-first de <strong>Tether QVAC</strong>.
+                </p>
+              </>
+            )}
+            {indiceActivo === 3 && (
+              <>
+                <h2 class="text-lg font-bold text-texto">
+                  ¡Recorrido completo! Explora cualquier módulo cuando quieras
+                </h2>
+                <p class="text-sm text-texto-suave max-w-xl">
+                  Puedes volver a la Portada Institucional, revisar otra ocupación del catálogo o probar un nuevo relato en la Entrevista con QVAC.
+                </p>
+              </>
+            )}
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            {etapaAnterior && (
+              <a
+                href={etapaAnterior.href}
+                class="inline-flex min-h-11 items-center gap-1.5 rounded-md border border-borde bg-white px-4 py-2 text-sm font-semibold text-texto no-underline shadow-2xs hover:bg-superficie"
+              >
+                ← {etapaAnterior.titulo}
+              </a>
+            )}
+
+            {indiceActivo === 0 && (
+              <a
+                href="/entrevista/"
+                class="inline-flex min-h-11 items-center gap-1.5 rounded-md border border-primario bg-white px-4 py-2 text-sm font-bold text-primario no-underline shadow-2xs hover:bg-red-50"
+              >
+                Ir a 3. Entrevista QVAC →
+              </a>
+            )}
+
+            {etapaSiguiente ? (
+              <a
+                href={etapaSiguiente.href}
+                class="inline-flex min-h-11 items-center gap-2 rounded-md bg-primario px-5 py-2.5 text-sm font-bold text-white no-underline shadow-sm hover:bg-primario-oscuro"
+              >
+                Continuar a {etapaSiguiente.titulo} →
+              </a>
+            ) : (
+              <a
+                href="/"
+                class="inline-flex min-h-11 items-center gap-2 rounded-md bg-primario px-5 py-2.5 text-sm font-bold text-white no-underline shadow-sm hover:bg-primario-oscuro"
+              >
+                ↺ Volver a 1. Portada MTPE
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}

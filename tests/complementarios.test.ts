@@ -9,6 +9,7 @@ import {
   esquemaCursos,
   URL_CAPACITA_T,
 } from "../src/lib/esquemas.ts";
+import { generarCodigoVerificacionQvac, sanitizarRelatoCiudadano } from "../src/lib/privacidad.ts";
 
 const competencias = esquemaCompetencias.parse(competenciasJson);
 
@@ -55,5 +56,26 @@ describe("esquemaCurso", () => {
         horasReferenciales: 4,
       }).success,
     ).toBe(false);
+  });
+});
+
+describe("privacidad QVAC (escudo anti-PII y código determinista)", () => {
+  it("detecta y redacta DNI, celular y correo electrónico en memoria", () => {
+    const resultado = sanitizarRelatoCiudadano(
+      "Mi DNI es 45891234, mi celular es 987654321 y mi correo es trabajador@correo.pe",
+    );
+    expect(resultado.datosProtegidos).toBeGreaterThanOrEqual(3);
+    expect(resultado.tiposDetectados).toContain("DNI");
+    expect(resultado.tiposDetectados).toContain("celular");
+    expect(resultado.tiposDetectados).toContain("correo electrónico");
+    expect(resultado.textoSanitizado).toContain("[DNI_PROTEGIDO]");
+    expect(resultado.textoSanitizado).toContain("[CELULAR_PROTEGIDO]");
+  });
+
+  it("genera un código de verificación determinista MTPE-QVAC-2026", () => {
+    const codigo1 = generarCodigoVerificacionQvac(["C03", "C04"], "Lima");
+    const codigo2 = generarCodigoVerificacionQvac(["C04", "C03"], "Lima");
+    expect(codigo1).toMatch(/^MTPE-QVAC-2026-[0-9A-F]{8}$/);
+    expect(codigo1).toBe(codigo2);
   });
 });

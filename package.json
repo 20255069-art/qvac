@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "vivo": "node scripts/servidor-en-vivo.mjs",
+    "qvac": "node scripts/qvac-local-server.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "check": "astro check && biome check .",
@@ -17,7 +19,7 @@
     "copiar-perfiles": "node scripts/copiar-perfiles.mjs",
     "extraer": "node scripts/extraer-texto.mjs",
     "verificar-enlaces": "node scripts/verificar-enlaces.mjs",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=reconversion-laboral --branch=main"
+    "deploy": "npm run build && wrangler pages deploy dist/client --project-name=reconversion-laboral --branch=main"
   },
   "dependencies": {
     "@astrojs/node": "11.1.2",

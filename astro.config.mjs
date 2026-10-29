@@ -10,9 +10,15 @@ export default defineConfig({
   output: "static",
   adapter: node({ mode: "standalone" }),
   outDir: "./dist",
+  security: {
+    checkOrigin: false,
+  },
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      allowedHosts: true,
+    },
   },
   build: {
     format: "directory",

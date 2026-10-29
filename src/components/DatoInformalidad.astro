@@ -9,8 +9,41 @@ interface Props {
 const { contexto } = Astro.props;
 ---
 
-<div class="caja">
-  <p class="text-4xl font-bold text-primario">{formatearPorcentaje(contexto.informalidadNacional)}</p>
-  <p>de las personas que trabajan en el Perú tiene un empleo informal ({contexto.periodo}).</p>
-  <p class="text-base text-texto-suave">Fuente: {contexto.fuente}</p>
+<div class="caja space-y-4 shadow-sm">
+  <div class="border-b border-borde pb-3">
+    <span class="inline-block rounded-full bg-red-100 px-3 py-0.5 text-xs font-bold text-primario uppercase tracking-wide">
+      Diagnóstico Nacional · Innovathon MTPE 2026
+    </span>
+    <h2 class="mt-1 text-lg font-bold text-texto">El desafío de la reconversión laboral en el Perú</h2>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-3">
+    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
+      <p class="text-3xl font-black text-primario">{formatearPorcentaje(contexto.informalidadNacional)}</p>
+      <p class="mt-1 text-sm font-semibold text-texto">Tasa de empleo informal en el Perú</p>
+      <p class="mt-1 text-xs text-texto-suave">
+        Millones de personas tienen competencias prácticas reales pero no un certificado formal ({contexto.periodo}).
+      </p>
+    </div>
+
+    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
+      <p class="text-3xl font-black text-amber-600">47,3 %</p>
+      <p class="mt-1 text-sm font-semibold text-texto">Alta exposición a automatización e IA</p>
+      <p class="mt-1 text-xs text-texto-suave">
+        Los puestos no desaparecen: cambian las tareas y se requieren nuevas competencias (INEI, 2025).
+      </p>
+    </div>
+
+    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
+      <p class="text-3xl font-black text-emerald-700">4 de 10</p>
+      <p class="mt-1 text-sm font-semibold text-texto">MYPES no logran cubrir sus vacantes</p>
+      <p class="mt-1 text-xs text-texto-suave">
+        Existe demanda laboral activa pero falta visibilizar qué trabajadores ya saben hacer el oficio (INEI, 2025).
+      </p>
+    </div>
+  </div>
+
+  <p class="text-xs text-texto-suave border-t border-borde pt-2">
+    Fuente: {contexto.fuente} · Estudios INEI 2025 · Foro Económico Mundial (WEF) 2025.
+  </p>
 </div>
