@@ -1,6 +1,6 @@
 # Reconversión Laboral — instrucciones para agentes
 
-Sitio híbrido (Astro con adaptador Node SSR `@astrojs/node` + islas React) que orienta a un trabajador sobre ocupaciones afines según el CNPO del MTPE. Prototipo para el Innovathon Ulima x Tether; sin login, sin base de datos y con análisis de relatos mediante el motor de IA local-first QVAC (`/api/traducir`) y fallback determinista por palabras clave.
+Sitio estático (Astro + islas React, con una función de Cloudflare Pages en `functions/api/traducir.ts`) que orienta a un trabajador sobre ocupaciones afines según el CNPO del MTPE. Prototipo para el Innovathon Ulima x Tether; sin login, sin base de datos y con análisis de relatos mediante el motor de IA local-first QVAC (`/api/traducir`) y fallback determinista por palabras clave.
 
 ## Comandos
 

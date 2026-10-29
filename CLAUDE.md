@@ -1,6 +1,6 @@
 # Reconversión Laboral — prototipo
 
-Sitio híbrido (Astro con adaptador Node SSR `@astrojs/node` + islas React) donde un trabajador elige su ocupación y ve a qué ocupaciones afines puede pasar, qué competencias ya tiene y cuáles debe fortalecer, con sustento en el Catálogo Nacional de Perfiles Ocupacionales (CNPO) del MTPE. Prototipo para el jurado del Demo Day del Innovathon Ulima x Tether (30-oct-2026).
+Sitio estático (Astro + islas React) con una función de Cloudflare Pages (`functions/api/traducir.ts`) como puente hacia QVAC, donde un trabajador elige su ocupación y ve a qué ocupaciones afines puede pasar, qué competencias ya tiene y cuáles debe fortalecer, con sustento en el Catálogo Nacional de Perfiles Ocupacionales (CNPO) del MTPE. Prototipo para el jurado del Demo Day del Innovathon Ulima x Tether (30-oct-2026).
 
 ## Comandos
 
@@ -30,13 +30,13 @@ Node fijado en `.nvmrc` (24). Las versiones exactas están en `package.json` y `
 
 ## Stack
 
-Astro (`output: "static"` con adaptador Node SSR `@astrojs/node` en modo `standalone` para `/api/traducir`) · TypeScript · islas React solo con interacción · Tailwind CSS 4 (CSS-first, `@theme`) · zod · Vitest · Playwright + axe · Biome · npm · QVAC (motor IA local-first de Tether con fallback determinista).
+Astro (salida estática) · función de Cloudflare Pages para `/api/traducir` · TypeScript · islas React solo con interacción · Tailwind CSS 4 (CSS-first, `@theme`) · zod · Vitest · Playwright + axe · Biome · npm · QVAC (motor IA local-first de Tether con fallback determinista).
 
 ## Arquitectura
 
-**Camino de un dato.** PDF del CNPO (`fuentes/perfiles/`) → `scripts/extraer-texto.mjs` → `fuentes/texto/*.txt` → el equipo/constructor redacta `src/data/*.json` citando ids de elemento → `src/lib/datos.ts` valida todo con los esquemas de `src/lib/esquemas.ts` al construir → `src/lib/afinidad.ts` calcula transiciones → las páginas `src/pages/**` generan HTML prerenderizado en `dist/client/`.
+**Camino de un dato.** PDF del CNPO (`fuentes/perfiles/`) → `scripts/extraer-texto.mjs` → `fuentes/texto/*.txt` → el equipo/constructor redacta `src/data/*.json` citando ids de elemento → `src/lib/datos.ts` valida todo con los esquemas de `src/lib/esquemas.ts` al construir → `src/lib/afinidad.ts` calcula transiciones → las páginas `src/pages/**` generan HTML prerenderizado en `dist/`.
 
-**Camino de la entrevista.** `src/pages/entrevista.astro` pasa datos mínimos como props a la isla `src/components/islas/Entrevista.tsx` (`client:load`) → `src/lib/traductor/qvac.ts` envía el relato mediante `fetch('/api/traducir')` al endpoint SSR `src/pages/api/traducir.ts` (`prerender = false`), que consulta al motor de IA local-first QVAC (`src/lib/traductor/qvac-protocolo.ts`) validando determinísticamente contra `C01`–`C30`, y activa automáticamente `src/lib/traductor/palabras-clave.ts` como fallback local si QVAC no está disponible → `src/lib/sugerencias.ts` sugiere 3 ocupaciones. Nada se persiste (`localStorage`/`sessionStorage` permanecen vacíos).
+**Camino de la entrevista.** `src/pages/entrevista.astro` pasa datos mínimos como props a la isla `src/components/islas/Entrevista.tsx` (`client:load`) → `src/lib/traductor/qvac.ts` envía el relato mediante `fetch('/api/traducir')` a la función de Cloudflare Pages `functions/api/traducir.ts`, que consulta al motor de IA local-first QVAC (`src/lib/traductor/qvac-protocolo.ts`) validando determinísticamente contra `C01`–`C30`, y activa automáticamente `src/lib/traductor/palabras-clave.ts` como fallback local si QVAC no está disponible → `src/lib/sugerencias.ts` sugiere 3 ocupaciones. Nada se persiste (`localStorage`/`sessionStorage` permanecen vacíos).
 
 | Capa | Puede importar de | Nunca |
 |---|---|---|
@@ -56,7 +56,7 @@ Astro (`output: "static"` con adaptador Node SSR `@astrojs/node` en modo `standa
 | Carga y validación de datos | `src/lib/datos.ts` — único archivo que importa `src/data/*.json` en la app |
 | Fórmula de afinidad | `src/lib/afinidad.ts` (`crearMotor`, `calcularTransicion`, `ranking`) |
 | Traductor de relatos | `src/lib/traductor/tipos.ts` (contrato) + `qvac.ts` (adaptador QVAC con fallback) + `qvac-protocolo.ts` (cliente/validador SSR) + `palabras-clave.ts` (fallback determinista) |
-| Endpoint SSR de traducción | `src/pages/api/traducir.ts` (`prerender = false`) |
+| Puente a QVAC | `functions/api/traducir.ts` (función de Cloudflare Pages; en local: `npm run build && npx wrangler pages dev dist`) |
 | Tokens de diseño | `src/styles/global.css` (`@theme`) |
 | Textos legales fijos | `src/components/AvisoPrototipo.astro` y `src/components/PiePagina.astro` |
 | URL de capacitación | `URL_CAPACITA_T` en `src/lib/esquemas.ts` = `https://capacitacionlaboral.trabajo.gob.pe/` |
@@ -103,11 +103,11 @@ Tokens en `src/styles/global.css` dentro de `@theme`. Usa las clases de Tailwind
 |---|---|---|---|
 | `PERFILES_ORIGEN` | no | `scripts/copiar-perfiles.mjs` | Carpeta con los PDF del CNPO; por defecto `C:/Users/Home/Pictures/TETHER/innova/perfiles - copia` |
 | `CLAUDE_PROJECT_DIR` | no | `scripts/codex-revision-etapa.mjs` | La define Claude Code al ejecutar hooks; si falta, se usa el directorio actual |
-| `QVAC_ENDPOINT` | no | `src/pages/api/traducir.ts` | Endpoint compatible con OpenAI del motor QVAC (por defecto `http://127.0.0.1:11434/v1/chat/completions`) |
-| `QVAC_TOKEN` | no | `src/pages/api/traducir.ts` | Bearer token opcional para autenticar contra QVAC |
-| `QVAC_MODEL` | no | `src/pages/api/traducir.ts` | Modelo de lenguaje en QVAC (por defecto `qwen-2.5-7b-instruct`) |
+| `QVAC_ENDPOINT` | no | `functions/api/traducir.ts` | Endpoint compatible con OpenAI del motor QVAC (por defecto `http://127.0.0.1:11434/v1/chat/completions`) |
+| `QVAC_TOKEN` | no | `functions/api/traducir.ts` | Bearer token opcional para autenticar contra QVAC |
+| `QVAC_MODEL` | no | `functions/api/traducir.ts` | Modelo de lenguaje en QVAC (por defecto `qwen-2.5-7b-instruct`) |
 
-Plantilla de variables documentada en `.env.example`.
+Las `QVAC_*` se configuran en Cloudflare (proyecto → Settings → Variables and Secrets) y, en local con `wrangler pages dev`, en `.dev.vars` (no se versiona). Plantilla en `.env.example`.
 
 ## Reglas por área
 
