@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "astro dev",
     "vivo": "node scripts/servidor-en-vivo.mjs",
     "qvac": "node scripts/qvac-local-server.mjs",
-    "build": "astro build",
+    "build": "astro build && node scripts/postbuild.mjs",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "check": "astro check && biome check .",
     "format": "biome check --write .",
