@@ -6,16 +6,30 @@ const PREGUNTAS = [
   "¿Qué es lo que mejor sabes hacer y por qué te lo reconocen?",
 ];
 const AVISO_QVAC =
-  "Traducción simulada por palabras clave. La integración con QVAC (IA local de Tether) está prevista y aún no ha sido validada.";
+  "El análisis usa QVAC, el motor de IA local-first de Tether, con validación determinista sobre el catálogo CNPO del MTPE: solo se aceptan competencias que existen en él.";
+
+type RespuestaSimulada = { status: number; cuerpo: unknown };
+
+/** Intercepta /api/traducir: los E2E nunca dependen de que QVAC esté corriendo. */
+async function simularQvac(page: Page, respuesta: RespuestaSimulada) {
+  const relatosRecibidos: unknown[] = [];
+  await page.route("**/api/traducir", async (ruta) => {
+    relatosRecibidos.push(ruta.request().postDataJSON());
+    await ruta.fulfill({
+      status: respuesta.status,
+      contentType: "application/json",
+      body: JSON.stringify(respuesta.cuerpo),
+    });
+  });
+  return relatosRecibidos;
+}
 
 async function abrirEntrevista(page: Page) {
   await page.goto("/entrevista/");
   await page.waitForFunction(() => document.querySelector("astro-island[ssr]") === null);
 }
 
-test("la entrevista muestra el titular, las 3 preguntas y el aviso de simulación", async ({
-  page,
-}) => {
+test("la entrevista muestra el titular, las 3 preguntas y el aviso de QVAC", async ({ page }) => {
   await abrirEntrevista(page);
   await expect(page.locator("h1")).toHaveText("Cuéntanos tu experiencia");
   for (const pregunta of PREGUNTAS) {
@@ -24,21 +38,37 @@ test("la entrevista muestra el titular, las 3 preguntas y el aviso de simulació
   await expect(page.locator("body")).toContainText(AVISO_QVAC);
 });
 
-test("reconoce competencias y sugiere de 1 a 3 ocupaciones sin usar la red ni el almacenamiento", async ({
+test("muestra las competencias de QVAC y sugiere de 1 a 3 ocupaciones sin usar el almacenamiento", async ({
   page,
 }) => {
+  const recibidos = await simularQvac(page, {
+    status: 200,
+    cuerpo: {
+      detectadas: [
+        { id: "C03", evidencias: ["cobro con yape"] },
+        { id: "C04", evidencias: ["cuadro la caja"] },
+      ],
+      modo: "qvac",
+    },
+  });
   await abrirEntrevista(page);
   await page.getByLabel(PREGUNTAS[0] as string).fill("cobro con yape y cuadro la caja al cierre");
 
   const peticiones: string[] = [];
-  page.on("request", (peticion) => peticiones.push(peticion.url()));
+  page.on("request", (peticion) => peticiones.push(new URL(peticion.url()).pathname));
   await page.getByRole("button", { name: "Ver mis competencias" }).click();
 
   await expect(page.getByText("Cobro con medios de pago electrónicos")).toBeVisible();
+  await expect(page.getByText("Analizado con QVAC.")).toBeVisible();
   const enlaces = await page.locator('main a[href^="/ocupaciones/"]').count();
   expect(enlaces).toBeGreaterThanOrEqual(1);
   expect(enlaces).toBeLessThanOrEqual(3);
-  expect(peticiones).toHaveLength(0);
+  // La única petición es a nuestro propio endpoint, con los relatos tal cual.
+  expect(peticiones).toEqual(["/api/traducir"]);
+  expect(recibidos).toHaveLength(1);
+  expect(recibidos[0]).toMatchObject({
+    relatos: ["cobro con yape y cuadro la caja al cierre", "", ""],
+  });
 
   const almacenamiento = await page.evaluate(() => ({
     local: window.localStorage.length,
@@ -47,7 +77,22 @@ test("reconoce competencias y sugiere de 1 a 3 ocupaciones sin usar la red ni el
   expect(almacenamiento).toEqual({ local: 0, sesion: 0 });
 });
 
+test("si QVAC no está disponible usa el respaldo por palabras clave y lo dice", async ({
+  page,
+}) => {
+  await simularQvac(page, { status: 502, cuerpo: { error: "qvac_unavailable" } });
+  await abrirEntrevista(page);
+  await page.getByLabel(PREGUNTAS[0] as string).fill("cobro con yape y cuadro la caja al cierre");
+  await page.getByRole("button", { name: "Ver mis competencias" }).click();
+
+  await expect(page.getByText("Cobro con medios de pago electrónicos")).toBeVisible();
+  await expect(
+    page.getByText("QVAC no estuvo disponible: resultado de la simulación por palabras clave."),
+  ).toBeVisible();
+});
+
 test("pide más texto cuando las respuestas son demasiado cortas", async ({ page }) => {
+  const recibidos = await simularQvac(page, { status: 200, cuerpo: { detectadas: [] } });
   await abrirEntrevista(page);
   for (const pregunta of PREGUNTAS) {
     await page.getByLabel(pregunta).fill("hola");
@@ -59,9 +104,11 @@ test("pide más texto cuando las respuestas son demasiado cortas", async ({ page
   await expect(page.locator("body")).not.toContainText(
     "Posibles competencias mencionadas en tu relato",
   );
+  expect(recibidos).toHaveLength(0);
 });
 
 test("avisa cuando no encuentra competencias", async ({ page }) => {
+  await simularQvac(page, { status: 200, cuerpo: { detectadas: [], modo: "qvac" } });
   await abrirEntrevista(page);
   await page.getByLabel(PREGUNTAS[0] as string).fill("me gusta mucho el futbol los domingos");
   await page.getByRole("button", { name: "Ver mis competencias" }).click();

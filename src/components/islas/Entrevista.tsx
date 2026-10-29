@@ -3,7 +3,7 @@ import type { Competencia } from "../../lib/esquemas.ts";
 import { formatearPorcentaje } from "../../lib/formato.ts";
 import type { OcupacionMotor } from "../../lib/pesos.ts";
 import { type Sugerencia, sugerirOcupaciones } from "../../lib/sugerencias.ts";
-import { crearTraductorPalabrasClave } from "../../lib/traductor/palabras-clave.ts";
+import { crearTraductorQvac, type ModoTraduccion } from "../../lib/traductor/qvac.ts";
 import type { CompetenciaDetectada } from "../../lib/traductor/tipos.ts";
 
 type Props = {
@@ -12,7 +12,11 @@ type Props = {
   mapeo: Record<string, string[]>;
 };
 
-type Resultado = { detectadas: CompetenciaDetectada[]; sugerencias: Sugerencia[] };
+type Resultado = {
+  detectadas: CompetenciaDetectada[];
+  sugerencias: Sugerencia[];
+  modo: ModoTraduccion;
+};
 
 const PREGUNTAS = [
   "Cuéntanos un día normal en tu trabajo: ¿qué haces desde que llegas?",
@@ -23,9 +27,18 @@ const PREGUNTAS = [
 const MINIMO_CARACTERES = 15;
 
 export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) {
-  const traductor = useMemo(() => crearTraductorPalabrasClave(competencias), [competencias]);
   const [error, setError] = useState<string | null>(null);
   const [resultado, setResultado] = useState<Resultado | null>(null);
+  const [analizando, setAnalizando] = useState(false);
+  const traductor = useMemo(() => {
+    let modo: ModoTraduccion = "qvac";
+    const traducir = crearTraductorQvac(competencias, {
+      alResolver: (m) => {
+        modo = m;
+      },
+    });
+    return async (relatos: string[]) => ({ detectadas: await traducir(relatos), modo });
+  }, [competencias]);
   // El botón sale deshabilitado en el HTML del servidor: sin JavaScript (o antes de hidratar)
   // el formulario no puede enviarse por GET y las respuestas nunca llegan a la URL.
   const [hidratado, setHidratado] = useState(false);
@@ -46,12 +59,20 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
     }
 
     setError(null);
-    const detectadas = await traductor(respuestas);
-    const sugerencias = sugerirOcupaciones(
-      detectadas.map((detectada) => detectada.id),
-      { ocupaciones, competencias, mapeo },
-    );
-    setResultado({ detectadas, sugerencias });
+    setAnalizando(true);
+    try {
+      const { detectadas, modo } = await traductor(respuestas);
+      const sugerencias = sugerirOcupaciones(
+        detectadas.map((detectada) => detectada.id),
+        { ocupaciones, competencias, mapeo },
+      );
+      setResultado({ detectadas, sugerencias, modo });
+    } catch {
+      setResultado(null);
+      setError("No pudimos analizar tu relato. Inténtalo de nuevo.");
+    } finally {
+      setAnalizando(false);
+    }
   }
 
   return (
@@ -72,20 +93,27 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         ))}
         <button
           type="submit"
-          disabled={!hidratado}
+          disabled={!hidratado || analizando}
+          aria-busy={analizando}
           className="min-h-12 w-full rounded-base bg-primario px-6 font-semibold text-fondo hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
-          Ver mis competencias
+          {analizando ? "Analizando experiencia con QVAC..." : "Ver mis competencias"}
         </button>
       </form>
 
       <div className="caja mt-4 space-y-1 text-base text-texto-suave">
         <p>
-          Traducción simulada por palabras clave. La integración con QVAC (IA local de Tether) está
-          prevista y aún no ha sido validada.
+          El análisis usa QVAC, el motor de IA local-first de Tether, con validación determinista
+          sobre el catálogo CNPO del MTPE: solo se aceptan competencias que existen en él.
         </p>
-        <p>Esta simulación puede interpretar mal negaciones o contexto.</p>
-        <p>No guardamos ni enviamos lo que escribes: todo ocurre en tu navegador.</p>
+        <p>
+          Si QVAC no responde, usamos una simulación por palabras clave, que puede interpretar mal
+          negaciones o contexto.
+        </p>
+        <p>
+          No guardamos lo que escribes: tu relato solo viaja a nuestro servidor para analizarlo con
+          QVAC y no se almacena.
+        </p>
       </div>
 
       {error !== null && (
@@ -104,6 +132,11 @@ export default function Entrevista({ ocupaciones, competencias, mapeo }: Props) 
         {resultado !== null && resultado.detectadas.length > 0 && (
           <div className="caja">
             <h2>Posibles competencias mencionadas en tu relato</h2>
+            <p className="mt-1 text-base text-texto-suave">
+              {resultado.modo === "qvac"
+                ? "Analizado con QVAC."
+                : "QVAC no estuvo disponible: resultado de la simulación por palabras clave."}
+            </p>
             <ul className="mt-3 flex flex-wrap gap-2">
               {resultado.detectadas.map((detectada) => (
                 <li

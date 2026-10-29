@@ -31,7 +31,7 @@ Es el prototipo funcional que el equipo presenta al jurado del Demo Day del Inno
 
 1. Muestra, para cada una de 9 ocupaciones operativas del CNPO, el ranking de las 8 ocupaciones afines ordenado por afinidad, con el porcentaje de lo que ya tiene.
 2. Muestra, para cada uno de los 72 pares origen → destino, las competencias que ya tiene y las que debe fortalecer, cada una con sus ids de elemento del CNPO como evidencia y, si falta, el tema a buscar en Capacíta-T con sus horas referenciales.
-3. Reconoce competencias en un relato libre de la persona mediante palabras clave y sugiere hasta 3 ocupaciones parecidas, sin guardar ni enviar nada.
+3. Reconoce competencias en un relato libre de la persona mediante el motor de IA local-first QVAC (a través del endpoint SSR `/api/traducir` con validación determinista sobre el catálogo CNPO) y fallback automático a palabras clave, sugiriendo hasta 3 ocupaciones parecidas sin guardar datos.
 4. Funciona y se lee bien en un celular de 360 px de ancho, sin scroll horizontal y sin violaciones de accesibilidad serias o críticas (axe, WCAG 2 A/AA).
 5. Se publica como sitio estático gratuito en Cloudflare Pages con un solo comando humano.
 
@@ -73,7 +73,7 @@ Las versiones vienen de la verificación en vivo contra `registry.npmjs.org` hec
 | Capa | Elección | Por qué esta, frente a qué |
 |---|---|---|
 | Lenguaje / runtime | TypeScript sobre Node 24 LTS (ya instalado en la máquina) | Un solo lenguaje para datos, motor, pruebas y páginas; Python no está instalado y no aporta nada a un sitio estático |
-| Framework | Astro, salida estática | Genera HTML sin JavaScript por defecto e hidrata solo la isla de la entrevista; Next.js arrastraría un runtime de servidor que no necesitamos |
+| Framework | Astro (`output: "static"` con adaptador Node SSR `@astrojs/node` en modo `standalone` para `/api/traducir`) | Prerenderiza todas las páginas estáticas e hidrata solo la isla de la entrevista; habilita únicamente el endpoint `/api/traducir` (`prerender = false`) para conectar con QVAC |
 | Islas interactivas | React (solo `Entrevista.tsx`, `client:load`) | Una sola pantalla con estado; React es la integración oficial de Astro más documentada. Preact ahorraría KB pero añade un riesgo de compatibilidad sin beneficio visible en el Demo Day |
 | Estilos | Tailwind CSS 4 con `@theme` en `src/styles/global.css` | Tokens en CSS, sin `tailwind.config.js`; frente a CSS a mano, impone la escala de 4 px y los tokens en cada clase |
 | Componentes | Componentes `.astro` propios, sin librería | 9 componentes `.astro` y una isla React, todos simples; una librería como shadcn traería estilos ajenos al look institucional |
@@ -144,7 +144,9 @@ reconversion-laboral/
       sugerencias.ts                 # paso 12 — sugerirOcupaciones()
       traductor/
         tipos.ts                     # paso 12 — contrato TraductorCompetencias
-        palabras-clave.ts            # paso 12 — implementación simulada
+        palabras-clave.ts            # paso 12 — implementación determinista / fallback local
+        qvac-protocolo.ts            # integración QVAC — prompt, cliente con reintentos y validación zod
+        qvac.ts                      # integración QVAC — adaptador cliente hacia /api/traducir con fallback
     styles/global.css                # paso 1 — tokens @theme y estilos base
     layouts/Base.astro               # paso 2 — html, título, salto, barra, aviso, pie
     components/
@@ -302,20 +304,21 @@ Los datos *son* la semilla: `src/data/*.json` se versionan y el sitio construido
 
 ## 5. API Design
 
-No hay API HTTP: el sitio es estático y no hace peticiones en tiempo de ejecución (la entrevista tampoco). Los contratos que importan son los **módulos internos**, que son la "API" entre capas y la costura para la IA futura.
+El sitio combina generación estática para todas las páginas con un único endpoint SSR en Node (`POST /api/traducir`, `prerender = false`) que conecta con el motor de IA local-first QVAC y valida determinísticamente la respuesta contra el catálogo CNPO (`C01`–`C30`). Además, los contratos de módulos internos actúan como frontera entre capas.
 
 ### Conventions
-- Base path: NOT APPLICABLE — sin endpoints.
-- Response envelope: NOT APPLICABLE — sin endpoints. Los errores internos son `Error` con mensajes fijos en español (abajo).
+- Base path: `/api/traducir` para traducción de relatos con QVAC (con fallback determinista en el cliente si devuelve error o no está disponible).
+- Response envelope: `{ detectadas: [{ id, evidencias }], modo: "qvac" }` (200), `{ items: [], modo: "vacio" }` (200), o `{ error: "qvac_unavailable" }` (502). Los errores internos de dominio son `Error` con mensajes fijos en español (abajo).
 - Error codes: mensajes fijos: `origen y destino deben ser distintos`, `ocupación desconocida: <id>`, `competencia desconocida: <id>`, `sin curso para <id>`, `Datos inconsistentes:\n<lista>`.
-- Validation: zod en `src/lib/esquemas.ts`, aplicado una vez en `src/lib/datos.ts` al construir.
-- Pagination, idempotency, rate limits: NOT APPLICABLE — sin endpoints.
+- Validation: zod en `src/lib/esquemas.ts` (aplicado en `src/lib/datos.ts` al construir) y en `src/lib/traductor/qvac-protocolo.ts` (para validar el body de `/api/traducir` y filtrar los IDs devueltos por QVAC).
+- Pagination, idempotency, rate limits: reintentos automáticos (hasta 3 reintentos con espera de 1500 ms y timeout de 12 s por intento) ante HTTP 429 o fallos transitorios de red.
 
 ### Routes
 
 | Method | Path | Description | Auth | Rate limit |
 |---|---|---|---|---|
-| GET (estático) | `/`, `/ocupaciones/`, `/ocupaciones/<id>/`, `/transicion/<origen>/<destino>/`, `/entrevista/`, `/acerca/` | Archivos HTML generados al construir (ver §6) | pública | la del CDN de Cloudflare |
+| GET (estático) | `/`, `/ocupaciones/`, `/ocupaciones/<id>/`, `/transicion/<origen>/<destino>/`, `/entrevista/`, `/acerca/` | Archivos HTML generados al construir (ver §6) | pública | la del CDN / servidor |
+| POST (SSR) | `/api/traducir` | Clasifica los relatos del usuario con el motor QVAC sobre el catálogo `C01`–`C30` | pública | local-first |
 
 ### Critical endpoints — full detail
 
@@ -331,7 +334,7 @@ Los "endpoints" críticos son estas funciones; sus casos de error son los criter
 
 **`TraductorCompetencias = (relatos: string[]) => Promise<CompetenciaDetectada[]>`** (`src/lib/traductor/tipos.ts`) — la costura para la IA. Hoy la implementa `crearTraductorPalabrasClave(competencias)`: normaliza (minúsculas + NFD + sin diacríticos), busca cada palabra clave como palabra o frase completa con `\b`, detecta la competencia con ≥ 1 coincidencia y devuelve `{ id, nombre, tipo, palabrasEncontradas }` ordenado por id; relato vacío → `[]`.
 
-**Adaptador QVAC (futuro, NO se construye en v1).** Un módulo `src/lib/traductor/qvac.ts` exportaría `crearTraductorQvac(opciones): TraductorCompetencias` con la misma firma: recibiría los mismos relatos, devolvería solo ids del catálogo `C01`–`C30` y nunca enviaría el texto fuera del dispositivo (QVAC es IA local). `Entrevista.tsx` solo cambiaría la línea que crea el traductor. Este contrato está aquí para que el reemplazo no toque la interfaz; construirlo es un no-objetivo de §1.
+**Adaptador QVAC (`src/lib/traductor/qvac.ts` y `src/pages/api/traducir.ts`).** `crearTraductorQvac(competencias, opciones): TraductorCompetencias` implementa la misma firma: envía los relatos mediante `fetch('/api/traducir')` al endpoint SSR, el cual invoca a QVAC (`QVAC_ENDPOINT`, `QVAC_TOKEN`, `QVAC_MODEL`) con validación determinista sobre `C01`–`C30`. Si el endpoint falla, devuelve un estado distinto de 200 o retorna 0 competencias cuando el motor local sí detecta coincidencias, el adaptador activa automáticamente `crearTraductorPalabrasClave(competencias)` como fallback local.
 
 **`sugerirOcupaciones(detectadas: string[], datos, maximo = 3): Sugerencia[]`** (`src/lib/sugerencias.ts`) — para cada ocupación, `cobertura = Σpeso(competencias de la ocupación detectadas) / Σpeso(competencias de la ocupación)`; devuelve las de cobertura > 0, desc, empate por `nombreCorto`, como máximo 3.
 
@@ -347,13 +350,13 @@ Los "endpoints" críticos son estas funciones; sus casos de error son los criter
 | `/ocupaciones/` | Directorio de 9 ocupaciones | `ocupaciones` (estático) | pública |
 | `/ocupaciones/[id]/` | Ranking de 8 destinos (9 páginas) | `ranking(id)` (estático, `getStaticPaths`) | pública |
 | `/transicion/[origen]/[destino]/` | Detalle de transición (72 páginas) | `calcularTransicion` (estático, `getStaticPaths`) | pública |
-| `/entrevista/` | Entrevista con isla React | props mínimas al construir; cálculo en el navegador | pública |
+| `/entrevista/` | Entrevista con isla React | props mínimas al construir; consulta a `/api/traducir` (QVAC) con fallback local en el navegador | pública |
 | `/acerca/` | Metodología y fuentes | `ocupaciones`, `contexto` (estático) | pública |
 | `404` | Página no encontrada | estática | pública |
 
 ### Rendering strategy
 
-Todo se genera al construir: `output: "static"` y `build.format: "directory"` en `astro.config.mjs` (§19.6), sin adaptador ni servidor. Las rutas dinámicas usan `getStaticPaths()`. Ninguna página lleva `<script>` excepto `/entrevista/`, donde `<Entrevista client:load … />` hidrata la única isla. No hay caché ni revalidación: cada cambio de datos es un nuevo `npm run build` y `npm run deploy`.
+Todas las páginas HTML se prerenderizan al construir (`output: "static"`, `adapter: node({ mode: "standalone" })` y `build.format: "directory"` en `astro.config.mjs`), incluyendo las rutas dinámicas con `getStaticPaths()`. Únicamente el endpoint `src/pages/api/traducir.ts` declara `export const prerender = false` para ejecutarse bajo demanda en el servidor Node SSR. Ninguna página lleva `<script>` excepto `/entrevista/`, donde `<Entrevista client:load … />` hidrata la única isla.
 
 ### Component hierarchy
 

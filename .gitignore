@@ -9,3 +9,4 @@ playwright-report/
 # Este proyecto no usa archivos .env; si alguien crea uno, no se sube
 .env
 .env.*
+!.env.example

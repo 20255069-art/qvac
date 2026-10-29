@@ -1,6 +1,6 @@
 # Reconversión Laboral — instrucciones para agentes
 
-Sitio estático (Astro + islas React) que orienta a un trabajador sobre ocupaciones afines según el CNPO del MTPE. Prototipo para el Innovathon Ulima x Tether; sin servidor, sin login, sin base de datos.
+Sitio híbrido (Astro con adaptador Node SSR `@astrojs/node` + islas React) que orienta a un trabajador sobre ocupaciones afines según el CNPO del MTPE. Prototipo para el Innovathon Ulima x Tether; sin login, sin base de datos y con análisis de relatos mediante el motor de IA local-first QVAC (`/api/traducir`) y fallback determinista por palabras clave.
 
 ## Comandos
 
@@ -32,7 +32,7 @@ En Claude Code, un hook (`node scripts/codex-revision-etapa.mjs`) pide a Codex u
 ## No negociable
 
 1. Nunca inventes datos del CNPO: toda competencia mapeada cita ids de elemento reales; todo curso apunta solo a `https://capacitacionlaboral.trabajo.gob.pe/`.
-2. Nunca guardes ni envíes datos del usuario (sin `fetch`, sin `localStorage`, sin analítica).
+2. Nunca guardes datos del usuario (sin `localStorage`, sin base de datos, sin analítica). El único `fetch` permitido es hacia el endpoint propio `/api/traducir`, que consulta al motor IA local-first QVAC con fallback determinista local y sin almacenar los relatos.
 3. El aviso "Prototipo para el Innovathon Ulima x Tether. No es un sitio oficial del Estado peruano." aparece en todas las páginas; sin logos oficiales.
 4. No edites los archivos copiados de `workspace/` (configs, `package.json`, `scripts/codex-revision-etapa.mjs`, `.claude/**`, `CLAUDE.md`, este archivo).
 5. Nunca ejecutes `npm run deploy`, `npx wrangler login` ni `git push`.
