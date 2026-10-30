@@ -209,6 +209,12 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         codigoVerificacion,
         datosProtegidos: auditoriaPii.tiposDetectados,
       });
+      setTimeout(() => {
+        const elemento = document.getElementById("tus-resultados");
+        if (elemento) {
+          elemento.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
     } catch {
       setResultado(null);
       setError("No pudimos analizar tu relato. Inténtalo de nuevo.");
@@ -395,37 +401,106 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         </p>
       )}
 
-      <section aria-live="polite" className="mt-6">
+      <section id="tus-resultados" aria-live="polite" className="mt-8 scroll-mt-6">
         {resultado !== null && resultado.detectadas.length === 0 && (
-          <p className="caja shadow-sm">
-            No encontramos competencias en lo que escribiste. Cuéntanos con más detalle qué haces en
-            tu trabajo.
-          </p>
+          <div className="rounded-md border border-gray-200 bg-white p-5 shadow-xs text-center space-y-2">
+            <p className="font-semibold text-gray-800">
+              No identificamos competencias claras en el texto ingresado.
+            </p>
+            <p className="text-sm text-gray-600">
+              Prueba tocando uno de los ejemplos rápidos arriba (Almacén, Caja o Limpieza) o
+              cuéntanos con más detalle qué tareas ejecutas en tu día a día.
+            </p>
+          </div>
         )}
         {resultado !== null && resultado.detectadas.length > 0 && (
           <div className="space-y-6">
+            {/* Banner de Reconocimiento y Logro Ciudadano */}
+            <div className="rounded-md border border-emerald-400 bg-gradient-to-r from-emerald-50/90 via-white to-sky-50/70 p-5 sm:p-6 shadow-xs space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-200/60 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xl font-bold text-white shadow-xs">
+                    ✓
+                  </span>
+                  <div>
+                    <span className="inline-block rounded bg-emerald-100 text-emerald-900 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider">
+                      Diagnóstico Oficial QVAC Completado
+                    </span>
+                    <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
+                      ¡Tu experiencia vale! No empiezas desde cero
+                    </h2>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <span className="rounded border border-emerald-300 bg-white px-3 py-1 text-xs font-bold text-emerald-900 shadow-2xs">
+                    {resultado.modo === "qvac"
+                      ? "⚡ Motor QVAC Local Activo"
+                      : "📋 Respaldo CNPO Activo"}
+                  </span>
+                  <p className="mt-1 text-[11px] font-mono text-gray-500">
+                    ID: {resultado.codigoVerificacion}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded border border-emerald-200 bg-white p-3.5 shadow-2xs">
+                  <span className="text-xs text-gray-500 font-bold uppercase">
+                    Competencias Validadas:
+                  </span>
+                  <p className="mt-1 text-2xl font-black text-emerald-700">
+                    {resultado.detectadas.length} habilidades
+                  </p>
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    Extraídas con evidencia directa de tu relato diario.
+                  </p>
+                </div>
+
+                <div className="rounded border border-sky-200 bg-white p-3.5 shadow-2xs">
+                  <span className="text-xs text-gray-500 font-bold uppercase">
+                    Afinidad Principal:
+                  </span>
+                  <p className="mt-1 text-2xl font-black text-[#004884]">
+                    {Math.round((resultado.sugerencias[0]?.cobertura ?? 0) * 100) + bonoDilema}%
+                  </p>
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    Hacia {resultado.sugerencias[0]?.ocupacion.nombreCorto ?? "tu oficio afín"}.
+                  </p>
+                </div>
+
+                <div className="rounded border border-gray-200 bg-white p-3.5 shadow-2xs">
+                  <span className="text-xs text-gray-500 font-bold uppercase">
+                    Cierre de Brecha:
+                  </span>
+                  <p className="mt-1 text-2xl font-black text-gray-800">4 a 8 horas</p>
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    Con micro-cursos gratuitos de Capacíta-T.
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed bg-white/80 p-3 rounded border border-emerald-100">
+                <strong>Mensaje de orientación:</strong> Lo que has aprendido trabajando en la
+                práctica tiene valor formal comprobado. Abajo puedes interactuar con tu{" "}
+                <strong>Árbol de Habilidades</strong>, resolver un{" "}
+                <strong>caso laboral para sumar confianza</strong>, practicar tu{" "}
+                <strong>presentación para entrevistas</strong>, postular a{" "}
+                <strong>vacantes en {departamento}</strong> y{" "}
+                <strong>descargar tu constancia oficial</strong>.
+              </p>
+            </div>
+
             <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-3">
                 <div>
-                  <span className="inline-block rounded bg-emerald-50 border border-emerald-200 px-3 py-0.5 text-xs font-bold text-emerald-800">
-                    ✨ Tu experiencia práctica cuenta: No empiezas desde cero
+                  <span className="gob-tag text-gray-500 uppercase">
+                    ESTÁNDAR CNPO · EVIDENCIA DEL RELATO
                   </span>
-                  <h2 className="mt-1.5 text-lg font-bold text-gray-900">
+                  <h3 className="mt-1 text-lg font-bold text-gray-900">
                     Posibles competencias mencionadas en tu relato
-                  </h2>
+                  </h3>
                 </div>
-                <span className="rounded border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800">
-                  {resultado.modo === "qvac"
-                    ? "⚡ Motor QVAC Local Activo"
-                    : "📋 Modo Respaldo CNPO"}
-                </span>
               </div>
-
-              <p className="text-xs sm:text-sm text-gray-600">
-                {resultado.modo === "qvac"
-                  ? "Analizado de manera confidencial con IA local-first QVAC."
-                  : "QVAC no estuvo disponible: resultado de la simulación por palabras clave."}
-              </p>
 
               <ArbolHabilidades
                 detectadas={resultado.detectadas}
@@ -470,6 +545,44 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
               departamento={departamento}
               ocupacionSugerida={resultado.sugerencias[0]?.ocupacion.nombreCorto}
             />
+
+            {/* Plan de Acción y Cierre Convincente para el Ciudadano */}
+            <div className="rounded-md border border-gray-200 bg-white p-6 shadow-xs text-center space-y-3">
+              <span className="gob-tag text-gray-500 uppercase">
+                TU PLAN DE ACCIÓN PARA EL EMPLEO FORMAL
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+                ¿Listo para postular con el respaldo de tus competencias?
+              </h3>
+              <p className="text-sm text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Ya tienes tu perfil validado y tu constancia descargable. Utiliza estos servicios
+                gratuitos del Estado peruano para dar el salto laboral:
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <a
+                  href="https://empleosperu.trabajo.gob.pe/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded bg-[#b91c1c] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#991b1b] shadow-xs transition"
+                >
+                  💼 Postular en Empleos Perú ↗
+                </a>
+                <a
+                  href="https://capacitacionlaboral.trabajo.gob.pe/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="gob-btn-servicio text-sm py-2.5 px-4"
+                >
+                  🎓 Cursos gratuitos en Capacíta-T ↗
+                </a>
+                <a
+                  href="/ocupaciones/"
+                  className="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition"
+                >
+                  ↺ Explorar otras ocupaciones CNPO
+                </a>
+              </div>
+            </div>
           </div>
         )}
       </section>

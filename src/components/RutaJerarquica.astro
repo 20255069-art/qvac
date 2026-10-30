@@ -8,30 +8,26 @@ const rutaActual = Astro.url.pathname;
 
 const ETAPAS = [
   {
-    numero: 1,
-    titulo: "1. Portada MTPE",
-    subtitulo: "Inicio y diagnóstico",
+    titulo: "Inicio y Diagnóstico",
+    subtitulo: "Diagnóstico nacional MTPE",
     href: "/",
     activo: rutaActual === "/",
   },
   {
-    numero: 2,
-    titulo: "2. Catálogo CNPO",
-    subtitulo: "Ocupaciones y rutas",
+    titulo: "Catálogo CNPO",
+    subtitulo: "9 Ocupaciones y 72 rutas",
     href: "/ocupaciones/",
     activo: rutaActual.startsWith("/ocupaciones") || rutaActual.startsWith("/transicion"),
   },
   {
-    numero: 3,
-    titulo: "3. Entrevista QVAC",
-    subtitulo: "Tu experiencia con IA",
+    titulo: "Entrevista con IA QVAC",
+    subtitulo: "Reconocimiento de competencias",
     href: "/entrevista/",
     activo: rutaActual.startsWith("/entrevista"),
   },
   {
-    numero: 4,
-    titulo: "4. Metodología e Insumos",
-    subtitulo: "Fuentes MTPE e INEI",
+    titulo: "Metodología e Insumos",
+    subtitulo: "Fuentes oficiales y ética",
     href: "/acerca/",
     activo: rutaActual.startsWith("/acerca"),
   },
@@ -42,7 +38,6 @@ const indiceActivo = Math.max(
   ETAPAS.findIndex((e) => e.activo),
 );
 const etapaAnterior = indiceActivo > 0 ? ETAPAS[indiceActivo - 1] : null;
-const etapaSiguiente = indiceActivo < ETAPAS.length - 1 ? ETAPAS[indiceActivo + 1] : null;
 ---
 
 {
@@ -75,14 +70,14 @@ const etapaSiguiente = indiceActivo < ETAPAS.length - 1 ? ETAPAS[indiceActivo + 
     </nav>
   ) : (
     <aside
-      aria-label="Siguiente paso del recorrido"
+      aria-label="Guía de orientación del recorrido"
       class="mx-auto max-w-contenido px-4 pb-8 pt-4"
     >
       <div class="rounded-md border border-gray-200 bg-white p-5 shadow-xs">
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="space-y-1">
             <span class="gob-tag text-gray-500">
-              ORIENTACIÓN DEL RECORRIDO · ETAPA {indiceActivo + 1} DE {ETAPAS.length}
+              ORIENTACIÓN DEL SERVICIO · MTPE
             </span>
             {indiceActivo === 0 && (
               <>
@@ -107,27 +102,30 @@ const etapaSiguiente = indiceActivo < ETAPAS.length - 1 ? ETAPAS[indiceActivo + 
             {indiceActivo === 2 && (
               <>
                 <h2 class="text-base sm:text-lg font-bold text-gray-900">
-                  Siguiente paso: Conoce la Metodología e Insumos Oficiales
+                  ¡Tu ruta de reconversión está lista! ¿Cuál es tu siguiente acción?
                 </h2>
                 <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
-                  Revisa el sustento técnico basado en el <strong>CNPO del MTPE</strong>, los datos de la <strong>EDO 2026</strong>, los cursos de <strong>Capacíta-T</strong> y la inferencia soberana de <strong>Tether QVAC</strong>.
+                  Descarga tu <strong>Constancia de Competencias</strong>, postula directamente a las vacantes activas en <strong>Empleos Perú</strong> o inscríbete en los cursos gratuitos de <strong>Capacíta-T</strong> para cerrar brechas.
+                </p>
+                <p class="text-xs text-gray-500 pt-1">
+                  Si deseas auditar la fórmula técnica o los datos del INEI/EDO, puedes consultar en cualquier momento la pestaña <a href="/acerca/" class="text-[#004884] font-semibold hover:underline">Metodología e Insumos</a>.
                 </p>
               </>
             )}
             {indiceActivo === 3 && (
               <>
                 <h2 class="text-base sm:text-lg font-bold text-gray-900">
-                  ¡Orientación completa! Puedes consultar cualquier módulo
+                  Sustento técnico oficial consultado
                 </h2>
                 <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
-                  Tienes a tu disposición el catálogo completo de ocupaciones, el diagnóstico de informalidad laboral y el simulador de entrevistas cuantas veces lo requieras.
+                  Puedes volver al Inicio para ver el diagnóstico nacional, revisar el catálogo completo o realizar una nueva entrevista con la IA soberana QVAC.
                 </p>
               </>
             )}
           </div>
 
           <div class="flex flex-wrap items-center gap-2.5">
-            {etapaAnterior && (
+            {etapaAnterior && indiceActivo !== 2 && (
               <a
                 href={etapaAnterior.href}
                 class="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-gray-50 px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-100 no-underline transition"
@@ -141,23 +139,44 @@ const etapaSiguiente = indiceActivo < ETAPAS.length - 1 ? ETAPAS[indiceActivo + 
                 href="/entrevista/"
                 class="gob-btn-servicio text-xs sm:text-sm"
               >
-                Ir a 3. Entrevista QVAC ↗
+                Entrevista con IA QVAC ↗
               </a>
             )}
 
-            {etapaSiguiente ? (
+            {indiceActivo === 1 && (
               <a
-                href={etapaSiguiente.href}
+                href="/entrevista/"
                 class="inline-flex items-center gap-1.5 rounded bg-[#b91c1c] px-4 py-2 text-xs sm:text-sm font-bold text-white hover:bg-[#991b1b] no-underline shadow-xs transition"
               >
-                Continuar a {etapaSiguiente.titulo} →
+                Iniciar Entrevista con IA →
               </a>
-            ) : (
+            )}
+
+            {indiceActivo === 2 && (
+              <div class="flex flex-wrap gap-2">
+                <a
+                  href="/ocupaciones/"
+                  class="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 no-underline transition"
+                >
+                  Explorar más ocupaciones CNPO
+                </a>
+                <a
+                  href="https://empleosperu.trabajo.gob.pe/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-1.5 rounded bg-[#b91c1c] px-4 py-2 text-xs sm:text-sm font-bold text-white hover:bg-[#991b1b] no-underline shadow-xs transition"
+                >
+                  Postular en Empleos Perú ↗
+                </a>
+              </div>
+            )}
+
+            {indiceActivo === 3 && (
               <a
-                href="/"
+                href="/entrevista/"
                 class="inline-flex items-center gap-1.5 rounded bg-[#b91c1c] px-4 py-2 text-xs sm:text-sm font-bold text-white hover:bg-[#991b1b] no-underline shadow-xs transition"
               >
-                ↺ Volver al Inicio
+                Ir a Entrevista con IA QVAC →
               </a>
             )}
           </div>
