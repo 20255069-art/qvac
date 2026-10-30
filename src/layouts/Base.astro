@@ -1,4 +1,5 @@
 ---
+import LogoGobPe from "../components/LogoGobPe.astro";
 import PiePagina from "../components/PiePagina.astro";
 import RutaJerarquica from "../components/RutaJerarquica.astro";
 import "../styles/global.css";
@@ -28,21 +29,9 @@ const { titulo, descripcion } = Astro.props;
     <header class="border-b border-gray-200 bg-white">
       <div class="mx-auto flex max-w-contenido flex-wrap items-center justify-between gap-3 px-4 py-3">
         <div class="flex items-center gap-3">
-          <!-- Escudo del Perú SVG oficial Gob.pe -->
-          <a href="/" class="flex items-center gap-2.5 text-gray-900 no-underline" title="Ir a la portada de gob.pe">
-            <svg class="h-8 w-8 text-[#b91c1c]" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-              <path d="M50 5 C25 5 15 25 15 45 C15 75 50 95 50 95 C50 95 85 75 85 45 C85 25 75 5 50 5 Z" fill="#b91c1c"/>
-              <path d="M50 12 C30 12 22 28 22 45 C22 70 50 87 50 87 C50 87 78 70 78 45 C78 28 70 12 50 12 Z" fill="#ffffff"/>
-              <path d="M48 18 H28 V50 H48 Z" fill="#0284c7"/>
-              <path d="M52 18 H72 V50 H52 Z" fill="#f8fafc"/>
-              <path d="M28 52 H72 V75 C72 75 50 83 50 83 C50 83 28 75 28 75 Z" fill="#b91c1c"/>
-              <circle cx="38" cy="34" r="7" fill="#fbbf24"/>
-              <path d="M58 24 L66 40 H54 Z" fill="#16a34a"/>
-              <path d="M42 60 H58 V70 H42 Z" fill="#fbbf24"/>
-            </svg>
-            <div class="flex flex-col">
-              <span class="text-2xl font-black tracking-tight text-gray-900 leading-none">gob<span class="text-[#b91c1c]">.pe</span></span>
-            </div>
+          <!-- Logotipo Oficial Gob.pe -->
+          <a href="/" class="flex items-center text-gray-900 no-underline hover:opacity-95 transition" title="Ir a la portada de gob.pe">
+            <LogoGobPe class="h-8 sm:h-9 w-auto" />
           </a>
 
           <div class="hidden sm:block h-7 w-px bg-gray-300"></div>
