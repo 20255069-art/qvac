@@ -523,13 +523,15 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
                       role="tab"
                       aria-selected={activo}
                       onClick={() => cambiarPestaña(tab.id)}
-                      className={activo ? "gob-tab-activo" : "gob-tab"}
+                      className={`flex flex-col items-start px-3.5 py-2 rounded-t transition whitespace-nowrap text-left ${
+                        activo ? "gob-tab-activo" : "gob-tab"
+                      }`}
                     >
                       <span className="flex items-center gap-1.5">
                         <span aria-hidden="true">{tab.icono}</span>
-                        <span className="font-bold">{tab.titulo}</span>
+                        <span className="font-bold text-xs sm:text-sm">{tab.titulo}</span>
                       </span>
-                      <span className="hidden sm:block text-[11px] opacity-75">
+                      <span className="hidden sm:block text-[11px] opacity-75 font-normal">
                         {tab.subtitulo}
                       </span>
                     </button>
