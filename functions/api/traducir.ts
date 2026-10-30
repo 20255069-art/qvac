@@ -12,7 +12,12 @@ import {
   pedirClasificacionQvac,
 } from "../../src/lib/traductor/qvac-protocolo.ts";
 
-type Entorno = { QVAC_ENDPOINT?: string; QVAC_TOKEN?: string; QVAC_MODEL?: string };
+type Entorno = {
+  QVAC_ENDPOINT?: string;
+  QVAC_TOKEN?: string;
+  QVAC_MODEL?: string;
+  QVAC_FALLBACK_EMBEBIDO?: string;
+};
 
 // El catálogo sale de datos.ts (validado con zod al cargar src/data/competencias.json).
 // Solo id, nombre y descripción: lo justo para que el modelo clasifique con pocos tokens.

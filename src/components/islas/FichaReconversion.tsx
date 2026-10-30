@@ -139,21 +139,21 @@ export default function FichaReconversion({
   }
 
   return (
-    <div className="caja mt-6 border-2 border-emerald-600/30 bg-gradient-to-r from-emerald-50/50 via-white to-red-50/30 shadow-sm">
+    <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs mt-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-bold text-emerald-900">
+          <div className="inline-flex items-center gap-1.5 rounded bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
             <span>🛡️ Escudo de Privacidad Soberana QVAC</span>
             <span>•</span>
-            <span className="font-mono">{codigoVerificacion}</span>
+            <span className="font-mono text-emerald-900">{codigoVerificacion}</span>
           </div>
-          <h3 className="text-lg font-bold text-texto">
+          <h3 className="mt-1.5 text-lg font-bold text-gray-900">
             Tu Constancia de Competencias Reconocidas (Lista para llevar)
           </h3>
-          <p className="text-sm text-texto-suave max-w-2xl">
+          <p className="text-sm text-gray-600 max-w-2xl leading-relaxed">
             Descarga tu ficha en formato oficial para adjuntarla a tu currículum, enviarla por
             WhatsApp a un empleador o llevarla impresa al Centro de Empleo del MTPE en{" "}
-            <strong className="text-texto">{departamento}</strong>.
+            <strong className="text-gray-900">{departamento}</strong>.
           </p>
         </div>
 
@@ -161,12 +161,12 @@ export default function FichaReconversion({
           <button
             type="button"
             onClick={descargarFichaHtml}
-            className="inline-flex items-center gap-2 rounded-md bg-primario px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-primario-oscuro"
+            className="inline-flex items-center gap-2 rounded bg-[#b91c1c] px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-2xs hover:bg-[#991b1b] transition"
           >
             <svg
               aria-hidden="true"
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -180,7 +180,7 @@ export default function FichaReconversion({
             </svg>
             {descargado
               ? "✓ ¡Ficha descargada en tu equipo!"
-              : "📄 Descargar mi Ficha de Competencias"}
+              : "📄 Descargar Ficha Oficial de Competencias"}
           </button>
 
           <button
@@ -188,7 +188,7 @@ export default function FichaReconversion({
             onClick={() => {
               if (typeof window !== "undefined") window.print();
             }}
-            className="inline-flex items-center gap-1.5 rounded-md border border-borde bg-white px-3.5 py-2.5 text-sm font-semibold text-texto shadow-xs hover:bg-superficie"
+            className="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-gray-700 shadow-2xs hover:bg-gray-50 transition"
           >
             🖨️ Imprimir resumen
           </button>
@@ -196,22 +196,22 @@ export default function FichaReconversion({
       </div>
 
       {/* Resumen de Garantía Local-First */}
-      <div className="mt-4 grid gap-2 border-t border-borde pt-3 text-xs text-texto-suave sm:grid-cols-3">
+      <div className="mt-4 grid gap-2 border-t border-gray-100 pt-3 text-xs text-gray-500 sm:grid-cols-3">
         <div className="flex items-center gap-1.5">
-          <span className="font-bold text-emerald-700">✓ Cero huella en la nube:</span>
-          <span>Sin almacenamiento en base de datos ni cookies.</span>
+          <span className="font-bold text-emerald-800">✓ Privacidad garantizada:</span>
+          <span>Sin almacenamiento en servidores externos.</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="font-bold text-emerald-700">✓ Filtro anti-fuga PII:</span>
+          <span className="font-bold text-emerald-800">✓ Filtro anti-fuga:</span>
           <span>
             {datosProtegidos.length > 0
-              ? `Se protegieron automáticamente: ${datosProtegidos.join(", ")}.`
-              : "Verificado en memoria local sin datos sensibles expuestos."}
+              ? `Datos sensibles resguardados: ${datosProtegidos.join(", ")}.`
+              : "Verificado en memoria local sin datos sensibles."}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="font-bold text-emerald-700">✓ Catálogo oficial:</span>
-          <span>Alineado al estándar CNPO del MTPE Perú.</span>
+          <span className="font-bold text-emerald-800">✓ Catálogo oficial:</span>
+          <span>Estándares de competencia CNPO del MTPE.</span>
         </div>
       </div>
     </div>

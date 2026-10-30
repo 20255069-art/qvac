@@ -179,13 +179,13 @@ export default function MapaEmpleos({ departamento, ocupacionSugerida }: Props) 
   const empleoActivo = empleos.find((e) => e.id === empleoSeleccionado) ?? empleos[0];
 
   return (
-    <div className="caja mt-6 space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-borde pb-3">
+    <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs mt-6 space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-3">
         <div>
-          <span className="inline-block rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-primario uppercase">
-            Bolsa de Trabajo MTPE
+          <span className="gob-tag text-gray-500 uppercase">
+            BOLSA DE TRABAJO PÚBLICA · EMPLEOS PERÚ
           </span>
-          <h3 className="mt-1 text-lg font-bold text-texto">
+          <h3 className="mt-1 text-lg font-bold text-gray-900">
             Ofertas Laborales en {departamento} conectadas con tu Árbol de Habilidades
           </h3>
         </div>
@@ -193,15 +193,15 @@ export default function MapaEmpleos({ departamento, ocupacionSugerida }: Props) 
           href="https://empleosperu.trabajo.gob.pe/"
           target="_blank"
           rel="noreferrer"
-          className="text-xs font-bold text-primario hover:underline inline-flex items-center gap-1"
+          className="gob-btn-servicio text-xs"
         >
           Ir a Empleos Perú ↗
         </a>
       </div>
 
-      <p className="text-sm text-texto-suave">
-        Encontramos <strong className="text-texto">3 vacantes activas en planilla</strong> en tu
-        zona que coinciden con las competencias que demostraste en tu relato.
+      <p className="text-sm text-gray-600">
+        Encontramos <strong className="text-gray-900">3 vacantes activas en planilla</strong> en tu
+        departamento que coinciden con las competencias reconocidas en tu experiencia.
       </p>
 
       {/* Mapa Mockeado Interactivo de Alta Calidad */}

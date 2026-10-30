@@ -9,41 +9,43 @@ interface Props {
 const { contexto } = Astro.props;
 ---
 
-<div class="caja space-y-4 shadow-sm">
-  <div class="border-b border-borde pb-3">
-    <span class="inline-block rounded-full bg-red-100 px-3 py-0.5 text-xs font-bold text-primario uppercase tracking-wide">
-      Diagnóstico Nacional · Innovathon MTPE 2026
+<div class="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs space-y-4">
+  <div class="border-b border-gray-200 pb-3">
+    <span class="gob-tag text-gray-500 uppercase">
+      DIAGNÓSTICO NACIONAL DEL EMPLEO · MTPE / INEI
     </span>
-    <h2 class="mt-1 text-lg font-bold text-texto">El desafío de la reconversión laboral en el Perú</h2>
+    <h2 class="mt-1 text-base sm:text-lg font-bold text-gray-900">
+      El desafío de la reconversión laboral en el Perú
+    </h2>
   </div>
 
   <div class="grid gap-4 sm:grid-cols-3">
-    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
-      <p class="text-3xl font-black text-primario">{formatearPorcentaje(contexto.informalidadNacional)}</p>
-      <p class="mt-1 text-sm font-semibold text-texto">Tasa de empleo informal en el Perú</p>
-      <p class="mt-1 text-xs text-texto-suave">
+    <div class="rounded border border-gray-200 bg-gray-50/50 p-4">
+      <p class="text-3xl font-black text-[#b91c1c] tracking-tight">{formatearPorcentaje(contexto.informalidadNacional)}</p>
+      <p class="mt-1 text-sm font-semibold text-gray-800">Tasa de empleo informal en el Perú</p>
+      <p class="mt-1 text-xs text-gray-600 leading-relaxed">
         Millones de personas tienen competencias prácticas reales pero no un certificado formal ({contexto.periodo}).
       </p>
     </div>
 
-    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
-      <p class="text-3xl font-black text-amber-600">47,3 %</p>
-      <p class="mt-1 text-sm font-semibold text-texto">Alta exposición a automatización e IA</p>
-      <p class="mt-1 text-xs text-texto-suave">
-        Los puestos no desaparecen: cambian las tareas y se requieren nuevas competencias (INEI, 2025).
+    <div class="rounded border border-gray-200 bg-gray-50/50 p-4">
+      <p class="text-3xl font-black text-amber-700 tracking-tight">47,3 %</p>
+      <p class="mt-1 text-sm font-semibold text-gray-800">Exposición a automatización e IA</p>
+      <p class="mt-1 text-xs text-gray-600 leading-relaxed">
+        Los puestos no desaparecen: evolucionan las tareas y se requieren nuevas competencias (INEI, 2025).
       </p>
     </div>
 
-    <div class="rounded-md border border-borde bg-white p-3.5 shadow-xs">
-      <p class="text-3xl font-black text-emerald-700">4 de 10</p>
-      <p class="mt-1 text-sm font-semibold text-texto">MYPES no logran cubrir sus vacantes</p>
-      <p class="mt-1 text-xs text-texto-suave">
+    <div class="rounded border border-gray-200 bg-gray-50/50 p-4">
+      <p class="text-3xl font-black text-emerald-800 tracking-tight">4 de 10</p>
+      <p class="mt-1 text-sm font-semibold text-gray-800">MYPES buscan personal calificado</p>
+      <p class="mt-1 text-xs text-gray-600 leading-relaxed">
         Existe demanda laboral activa pero falta visibilizar qué trabajadores ya saben hacer el oficio (INEI, 2025).
       </p>
     </div>
   </div>
 
-  <p class="text-xs text-texto-suave border-t border-borde pt-2">
-    Fuente: {contexto.fuente} · Estudios INEI 2025 · Foro Económico Mundial (WEF) 2025.
+  <p class="text-xs text-gray-500 border-t border-gray-100 pt-2.5">
+    Fuente: {contexto.fuente} · Estadísticas oficiales INEI 2025 · Foro Económico Mundial (WEF) 2025.
   </p>
 </div>

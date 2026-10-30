@@ -219,49 +219,49 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
 
   return (
     <div>
-      {/* Guía visual amable de 3 pasos + Ejemplos rápidos con 1 clic */}
-      <div className="caja mb-5 border-l-4 border-l-primario bg-gradient-to-r from-red-50/50 via-white to-white shadow-sm">
-        <div className="grid gap-3 sm:grid-cols-3 text-sm border-b border-borde pb-3.5">
-          <div className="flex items-start gap-2.5">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario text-xs font-bold text-white">
+      {/* Guía visual Gob.pe de 3 pasos + Ejemplos rápidos con 1 clic */}
+      <div className="rounded-md border border-gray-200 bg-white p-5 shadow-xs mb-5 space-y-4">
+        <div className="grid gap-3 sm:grid-cols-3 text-sm border-b border-gray-200 pb-4">
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#004884] text-xs font-bold text-white">
               1
             </span>
             <div>
-              <p className="font-bold text-texto">Cuenta lo que haces</p>
-              <p className="text-xs text-texto-suave">
+              <p className="font-bold text-gray-900">Relata tu trabajo</p>
+              <p className="text-xs text-gray-600 leading-relaxed">
                 Escribe con tus propias palabras o habla por el micrófono.
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2.5">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario text-xs font-bold text-white">
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#004884] text-xs font-bold text-white">
               2
             </span>
             <div>
-              <p className="font-bold text-texto">QVAC valora tu oficio</p>
-              <p className="text-xs text-texto-suave">
-                Traduce tu práctica diaria al catálogo oficial del MTPE.
+              <p className="font-bold text-gray-900">QVAC valora tu oficio</p>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Traduce tus tareas al catálogo oficial CNPO sin guardar datos personales.
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2.5">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario text-xs font-bold text-white">
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#004884] text-xs font-bold text-white">
               3
             </span>
             <div>
-              <p className="font-bold text-texto">Postula con respaldo</p>
-              <p className="text-xs text-texto-suave">
-                Descarga tu ficha y mira vacantes cerca de ti.
+              <p className="font-bold text-gray-900">Rutas y vacantes</p>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Genera tu Árbol de Habilidades, simula tu entrevista y postula en Empleos Perú.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-texto-suave">
-            💡 ¿No sabes cómo empezar? Toca un ejemplo parecido a tu trabajo para guiarte:
-          </p>
-          <div className="mt-2 grid gap-2 sm:grid-cols-3">
+        <div>
+          <span className="gob-tag text-gray-500 uppercase">
+            EJEMPLOS RÁPIDOS DE 1 CLIC (Toca uno para cargarlo en el formulario):
+          </span>
+          <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
             {EJEMPLOS_RAPIDOS.map((ej) => {
               const activo = ejemploActivo === ej.id;
               return (
@@ -270,18 +270,18 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
                   type="button"
                   disabled={!hidratado || analizando || dictando !== null}
                   onClick={() => cargarEjemplo(ej)}
-                  className={`flex items-center gap-2.5 rounded-md border p-2.5 text-left transition ${
+                  className={`flex items-center gap-2.5 rounded border p-3 text-left transition ${
                     activo
-                      ? "border-primario bg-red-50/80 ring-1 ring-primario"
-                      : "border-borde bg-white hover:border-gray-400 hover:bg-superficie"
+                      ? "border-[#004884] bg-sky-50/70 ring-1 ring-[#004884]"
+                      : "border-gray-200 bg-white hover:border-[#004884] hover:bg-sky-50/30"
                   }`}
                 >
                   <span className="text-xl" aria-hidden="true">
                     {ej.icono}
                   </span>
                   <div className="min-w-0">
-                    <p className="truncate text-xs font-bold text-texto">{ej.titulo}</p>
-                    <p className="truncate text-xs text-texto-suave">{ej.subtitulo}</p>
+                    <p className="truncate text-xs font-bold text-gray-900">{ej.titulo}</p>
+                    <p className="truncate text-xs text-gray-500">{ej.subtitulo}</p>
                   </div>
                 </button>
               );
@@ -290,15 +290,18 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         </div>
       </div>
 
-      <form onSubmit={enviar} className="caja space-y-5 shadow-sm">
+      <form
+        onSubmit={enviar}
+        className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs space-y-5"
+      >
         {PREGUNTAS.map((pregunta, indice) => (
           <div key={pregunta} className="space-y-1.5">
             <div className="flex items-center gap-2">
-              <span className="inline-block rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-primario">
+              <span className="inline-block rounded bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-700">
                 Pregunta {indice + 1} de {PREGUNTAS.length}
               </span>
             </div>
-            <label htmlFor={`respuesta-${indice}`} className="block font-semibold text-texto">
+            <label htmlFor={`respuesta-${indice}`} className="block font-semibold text-gray-900">
               {pregunta}
             </label>
             <textarea
@@ -310,7 +313,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
                 areas.current[indice] = area;
               }}
               readOnly={dictando === indice}
-              className="mt-1 w-full rounded-md border border-borde p-3 shadow-sm placeholder:text-gray-400 focus:border-primario focus:outline-none focus:ring-1 focus:ring-primario"
+              className="mt-1 w-full rounded border border-gray-300 p-3 text-sm text-gray-800 placeholder-gray-400 focus:border-[#004884] focus:outline-none focus:ring-1 focus:ring-[#004884]"
             />
             <GrabadorVoz
               etiqueta={`respuesta ${indice + 1}`}
@@ -327,8 +330,8 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         ))}
 
         {/* Selector de Departamento Institucional MTPE */}
-        <div className="space-y-1.5 border-t border-borde pt-3">
-          <label htmlFor="departamento" className="block font-semibold text-texto">
+        <div className="space-y-1.5 border-t border-gray-200 pt-4">
+          <label htmlFor="departamento" className="block text-sm font-semibold text-gray-800">
             Departamento de residencia o búsqueda laboral:
           </label>
           <select
@@ -336,7 +339,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
             name="departamento"
             value={departamento}
             onChange={(e) => setDepartamento(e.target.value)}
-            className="w-full rounded-md border border-borde bg-white p-2.5 text-texto shadow-sm focus:border-primario focus:outline-none focus:ring-1 focus:ring-primario sm:w-72"
+            className="w-full rounded border border-gray-300 bg-white p-2.5 text-sm text-gray-800 focus:border-[#004884] focus:outline-none focus:ring-1 focus:ring-[#004884] sm:w-72"
           >
             {DEPARTAMENTOS.map((dep) => (
               <option key={dep} value={dep}>
@@ -344,17 +347,17 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
               </option>
             ))}
           </select>
-          <p className="text-xs text-texto-suave">
+          <p className="text-xs text-gray-500">
             Filtra las ofertas laborales y vacantes en planilla de Empleos Perú (MTPE).
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 pt-2">
           <button
             type="submit"
             disabled={!hidratado || analizando || dictando !== null}
             aria-busy={analizando}
-            className="min-h-12 w-full rounded-md bg-primario px-6 font-semibold text-white shadow-sm hover:bg-primario-oscuro disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            className="min-h-11 w-full rounded bg-[#b91c1c] px-6 text-sm font-bold text-white shadow-xs hover:bg-[#991b1b] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto transition"
           >
             {analizando ? "Analizando experiencia con QVAC..." : "Ver mis competencias"}
           </button>
@@ -363,7 +366,7 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
             <button
               type="button"
               onClick={limpiarFormulario}
-              className="min-h-12 rounded-md border border-borde bg-white px-4 text-sm font-semibold text-texto-suave hover:bg-superficie hover:text-texto"
+              className="min-h-11 rounded border border-gray-300 bg-white px-4 text-xs sm:text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition"
             >
               Limpiar respuestas
             </button>
@@ -371,22 +374,18 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         </div>
       </form>
 
-      <div className="caja mt-4 space-y-1 text-base text-texto-suave shadow-sm">
+      <div className="rounded-md border border-gray-200 bg-gray-50/70 p-4 mt-4 space-y-1 text-xs text-gray-600">
         <p>
-          El análisis usa QVAC, el motor de IA local-first de Tether, con validación determinista
-          sobre el catálogo CNPO del MTPE: solo se aceptan competencias que existen en él.
+          <strong>Privacidad y Validación:</strong> El análisis se procesa mediante{" "}
+          <strong>Tether QVAC</strong>, validado estrictamente sobre el catálogo CNPO del MTPE.
         </p>
         <p>
-          Si QVAC no responde, usamos una simulación por palabras clave, que puede interpretar mal
-          negaciones o contexto.
+          Tus relatos no se almacenan: un filtro local protege en tiempo real cualquier dato
+          sensible (DNI, teléfono, correos).
         </p>
         <p>
-          No guardamos lo que escribes: tu relato solo viaja a nuestro servidor para analizarlo con
-          QVAC y no se almacena.
-        </p>
-        <p>
-          Si dictas con la voz, el audio lo transcribe el servicio de reconocimiento de voz de tu
-          navegador (en Chrome y Edge funciona en la nube); nosotros solo recibimos el texto.
+          Si usas el micrófono, el reconocimiento de voz transcribe de manera directa sin retención
+          de audio.
         </p>
       </div>
 
@@ -405,24 +404,26 @@ export default function Entrevista({ ocupaciones, competencias, mapeo, cursos }:
         )}
         {resultado !== null && resultado.detectadas.length > 0 && (
           <div className="space-y-6">
-            <div className="caja space-y-4 shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-borde pb-3">
+            <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-3">
                 <div>
-                  <span className="inline-block rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-bold text-emerald-900">
-                    ✨ ¡Tu experiencia vale mucho! No empiezas desde cero
+                  <span className="inline-block rounded bg-emerald-50 border border-emerald-200 px-3 py-0.5 text-xs font-bold text-emerald-800">
+                    ✨ Tu experiencia práctica cuenta: No empiezas desde cero
                   </span>
-                  <h2 className="mt-1">Posibles competencias mencionadas en tu relato</h2>
+                  <h2 className="mt-1.5 text-lg font-bold text-gray-900">
+                    Posibles competencias mencionadas en tu relato
+                  </h2>
                 </div>
-                <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-900">
+                <span className="rounded border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800">
                   {resultado.modo === "qvac"
                     ? "⚡ Motor QVAC Local Activo"
                     : "📋 Modo Respaldo CNPO"}
                 </span>
               </div>
 
-              <p className="text-base text-texto-suave">
+              <p className="text-xs sm:text-sm text-gray-600">
                 {resultado.modo === "qvac"
-                  ? "Analizado con QVAC."
+                  ? "Analizado de manera confidencial con IA local-first QVAC."
                   : "QVAC no estuvo disponible: resultado de la simulación por palabras clave."}
               </p>
 

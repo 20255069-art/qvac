@@ -9,8 +9,8 @@ const comunes =
   "inline-flex min-h-12 w-full items-center justify-center rounded-base px-6 font-semibold no-underline sm:w-auto";
 const porVariante =
   variante === "principal"
-    ? "bg-primario text-fondo hover:bg-primario-oscuro"
-    : "border border-primario bg-fondo text-primario";
+    ? "bg-[#b91c1c] text-white hover:bg-[#991b1b] shadow-xs"
+    : "border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 hover:text-gray-900 shadow-2xs";
 ---
 
 <a href={href} class:list={[comunes, porVariante]}><slot /></a>

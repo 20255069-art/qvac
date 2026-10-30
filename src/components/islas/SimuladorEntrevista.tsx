@@ -72,37 +72,37 @@ export default function SimuladorEntrevista({
   }
 
   return (
-    <div className="caja mt-6 bg-white shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-borde pb-3">
+    <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs mt-6">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
         <div>
-          <span className="inline-block rounded-full bg-amber-100 px-3 py-0.5 text-xs font-bold text-amber-900">
+          <span className="inline-block rounded bg-sky-50 border border-sky-200 px-2.5 py-0.5 text-xs font-bold text-[#004884]">
             🎙️ Entrenador de Entrevista QVAC · Confianza Laboral
           </span>
-          <h3 className="mt-1 text-lg font-bold text-texto">
+          <h3 className="mt-1.5 text-lg font-bold text-gray-900">
             Cómo presentar tu experiencia con seguridad ante un empleador
           </h3>
         </div>
       </div>
 
-      <p className="mt-2 text-sm text-texto-suave">
+      <p className="mt-2 text-sm text-gray-600 leading-relaxed">
         Muchas veces sabemos hacer muy bien el trabajo, pero nos da nervios explicarlo en una
         entrevista. QVAC ha preparado este saludo con tus fortalezas reales para que lo escuches o
         lo envíes por WhatsApp al postular:
       </p>
 
-      <div className="mt-3 rounded-md border-2 border-amber-300/80 bg-amber-50/50 p-4">
-        <p className="text-xs font-bold uppercase tracking-wide text-amber-900">
+      <div className="mt-3.5 rounded border border-gray-200 bg-gray-50/70 p-4">
+        <p className="text-xs font-bold uppercase tracking-wide text-gray-600">
           Tu presentación personal lista para decir o enviar:
         </p>
-        <blockquote className="mt-1.5 text-base font-medium italic text-texto leading-relaxed">
+        <blockquote className="mt-2 text-sm sm:text-base font-medium italic text-gray-800 leading-relaxed">
           «{discursoPresentacion}»
         </blockquote>
 
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3.5 flex flex-wrap gap-2">
           <button
             type="button"
             onClick={escucharTexto}
-            className="inline-flex items-center gap-1.5 rounded-md border border-amber-400 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-amber-950 shadow-xs hover:bg-amber-100"
+            className="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-800 shadow-2xs hover:bg-gray-50 transition"
           >
             {hablando ? "⏹ Detener audio" : "🔊 Escuchar cómo suena con voz"}
           </button>
@@ -110,7 +110,7 @@ export default function SimuladorEntrevista({
           <button
             type="button"
             onClick={copiarTexto}
-            className="inline-flex items-center gap-1.5 rounded-md bg-primario px-3.5 py-2 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-primario-oscuro"
+            className="inline-flex items-center gap-1.5 rounded bg-[#b91c1c] px-3.5 py-2 text-xs sm:text-sm font-bold text-white shadow-2xs hover:bg-[#991b1b] transition"
           >
             {copiado ? "✓ ¡Copiado para tu postulación!" : "📋 Copiar para mi CV o WhatsApp"}
           </button>
@@ -118,7 +118,7 @@ export default function SimuladorEntrevista({
           <button
             type="button"
             onClick={() => setMostrarConsejo((prev) => !prev)}
-            className="inline-flex items-center gap-1.5 rounded-md border border-borde bg-superficie px-3.5 py-2 text-xs sm:text-sm font-semibold text-texto hover:bg-gray-200"
+            className="inline-flex items-center gap-1.5 rounded border border-gray-300 bg-gray-50 px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-100 transition"
           >
             {mostrarConsejo
               ? "Ocultar consejo de entrevista"
@@ -128,18 +128,18 @@ export default function SimuladorEntrevista({
       </div>
 
       {mostrarConsejo && (
-        <div className="mt-3 rounded-md border border-borde bg-superficie/70 p-4 text-sm space-y-2">
-          <p className="font-bold text-texto">
+        <div className="mt-3.5 rounded border border-gray-200 bg-white p-4 text-xs sm:text-sm text-gray-700 space-y-2">
+          <p className="font-bold text-gray-900">
             Pregunta frecuente del empleador: «¿Has trabajado antes en una empresa formal en este
             puesto?»
           </p>
-          <p className="text-texto-suave">
+          <p className="text-gray-600 leading-relaxed">
             <strong className="text-emerald-800">Respuesta sugerida por QVAC:</strong> «He realizado
             estas mismas tareas todos los días en la práctica —como{" "}
-            <span className="font-semibold text-texto">{listaHabilidades}</span>— cumpliendo
+            <span className="font-semibold text-gray-900">{listaHabilidades}</span>— cumpliendo
             horarios y resolviendo problemas reales. Además, cuento con mi Ficha de Reconversión del
             MTPE y los cursos cortos de{" "}
-            <span className="font-semibold text-primario">Capacíta-T</span> para adaptarme rápido a
+            <span className="font-semibold text-[#004884]">Capacíta-T</span> para adaptarme rápido a
             los estándares de su empresa.»
           </p>
         </div>

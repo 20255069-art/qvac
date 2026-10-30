@@ -3,154 +3,137 @@ import Base from "../layouts/Base.astro";
 import { contexto, ocupaciones } from "../lib/datos.ts";
 ---
 
-<Base titulo="Cómo funciona" descripcion="Metodología, fuentes y límites del prototipo de reconversión laboral.">
-  <section class="caja shadow-sm">
-    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-borde pb-3">
+<Base titulo="Metodología e Insumos" descripcion="Metodología, fuentes oficiales del MTPE e INEI y arquitectura soberana Tether QVAC.">
+  <section class="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-3">
       <div>
-        <span class="inline-block rounded-full bg-red-100 px-3 py-0.5 text-xs font-bold text-primario uppercase tracking-wide">
-          Innovathon MTPE · Reto Reconversión Laboral
+        <span class="gob-tag text-gray-500 uppercase">
+          METODOLOGÍA E INSUMOS OFICIALES · ETAPA 4
         </span>
-        <h1 class="mt-1">Cómo funciona este prototipo</h1>
+        <h1 class="mt-1 text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">Cómo funciona la plataforma de Reconversión Laboral</h1>
       </div>
-      <span class="rounded bg-gray-100 px-2 py-1 text-xs font-mono text-texto-suave">CNPO + Tether QVAC</span>
+      <span class="rounded bg-gray-100 px-2.5 py-1 text-xs font-mono text-gray-700 border border-gray-200">CNPO + Tether QVAC</span>
     </div>
-    <p class="mt-4 text-base text-texto leading-relaxed">
-      Desarrollado para el reto del <strong>Ministerio de Trabajo y Promoción del Empleo (MTPE)</strong> en el <em>Innovathon Ulima x Tether 2026</em>. La plataforma ayuda a las personas con experiencia empírica o informal a visibilizar sus competencias reales, descubrir rutas de transición laboral hacia ocupaciones afines y cerrar brechas con capacitación pública gratuita.
+    <p class="mt-4 text-sm sm:text-base text-gray-700 leading-relaxed">
+      Propuesta desarrollada para el reto del <strong>Ministerio de Trabajo y Promoción del Empleo (MTPE)</strong> en el marco del <em>Innovathon Ulima x Tether 2026</em>. La plataforma ayuda a ciudadanos con experiencia empírica, informal o en riesgo de automatización a visibilizar sus competencias laborales reales, trazar rutas de transición hacia ocupaciones formales afines y capacitarse gratuitamente.
     </p>
   </section>
 
-  <section class="caja mt-6 shadow-sm">
-    <h2>Qué hace y límites éticos</h2>
-    <p class="mt-4 leading-relaxed">
-      Te orienta, a partir del <strong>Catálogo Nacional de Perfiles Ocupacionales (CNPO)</strong>, sobre a qué trabajos afines puedes pasar. Es una orientación preliminar: <strong>no evalúa ni certifica tus competencias</strong>. Como estipula el MTPE, la certificación oficial de competencias laborales solo la otorgan centros y entidades formalmente autorizadas por el ministerio.
+  <section class="mt-6 rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <h2 class="text-lg font-bold text-gray-900">Qué hace y límites éticos de la herramienta</h2>
+    <p class="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+      Te orienta, a partir de los perfiles del <strong>Catálogo Nacional de Perfiles Ocupacionales (CNPO)</strong>, sobre a qué trabajos afines puedes postular. Es un servicio informativo y de orientación: <strong>no evalúa ni otorga certificación formal de competencias</strong>. Como estipula la normativa del MTPE, la certificación oficial con valor a nivel nacional solo la conceden Centros de Certificación debidamente autorizados por el ministerio.
     </p>
   </section>
 
-  <section class="caja mt-6 shadow-sm">
-    <h2>Cómo calculamos la afinidad</h2>
-    <ul class="mt-4 list-disc space-y-2 pl-6 text-sm sm:text-base leading-relaxed">
-      <li>Cada competencia técnica vale 1 punto y cada competencia transversal vale 0,5.</li>
+  <section class="mt-6 rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <h2 class="text-lg font-bold text-gray-900">Cómo calculamos la afinidad</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm sm:text-base text-gray-700 leading-relaxed">
+      <li>Cada competencia técnica equivale a 1 punto y cada competencia transversal a 0,5 puntos.</li>
       <li>
-        «Cuánto ya tienes» (cobertura) es la parte de las competencias mapeadas del trabajo destino que también están en tu ocupación.
+        «Cuánto ya tienes» (cobertura) representa la proporción de competencias del puesto destino que ya dominas desde tu oficio de origen o relato.
       </li>
-      <li>«Parecido general» compara los dos trabajos completos.</li>
-      <li>La afinidad es el promedio de las dos medidas y es lo que ordena la lista.</li>
-      <li>La demanda no cambia el orden.</li>
-      <li>Las competencias y su correspondencia con los elementos del CNPO son una interpretación del equipo, no un mapeo oficial aprobado.</li>
+      <li>«Parecido general» evalúa la coincidencia estructural entre ambos perfiles.</li>
+      <li>La afinidad final es el promedio ponderado de ambas métricas y determina el orden de las recomendaciones.</li>
+      <li>La demanda referencial de la EDO no altera el orden de afinidad técnica, sino que prioriza vacantes activas.</li>
     </ul>
   </section>
 
-  <section class="caja mt-6 shadow-sm">
-    <h2>Fuentes oficiales del Estado peruano (Insumos del Reto)</h2>
-    <p class="mt-4">
-      Conforme a los lineamientos oficiales del MTPE, este prototipo integra las siguientes fuentes de datos públicas:
-    </p>
-    <ul class="mt-4 space-y-3 pl-2 text-sm sm:text-base">
-      <li class="rounded-md border border-borde bg-white p-3 shadow-xs">
+  <section class="mt-6 rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <div class="border-b border-gray-200 pb-2">
+      <h2 class="text-lg font-bold text-gray-900">Fuentes oficiales del Estado peruano (5 Insumos del Reto)</h2>
+      <p class="text-xs text-gray-500">Documentos y portales gubernamentales articulados en este prototipo</p>
+    </div>
+    <ul class="mt-4 space-y-3.5 text-sm sm:text-base">
+      <li class="rounded border border-gray-200 bg-gray-50/50 p-4">
         <a
           href="https://www2.trabajo.gob.pe/el-ministerio-2/sector-empleo/dir-gen-form-cap-lab/c-n-p-o/estructura-del-c-n-p-o/"
           target="_blank"
           rel="noreferrer"
-          class="font-bold text-primario hover:underline inline-flex items-center gap-1"
+          class="font-bold text-[#004884] hover:underline inline-flex items-center gap-1.5 text-base"
         >
           1. Catálogo Nacional de Perfiles Ocupacionales (CNPO) ↗
         </a>
-        <p class="mt-1 text-xs text-texto-suave">
-          Fuente principal del MTPE con estándares de competencia laboral. Ocupaciones priorizadas en este prototipo:
+        <p class="mt-1 text-xs text-gray-600 leading-relaxed">
+          Fuente matriz del MTPE con estándares de competencia laboral. Ocupaciones representativas integradas:
         </p>
         <div class="mt-2 flex flex-wrap gap-1.5">
           {ocupaciones.map((ocupacion) => (
-            <span class="rounded bg-superficie px-2 py-0.5 text-xs font-medium text-texto border border-borde">
+            <span class="rounded bg-white px-2 py-0.5 text-xs font-medium text-gray-700 border border-gray-200 shadow-2xs">
               {ocupacion.nombreCorto} ({ocupacion.codigo})
             </span>
           ))}
         </div>
       </li>
 
-      <li class="rounded-md border border-borde bg-white p-3 shadow-xs">
+      <li class="rounded border border-gray-200 bg-gray-50/50 p-4">
         <a
           href="https://www.gob.pe/institucion/mtpe/campa%C3%B1as/29518-encuesta-de-demanda-ocupacional-edo"
           target="_blank"
           rel="noreferrer"
-          class="font-bold text-primario hover:underline inline-flex items-center gap-1"
+          class="font-bold text-[#004884] hover:underline inline-flex items-center gap-1.5 text-base"
         >
           2. Encuesta de Demanda Ocupacional (EDO 2026) ↗
         </a>
-        <p class="mt-1 text-xs text-texto-suave">
-          Datos oficiales de puestos más demandados por empresas y territorio (disponibles en las Publicaciones Especiales del MTPE).
+        <p class="mt-1 text-xs text-gray-600 leading-relaxed">
+          Estudio prospectivo del MTPE que identifica las contrataciones y competencias requeridas por el sector privado a nivel nacional y departamental.
         </p>
       </li>
 
-      <li class="rounded-md border border-borde bg-white p-3 shadow-xs">
+      <li class="rounded border border-gray-200 bg-gray-50/50 p-4">
         <a
           href="https://capacitacionlaboral.trabajo.gob.pe/"
           target="_blank"
           rel="noreferrer"
-          class="font-bold text-primario hover:underline inline-flex items-center gap-1"
+          class="font-bold text-[#004884] hover:underline inline-flex items-center gap-1.5 text-base"
         >
           3. Plataforma Capacíta-T (MTPE) ↗
         </a>
-        <p class="mt-1 text-xs text-texto-suave">
+        <p class="mt-1 text-xs text-gray-600 leading-relaxed">
           Cursos virtuales 100% gratuitos y certificados para cerrar brechas de competencias operativas (4 a 10 horas referenciales).
         </p>
       </li>
 
-      <li class="rounded-md border border-borde bg-white p-3 shadow-xs">
+      <li class="rounded border border-gray-200 bg-gray-50/50 p-4">
         <a
           href="https://www.empleosperu.gob.pe/portal-mtpe/#/"
           target="_blank"
           rel="noreferrer"
-          class="font-bold text-primario hover:underline inline-flex items-center gap-1"
+          class="font-bold text-[#004884] hover:underline inline-flex items-center gap-1.5 text-base"
         >
           4. Bolsa de Trabajo Virtual · Empleos Perú (MTPE) ↗
         </a>
-        <p class="mt-1 text-xs text-texto-suave">
-          Plataforma de intermediación laboral para postular directamente a vacantes en planilla en cada departamento del país.
+        <p class="mt-1 text-xs text-gray-600 leading-relaxed">
+          Servicio público de intermediación laboral para postular directamente a puestos en planilla por departamento.
         </p>
       </li>
 
-      <li class="rounded-md border border-borde bg-white p-3 shadow-xs">
+      <li class="rounded border border-gray-200 bg-gray-50/50 p-4">
         <a
           href="https://www.gob.pe/institucion/inei/informes-publicaciones/7453406-doble-desafio-tecnologico-analisis-de-la-exposicion-a-la-automatizacion-tradicional-y-a-la-inteligencia-artificial-generativa-en-el-empleo-peruano-utilizando-datos-de-la-enaho-2024"
           target="_blank"
           rel="noreferrer"
-          class="font-bold text-primario hover:underline inline-flex items-center gap-1"
+          class="font-bold text-[#004884] hover:underline inline-flex items-center gap-1.5 text-base"
         >
-          5. Estudios del INEI sobre IA y Automatización en el Empleo Peruano ↗
+          5. Informes del INEI sobre IA y Automatización en el Empleo Peruano ↗
         </a>
-        <p class="mt-1 text-xs text-texto-suave">
-          Informe «Doble Desafío Tecnológico» (ENAHO 2024) y «Brechas en Competitividad Laboral» (ENHAT 2017-2018).
+        <p class="mt-1 text-xs text-gray-600 leading-relaxed">
+          Publicaciones «Doble Desafío Tecnológico» (ENAHO 2024) y «Brechas en Competitividad Laboral» (ENHAT).
         </p>
       </li>
     </ul>
-    <p class="mt-4 text-xs text-texto-suave">Dato de informalidad: {contexto.fuente}.</p>
+    <p class="mt-3 text-xs text-gray-500">Dato de informalidad: {contexto.fuente}.</p>
   </section>
 
-  <section class="caja mt-6 shadow-sm">
-    <h2>Tecnología de IA Soberana (Tether QVAC)</h2>
-    <p class="mt-4 leading-relaxed">
-      La plataforma implementa el motor local-first <strong>QVAC de Tether (Qwen 3.8 27B)</strong> a través de primitivas peer-to-peer (Holesail / Pears) y endpoints compatibles con OpenAI. Garantiza:
+  <section class="mt-6 rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <h2 class="text-lg font-bold text-gray-900">Tecnología de IA Soberana (Tether QVAC)</h2>
+    <p class="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+      La plataforma implementa el motor local-first <strong>QVAC de Tether (Qwen 3.8 27B)</strong> a través de redes descentralizadas peer-to-peer y endpoints OpenAPI. Garantiza:
     </p>
-    <ul class="mt-3 list-disc space-y-1.5 pl-6 text-sm text-texto-suave">
-      <li><strong>Soberanía y Privacidad de Datos:</strong> Los relatos no se almacenan en servidores externos ni se usan para entrenamiento. Un escudo local en memoria filtra automáticamente datos sensibles (DNI, RUC, teléfono, correo).</li>
-      <li><strong>Validación Determinista:</strong> La IA solo puede proponer competencias registradas estrictamente en el catálogo oficial del MTPE (C01 a C30).</li>
-      <li><strong>Respaldo de Contingencia:</strong> Si el motor QVAC no se encuentra disponible, la plataforma conmuta en milisegundos a un algoritmo semántico de respaldo sin interrumpir la experiencia del ciudadano.</li>
-    </ul>
-  </section>
-
-  <section class="caja mt-6 shadow-sm">
-    <h2>Demanda referencial</h2>
-    <p class="mt-4">
-      El nivel Alta, Media o Baja es un valor ilustrativo definido por el equipo. Se reemplazará con la Encuesta de Demanda Ocupacional 2026 del MTPE.
-    </p>
-  </section>
-
-  <section class="caja mt-6 shadow-sm">
-    <h2>Qué no incluye todavía</h2>
-    <ul class="mt-4 list-disc space-y-2 pl-6 text-sm sm:text-base">
-      <li>La ocupación Compras (H2452004) quedó fuera porque su PDF es un escaneo sin texto.</li>
-      <li>Solo se consideran los estándares de nivel operativo.</li>
-      <li>La entrevista usa la IA local QVAC de Tether y, si no responde, una simulación por palabras clave.</li>
+    <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm text-gray-600 leading-relaxed">
+      <li><strong>Soberanía y Privacidad de Datos:</strong> El relato se procesa en el Edge/local; no se transmite a servidores terceros ni se entrena modelos públicos. Incluye filtro de datos sensibles (DNI, teléfono, correos).</li>
+      <li><strong>Validación Determinista:</strong> La inferencia se ciñe estrictamente al catálogo oficial CNPO (códigos C01 a C30).</li>
+      <li><strong>Respaldo Cero Caídas:</strong> En caso de indisponibilidad temporal de la red, un motor semántico local asegura la continuidad del servicio al ciudadano sin interrupciones.</li>
     </ul>
   </section>
 </Base>

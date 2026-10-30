@@ -2,19 +2,32 @@
 import AvisoPrototipo from "./AvisoPrototipo.astro";
 ---
 
-<footer class="mt-12 border-t border-borde bg-fondo">
-  <div class="mx-auto grid max-w-contenido gap-4 px-4 py-6 text-base text-texto-suave sm:grid-cols-2">
-    <div class="caja">
-      <p class="font-semibold text-texto">Fuentes</p>
-      <p class="mt-1">
-        Catálogo Nacional de Perfiles Ocupacionales (CNPO) del Ministerio de Trabajo y Promoción del Empleo (MTPE);
-        IEES (Sociedad Nacional de Industrias) con datos del INEI.
-      </p>
-    </div>
-    <div class="caja">
-      <p class="font-semibold text-texto">Importante</p>
-      <p class="mt-1">La orientación es preliminar: no evalúa ni certifica competencias.</p>
-      <p class="mt-2"><a href="/acerca/">Cómo funciona este prototipo</a></p>
+<footer class="mt-12 border-t border-gray-200 bg-white">
+  <div class="mx-auto max-w-contenido px-4 py-8 text-sm text-gray-600">
+    <div class="grid gap-6 sm:grid-cols-3 pb-6 border-b border-gray-100">
+      <div>
+        <span class="text-xl font-black text-gray-900 tracking-tight">gob<span class="text-[#b91c1c]">.pe</span></span>
+        <p class="mt-2 text-xs text-gray-500 leading-relaxed">
+          Plataforma de Reconversión Laboral para el reto del Ministerio de Trabajo y Promoción del Empleo (MTPE) en el Innovathon Ulima x Tether 2026.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-xs font-bold text-gray-900 uppercase tracking-wider">Servicios Vinculados</p>
+        <ul class="mt-2 space-y-1.5 text-xs">
+          <li><a href="https://www.gob.pe/mtpe" target="_blank" rel="noreferrer" class="text-[#004884] hover:underline">Ministerio de Trabajo y Promoción del Empleo ↗</a></li>
+          <li><a href="https://capacitacionlaboral.trabajo.gob.pe/" target="_blank" rel="noreferrer" class="text-[#004884] hover:underline">Cursos gratuitos Capacíta-T ↗</a></li>
+          <li><a href="https://www.empleosperu.gob.pe/portal-mtpe/#/" target="_blank" rel="noreferrer" class="text-[#004884] hover:underline">Bolsa de Trabajo Empleos Perú ↗</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xs font-bold text-gray-900 uppercase tracking-wider">Aviso Institucional</p>
+        <p class="mt-2 text-xs text-gray-500 leading-relaxed">
+          Esta plataforma orienta de forma preliminar y no emite certificaciones formales ni títulos habilitantes.
+        </p>
+        <p class="mt-2"><a href="/acerca/" class="text-xs font-semibold text-[#004884] hover:underline">Metodología, fuentes y ética →</a></p>
+      </div>
     </div>
   </div>
   <AvisoPrototipo />

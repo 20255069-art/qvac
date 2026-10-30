@@ -244,32 +244,35 @@ export default function DilemaSituacional({
   }
 
   return (
-    <div className="caja mt-6 border-l-4 border-l-primario bg-white shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-2">
+    <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs mt-6 space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
         <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-primario">
-            💡 Paso Opcional Sin Examen · Psicología Ocupacional QVAC
+          <span className="inline-flex items-center gap-1.5 rounded bg-sky-50 border border-sky-200 px-2.5 py-0.5 text-xs font-bold text-[#004884]">
+            💡 Orientación Práctica Sin Examen · Validación de Criterio
           </span>
-          <h3 className="mt-2 text-lg font-bold text-texto">
+          <h3 className="mt-1.5 text-lg font-bold text-gray-900">
             Demuestra tu criterio práctico para {ocupacionNombre}
           </h3>
         </div>
         {opcionElegida && (
-          <span className="rounded-md bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-900">
-            ✓ +{opcionElegida.bonoConfianza}% Respaldo Práctico Validado
+          <span className="rounded bg-emerald-100 border border-emerald-300 px-2.5 py-1 text-xs font-bold text-emerald-900">
+            ✓ +{opcionElegida.bonoConfianza}% Criterio Práctico Validado
           </span>
         )}
       </div>
 
-      <p className="mt-1 text-sm text-texto-suave">
-        No hay respuestas malas. Elige cómo actuarías según tu experiencia real del día a día:
+      <p className="text-sm text-gray-600">
+        No hay respuestas incorrectas. Selecciona la opción que mejor refleje cómo actuarías en tu
+        jornada real:
       </p>
 
-      <div className="mt-3 rounded-md border border-borde bg-superficie/70 p-4">
-        <p className="text-xs font-bold uppercase tracking-wide text-primario">
+      <div className="mt-3 rounded border border-gray-200 bg-gray-50/70 p-4">
+        <p className="text-xs font-bold uppercase tracking-wide text-gray-600">
           {escenario.titulo}
         </p>
-        <p className="mt-1 text-sm sm:text-base font-medium text-texto">{escenario.contexto}</p>
+        <p className="mt-1 text-sm sm:text-base font-medium text-gray-800 leading-relaxed">
+          {escenario.contexto}
+        </p>
       </div>
 
       <div className="mt-4 space-y-2.5">
@@ -281,21 +284,23 @@ export default function DilemaSituacional({
               key={opcion.id}
               type="button"
               onClick={() => elegir(opcion)}
-              className={`w-full rounded-md border p-3.5 text-left transition-all ${
+              className={`w-full rounded border p-3.5 text-left transition-all ${
                 activa
-                  ? "border-emerald-600 bg-emerald-50/80 shadow-sm ring-1 ring-emerald-500"
-                  : "border-borde bg-white hover:border-primario/60 hover:bg-red-50/20"
+                  ? "border-emerald-600 bg-emerald-50/80 shadow-2xs ring-1 ring-emerald-500"
+                  : "border-gray-200 bg-white hover:border-[#004884] hover:bg-sky-50/20"
               }`}
             >
               <div className="flex items-start gap-3">
                 <span
                   className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-                    activa ? "bg-emerald-600 text-white" : "bg-superficie text-texto"
+                    activa ? "bg-emerald-600 text-white" : "bg-gray-100 text-gray-700"
                   }`}
                 >
                   {activa ? "✓" : letra}
                 </span>
-                <span className="text-sm sm:text-base font-medium text-texto">{opcion.texto}</span>
+                <span className="text-sm sm:text-base font-medium text-gray-800">
+                  {opcion.texto}
+                </span>
               </div>
             </button>
           );
@@ -303,10 +308,10 @@ export default function DilemaSituacional({
       </div>
 
       {opcionElegida && (
-        <div className="mt-4 rounded-md border border-emerald-300 bg-emerald-50 p-4 text-emerald-950 shadow-xs">
+        <div className="mt-4 rounded border border-emerald-300 bg-emerald-50/90 p-4 text-emerald-950 shadow-2xs">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-xs font-bold uppercase tracking-wide text-emerald-800">
-              Análisis de Criterio Operativo (QVAC Local-First)
+            <span className="text-xs font-bold uppercase tracking-wide text-emerald-900">
+              Análisis de Criterio Operativo (IA QVAC)
             </span>
             <span className="rounded bg-white px-2 py-0.5 text-xs font-bold text-emerald-800 border border-emerald-200">
               Competencia validada: {opcionElegida.criterioReconocido}

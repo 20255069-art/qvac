@@ -112,33 +112,33 @@ export default function ArbolHabilidades({
           {sugerencias.map((sug, idx) => (
             <div
               key={sug.ocupacion.id}
-              className={`rounded-md border p-3 shadow-sm transition-all ${
+              className={`rounded border p-3 transition-all ${
                 idx === indiceOcupacion
-                  ? "border-primario bg-red-50/70 ring-1 ring-red-400"
-                  : "border-borde bg-white hover:bg-superficie"
+                  ? "border-[#004884] bg-sky-50/70 ring-1 ring-[#004884]"
+                  : "border-gray-200 bg-white hover:bg-gray-50"
               }`}
             >
               <div className="flex items-start justify-between gap-2">
                 <a
                   href={`/ocupaciones/${sug.ocupacion.id}/`}
-                  className="font-bold text-primario hover:underline text-sm leading-tight"
+                  className="font-bold text-[#004884] hover:underline text-sm leading-tight"
                 >
                   {sug.ocupacion.nombreCorto}
                 </a>
-                <span className="rounded bg-red-100 px-1.5 py-0.5 text-xs font-black text-primario whitespace-nowrap">
+                <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-black text-emerald-800 whitespace-nowrap">
                   {formatearPorcentaje(sug.cobertura * 100, 0)}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setIndiceOcupacion(idx)}
-                className={`mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold border transition ${
+                className={`mt-2 w-full rounded px-2 py-1 text-xs font-semibold border transition ${
                   idx === indiceOcupacion
-                    ? "bg-primario text-white border-primario"
-                    : "bg-gray-50 text-gray-700 border-borde hover:bg-gray-100"
+                    ? "bg-[#004884] text-white border-[#004884]"
+                    : "bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100"
                 }`}
               >
-                {idx === indiceOcupacion ? "● Árbol activo" : "Ver árbol RPG"}
+                {idx === indiceOcupacion ? "● Ruta seleccionada" : "Ver árbol de competencias"}
               </button>
             </div>
           ))}
@@ -146,28 +146,28 @@ export default function ArbolHabilidades({
       </div>
 
       {/* Contenedor Principal del Árbol RPG */}
-      <div className="rounded-md border border-borde bg-gradient-to-b from-fondo to-superficie p-5 shadow-sm">
+      <div className="rounded border border-gray-200 bg-gray-50/40 p-5 shadow-2xs">
         {/* Barra de Nivel de Compatibilidad RPG */}
-        <div className="mb-6 rounded-md bg-white p-4 border border-borde shadow-sm">
+        <div className="mb-6 rounded bg-white p-4 border border-gray-200 shadow-2xs">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span className="inline-block rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-bold text-primario uppercase tracking-wide">
+              <span className="inline-block rounded bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-xs font-bold text-emerald-800 uppercase tracking-wide">
                 Nivel de Afinidad Laboral
               </span>
-              <h3 className="mt-1 text-lg font-bold text-texto">
+              <h3 className="mt-1 text-base sm:text-lg font-bold text-gray-900">
                 Ruta hacia:{" "}
-                <span className="text-primario">{sugerenciaActual.ocupacion.nombreCorto}</span>
+                <span className="text-[#004884]">{sugerenciaActual.ocupacion.nombreCorto}</span>
               </h3>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-black text-primario">{porcentajeMatch}%</span>
-              <p className="text-xs text-texto-suave font-medium">Competencias cubiertas</p>
+              <span className="text-2xl font-black text-emerald-800">{porcentajeMatch}%</span>
+              <p className="text-xs text-gray-500 font-medium">Competencias cubiertas</p>
             </div>
           </div>
 
-          <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-gray-200">
+          <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-gray-200">
             <div
-              className="h-full bg-gradient-to-r from-red-600 to-emerald-600 transition-all duration-700 ease-out"
+              className="h-full bg-emerald-600 transition-all duration-700 ease-out"
               style={{ width: `${Math.max(10, porcentajeMatch)}%` }}
             />
           </div>
@@ -176,8 +176,8 @@ export default function ArbolHabilidades({
         {/* Layout Visual del Árbol de Habilidades */}
         <div className="relative">
           {/* Nodo Central: Perfil del Trabajador */}
-          <div className="mx-auto mb-8 max-w-sm rounded-md border-2 border-primario bg-white p-4 text-center shadow-md">
-            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-primario shadow-inner">
+          <div className="mx-auto mb-8 max-w-sm rounded border-2 border-[#004884] bg-white p-4 text-center shadow-xs">
+            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-sky-100 text-[#004884]">
               <svg
                 aria-hidden="true"
                 width="24"
@@ -193,7 +193,7 @@ export default function ArbolHabilidades({
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-primario">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#004884]">
               Nodo Central
             </span>
             <h4 className="text-base font-bold text-texto">Tu Perfil de Experiencia Empírica</h4>

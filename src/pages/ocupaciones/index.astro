@@ -4,17 +4,44 @@ import Base from "../../layouts/Base.astro";
 import { ocupaciones } from "../../lib/datos.ts";
 ---
 
-<Base titulo="Elige tu ocupación" descripcion="Elige la ocupación en la que trabajas para ver a qué trabajos afines puedes pasar.">
-  <section class="caja">
-    <h1>Elige tu ocupación</h1>
-    <p class="mt-4">
-      Toca la ocupación en la que trabajas o trabajaste. Te mostraremos los trabajos afines según el CNPO.
-    </p>
-    <p class="mt-2 text-texto-suave">
-      De los perfiles prioritarios del MTPE, este prototipo incluye cajeros, limpieza y almacén. Aún no incluye auxiliares administrativos ni vendedores de tienda.
-    </p>
+<Base titulo="Catálogo de Ocupaciones" descripcion="Selecciona tu ocupación de partida para conocer las rutas de reconversión laboral según el CNPO del MTPE.">
+  <section class="rounded-md border border-gray-200 bg-white p-5 sm:p-6 shadow-xs">
+    <div class="space-y-1">
+      <span class="gob-tag text-gray-500 uppercase">
+        CATÁLOGO NACIONAL DE PERFILES OCUPACIONALES · ETAPA 2
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+        Catálogo de Ocupaciones y Rutas de Reconversión
+      </h1>
+      <p class="text-sm sm:text-base text-gray-600 max-w-3xl leading-relaxed">
+        Selecciona el oficio en el que te desempeñas o tienes experiencia para descubrir qué puestos afines comparten tus competencias y dónde capacitarte sin costo.
+      </p>
+    </div>
+
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3 text-xs text-gray-500">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-gray-800">9 ocupaciones activas</span>
+        <span>·</span>
+        <span>72 rutas cruzadas de transición</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/entrevista/" class="text-[#004884] font-semibold hover:underline">
+          ¿No encuentras tu oficio? Cuéntanos tu experiencia con IA QVAC →
+        </a>
+      </div>
+    </div>
   </section>
-  <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {ocupaciones.map((ocupacion) => <TarjetaOcupacion ocupacion={ocupacion} />)}
-  </ul>
+
+  <section class="mt-6">
+    <div class="flex items-center justify-between pb-3">
+      <h2 class="text-base font-bold text-gray-900">
+        Ocupaciones disponibles en el CNPO
+      </h2>
+      <span class="text-xs text-gray-500">Haz clic en cualquier tarjeta para ver sus afinidades</span>
+    </div>
+
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {ocupaciones.map((ocupacion) => <TarjetaOcupacion ocupacion={ocupacion} />)}
+    </ul>
+  </section>
 </Base>
